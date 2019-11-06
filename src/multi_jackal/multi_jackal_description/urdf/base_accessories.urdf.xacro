@@ -14,7 +14,7 @@
                        topic="$(optenv JACKAL_LASER_TOPIC front/scan)"/>
 
     <joint name="$(optenv JACKAL_LASER_MOUNT front)_laser_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)"
+      <origin xyz="$(optenv JACKAL_LASER_OFFSET -0.1 0 0)"
               rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
       <parent link="$(optenv JACKAL_LASER_MOUNT front)_mount" />
       <child link="$(optenv JACKAL_LASER_MOUNT front)_laser_mount" />
@@ -64,21 +64,21 @@
   <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_bumblebee2.urdf.xacro" />
 
   <xacro:if value="$(optenv JACKAL_BB2 0)">
-    <camera_mount prefix="$(optenv JACKAL_BB2_MOUNT front)"
+    <camera_mount prefix="$(optenv JACKAL_BB2_MOUNT front2)"
                         tilt="$(optenv JACKAL_BB2_TILT 0)"/>
 
-    <joint name="$(optenv JACKAL_BB2_MOUNT front)_camera_mount_joint" type="fixed">
+    <joint name="$(optenv JACKAL_BB2_MOUNT front2)_camera_mount_joint" type="fixed">
       <origin xyz="$(optenv JACKAL_BB2_OFFSET 0 0 0)"
               rpy="$(optenv JACKAL_BB2_RPY 0 0 0)" />
       <parent link="$(optenv JACKAL_BB2_MOUNT front)_mount" />
-      <child link="$(optenv JACKAL_BB2_MOUNT front)_camera_mount" />
+      <child link="$(optenv JACKAL_BB2_MOUNT front2)_camera_mount" />
     </joint>
 
-    <BB2-08S2C-38 frame="$(optenv JACKAL_BB2_MOUNT front)_camera" name="$(optenv JACKAL_BB2_NAME front)" />
-    <joint name="$(optenv JACKAL_BB2_MOUNT front)_camera_bracket_joint" type="fixed">
+    <BB2-08S2C-38 frame="$(optenv JACKAL_BB2_MOUNT front2)_camera" name="$(optenv JACKAL_BB2_NAME front2)" />
+    <joint name="$(optenv JACKAL_BB2_MOUNT front2)_camera_bracket_joint" type="fixed">
       <origin xyz="0.007 0 0.02450" rpy="0 0 0" />
-      <parent link="$(optenv JACKAL_BB2_MOUNT front)_camera_beam" />
-      <child link="$(optenv JACKAL_BB2_MOUNT front)_camera" />
+      <parent link="$(optenv JACKAL_BB2_MOUNT front2)_camera_beam" />
+      <child link="$(optenv JACKAL_BB2_MOUNT front2)_camera" />
     </joint>
   </xacro:if>
 

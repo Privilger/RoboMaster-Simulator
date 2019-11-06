@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- This is part 1 of a process to simulate robots in seperate ROS masters. 
+     This part is the Gazebo simulator.
+     Requires the package 'sync_params'.
+
+     Launch with:
+        roslaunch multi_jackal_tutorials multimaster-gazebo.launch -p 11311
+      
+     And run the multimaster-jackal.launch in a new tab.
+-->
+
+<launch>
+  <!-- Multi master. -->
+  <node name="master_discovery" pkg="master_discovery_fkie" type="master_discovery"/>
+  <node name="master_sync" pkg="master_sync_fkie" type="master_sync">
+    <rosparam param="ignore_topics">['/tf']</rosparam> 
+  </node>
+  
+  <!-- Start Gazebo with an empty world. -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="debug"        value="false"/>
+    <arg name="gui"          value="false"/>
+    <arg name="headless"     value="false"/>
+    <arg name="paused"       value="false"/>
+    <arg name="world_name"   value="$(find multi_jackal_tutorials)/worlds/empty.world"/>
+  </include>
+  
+  <!-- Synchronise parameters. -->
+  <node name="sync_params" pkg="sync_params" type="sync_params" output="screen">
+    <rosparam param="blacklist">["/*"]</rosparam>
+    <rosparam param="whitelist">["/jackal*"]</rosparam>
+    <param name="use_wall_time" value="true"/>
+  </node>  
+  
+</launch>

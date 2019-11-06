@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- This is part 2 of a process to simulate robots in seperate ROS masters. 
+     This part is the Jackal.
+     Requires the package 'sync_params'.
+     After running multimaster-gazebo.launch, launch with:
+       roslaunch multi_jackal_tutorials multimaster-jackal.launch ns:=jackal0 -p 11312
+      
+     To view RVIZ from the robots point of view: 
+       ROS_MASTER_URI=http://localhost:11312
+       roslaunch multi_jackal_tutorials rviz.launch
+-->
+
+<launch>
+  <arg name="ns" default="jackal0"/>
+  <param name="/use_sim_time" value="true"/>
+  
+  <!-- Multi master. -->
+  <node name="master_discovery" pkg="master_discovery_fkie" type="master_discovery"/>
+  <node name="master_sync" pkg="master_sync_fkie" type="master_sync">
+    <rosparam param="ignore_topics">['/tf']</rosparam> 
+  </node>
+  
+  <!-- Synchronise parameters. -->
+  <node ns="$(arg ns)" name="sync_params" pkg="sync_params" type="sync_params" output="screen">
+    <rosparam param="blacklist">["/*"]</rosparam>
+    <rosparam param="whitelist">["/jackal0/*"]</rosparam>
+    <param name="use_wall_time" value="true"/>
+  </node>
+  
+  <!-- Spawn the robot. -->
+  <include file="$(find multi_jackal_base)/launch/jackal_base.launch">
+    <arg name="ns"            value="$(arg ns)"/>
+    <arg name="use_move_base" value="true"/>
+  </include>
+
+</launch>

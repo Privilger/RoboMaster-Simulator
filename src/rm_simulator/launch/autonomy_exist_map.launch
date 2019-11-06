@@ -1,0 +1,62 @@
+<launch>
+  <arg name="ns0"        default="jackal0"/>
+  <arg name="ns1"        default="jackal1"/>
+  <arg name="config_id" default="0"/>
+  <arg name="rviz"      default="true"/>
+
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  <arg name="world_name" default="$(find rm_simulator)/worlds/indoor_room.world"/>
+
+  <!-- Configuration of Jackal which you would like to simulate.
+       See jackal_description for details. -->
+  <arg name="config" default="cameras_laser" />
+
+  <!-- Launch Gazebo with the specified world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="0" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="world_name" value="$(arg world_name)" />
+  </include>
+
+
+  <!-- Spawn the robot 0 -->
+  <include file="$(find multi_jackal_base)/launch/jackal_base.launch">
+    <arg name="ns"            value="$(arg ns0)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="config_id"     value="$(arg config_id)"/>
+    <arg name="use_move_base" value="true"/>
+    <arg name="use_global_tf" value="false"/>
+  </include>
+
+  <include file="$(find rm_simulator)/launch/include/amcl.launch">
+    <arg name="ns"            value="$(arg ns0)"/>
+  </include>
+
+  <!-- Spawn the robot 1 -->
+  <include file="$(find multi_jackal_base)/launch/jackal_base.launch">
+    <arg name="ns"            value="$(arg ns1)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="config_id"     value="$(arg config_id)"/>
+    <arg name="use_move_base" value="true"/>
+    <arg name="use_global_tf" value="false"/>
+    <arg name="x"             value="2"/>
+  </include>
+
+  <include file="$(find rm_simulator)/launch/include/amcl.launch">
+    <arg name="ns"            value="$(arg ns1)"/>
+  </include>
+
+
+<node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/indoor_map.yaml"/>
+
+<!-- View in RVIZ. -->
+<group if="$(arg rviz)">
+  <include file="$(find rm_simulator)/launch/rviz.launch">
+  </include>
+</group>
+
+</launch>

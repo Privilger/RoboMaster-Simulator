@@ -1,0 +1,7 @@
+image: indoor_map.pgm
+resolution: 0.020000
+origin: [-26.640000, -20.880000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

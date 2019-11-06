@@ -1,0 +1,13 @@
+<launch>
+  <arg name="ns0"        default="jackal0"/>
+  <arg name="ns1"        default="jackal1"/>
+ 
+  <!-- View in RVIZ. -->
+  <node name="jackal_viz_$(arg ns0)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/jackal_viz.rviz" >
+    <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/>
+  </node>
+
+  <node name="jackal_viz$(arg ns1)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/jackal_viz.rviz" >
+    <remap from="/move_base_simple/goal" to="/$(arg ns1)/move_base_simple/goal"/>
+  </node>
+</launch>

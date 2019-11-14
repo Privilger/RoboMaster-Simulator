@@ -1,0 +1,30 @@
+<launch>
+  <arg name="joy_dev" default="/dev/input/js0" />
+  <arg name="joystick" default="true" />
+
+  <group ns="bluetooth_teleop" if="$(arg joystick)">
+
+    <group unless="$(optenv RIDGEBACK_PS3 0)" >
+      <rosparam command="load" file="$(find ridgeback_control)/config/teleop_ps4.yaml" />
+    </group>
+
+    <group if="$(optenv RIDGEBACK_PS3 0)" >
+      <rosparam command="load" file="$(find ridgeback_control)/config/teleop_ps3.yaml" />
+      <param name="joy_node/dev" value="$(arg joy_dev)" />
+    </group>
+
+    <node pkg="joy" type="joy_node" name="joy_node" />
+
+    <node pkg="teleop_twist_joy" type="teleop_node" name="teleop_twist_joy">
+      <remap from="cmd_vel" to="/cmd_vel" />
+    </node>
+  </group>
+
+  <arg name="config" default="planar" />
+
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
+    <remap from="twist_marker_server/cmd_vel" to="/cmd_vel" />
+    <rosparam command="load" file="$(find interactive_marker_twist_server)/config/$(arg config).yaml" />
+  </node>
+
+</launch>

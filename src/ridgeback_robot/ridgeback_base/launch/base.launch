@@ -1,0 +1,27 @@
+<launch>
+  <include file="$(find ridgeback_description)/launch/description.launch" />
+
+  <node pkg="rosserial_python" type="message_info_service.py" name="rosserial_message_info" />
+
+  <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter">
+    <rosparam>
+      gain: 0.1
+      zeta: 0.001
+      publish_tf: false
+      use_magnetic_field_msg: true
+    </rosparam>
+  </node>
+
+  <node pkg="ridgeback_base" type="ridgeback_node" name="ridgeback_node" output="screen" />
+
+  <!-- Mecanum controller and basic localization -->
+  <include file="$(find ridgeback_control)/launch/control.launch" />
+
+  <!-- Teleoperation via joystick and rviz interactive markers -->
+  <include file="$(find ridgeback_control)/launch/teleop.launch" />
+
+  <!-- Diagnostic Aggregator for robot monitor usage -->
+  <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator">
+    <rosparam command="load" file="$(find ridgeback_base)/config/diagnostic_analyzers.yaml" />
+  </node>
+</launch>

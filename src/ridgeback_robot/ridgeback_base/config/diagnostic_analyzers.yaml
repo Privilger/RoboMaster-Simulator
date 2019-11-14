@@ -1,0 +1,41 @@
+analyzers:
+  ridgeback:
+    type: diagnostic_aggregator/AnalyzerGroup
+    path: Ridgeback Base
+    analyzers:
+      general:
+        type: diagnostic_aggregator/GenericAnalyzer
+        path: General
+        remove_prefix: 'ridgeback_node'
+        timeout: 5.0
+        expected: [
+          'ridgeback_node: General',
+          'ridgeback_node: Battery',
+          'ridgeback_node: User voltage supplies',
+          'ridgeback_node: Current consumption',
+          'ridgeback_node: Power consumption',
+          'ridgeback_node: Temperature' ]
+      motors:
+        type: diagnostic_aggregator/GenericAnalyzer
+        path: Motors
+        remove_prefix: 'ridgeback_node'
+        timeout: 5.0
+        expected: [
+          'ridgeback_node: Puma motor driver on: rear_left_wheel with CAN ID (2)',
+          'ridgeback_node: Puma motor driver on: rear_right_wheel with CAN ID (3)',
+          'ridgeback_node: Puma motor driver on: front_right_wheel with CAN ID (4)',
+          'ridgeback_node: Puma motor driver on: front_left_wheel with CAN ID (5)']
+      sensors:
+        type: diagnostic_aggregator/GenericAnalyzer
+        path: Sensor Topics
+        remove_prefix: 'ridgeback_node'
+        timeout: 5.0
+        expected: [
+          'ridgeback_node: /imu/data_raw topic status']
+      teleop:
+        type: diagnostic_aggregator/GenericAnalyzer
+        path: Bluetooth Joystick
+        remove_prefix: 'bluetooth_teleop/joy_node'
+        timeout: 5.0
+        expected: [
+          'bluetooth_teleop/joy_node: Joystick Driver Status' ]

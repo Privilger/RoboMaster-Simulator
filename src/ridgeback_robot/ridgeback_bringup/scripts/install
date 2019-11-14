@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+
+import os
+import robot_upstart
+
+from catkin.find_in_workspaces import find_in_workspaces
+find_in_workspaces(project="ridgeback_bringup", path="can-udp-bridge.conf")
+
+main_job = robot_upstart.Job(workspace_setup=os.environ['ROBOT_SETUP'])
+main_job.add(package="ridgeback_base", filename="launch/base.launch")
+main_job.add(package="ridgeback_bringup", filename="launch/accessories.launch")
+main_job.install()
+
+
+class RidgebackExtras(robot_upstart.providers.Generic):
+    def post_install(self):
+        pass
+
+    def generate_install(self):
+        with open(find_in_workspaces(project="ridgeback_bringup", path="can-udp-bridge.conf")[0]) as f:
+            can_conf_contents = f.read()
+        with open(find_in_workspaces(project="ridgeback_bringup", path="can-udp-bridge.sh")[0]) as f:
+            can_sh_contents = f.read()
+        return { "/etc/connman/main.conf": {
+                "content": """[General]
+NetworkInterfaceBlacklist=eth,br,en
+PreferredTechnologies=wifi""",
+                "mode": 0o644
+            },
+            "/lib/systemd/system/can-udp-bridge.service": {
+                "content": can_conf_contents,
+                "mode": 0o644
+            },
+            "/usr/sbin/can-udp-bridge": {
+                "content": can_sh_contents,
+                "mode": 0o755
+            },
+            "/etc/systemd/system/multi-user.target.wants/can-udp-bridge.service": {
+                "symlink": "/lib/systemd/system/can-udp-bridge.service"
+            }}
+
+
+other_job = robot_upstart.Job()
+other_job.install(Provider=RidgebackExtras)

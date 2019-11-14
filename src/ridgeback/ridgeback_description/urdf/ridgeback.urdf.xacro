@@ -303,6 +303,7 @@
        of these into the final description is controlled by optenv variables, which
        default each one to off.-->
   <xacro:include filename="$(find ridgeback_description)/urdf/accessories.urdf.xacro" />
+  <xacro:include filename="$(find ridgeback_description)/urdf/custom_sensors.urdf.xacro" />
 
   <!-- Optional custom includes. -->
   <xacro:include filename="$(optenv RIDGEBACK_URDF_EXTRAS empty.urdf)" />

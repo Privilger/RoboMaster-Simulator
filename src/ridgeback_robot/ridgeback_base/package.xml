@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>ridgeback_base</name>
+  <version>0.2.3</version>
+  <description>Ridgeback's mobility and sensor base.</description>
+
+  <author email="mpurvis@clearpathrobotics.com">Mike Purvis</author>
+  <author email="tbaltovski@clearpathrobotics.com">Tony Baltovski</author>
+
+  <maintainer email="tbaltovski@clearpathrobotics.com">Tony Baltovski</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">http://wiki.ros.org/Robots/Ridgeback</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>hardware_interface</build_depend>
+  <build_depend>roscpp</build_depend>
+
+  <depend>controller_manager</depend>
+  <depend>diagnostic_updater</depend>
+  <depend>geometry_msgs</depend>
+  <depend>ridgeback_msgs</depend>
+  <depend>puma_motor_msgs</depend>
+  <depend>puma_motor_driver</depend>
+  <depend>realtime_tools</depend>
+  <depend>rosserial_server</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+
+  <exec_depend>diagnostic_aggregator</exec_depend>
+  <exec_depend>diff_drive_controller</exec_depend>
+  <exec_depend>imu_filter_madgwick</exec_depend>
+  <exec_depend>ridgeback_control</exec_depend>
+  <exec_depend>ridgeback_description</exec_depend>
+  <exec_depend>python-scipy</exec_depend>
+  <exec_depend>rosserial_python</exec_depend>
+  <exec_depend>teleop_twist_joy</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>topic_tools</exec_depend>
+  <exec_depend>socat</exec_depend>
+
+  <test_depend>roslaunch</test_depend>
+  <test_depend>roslint</test_depend>
+
+  <export>
+  </export>
+</package>

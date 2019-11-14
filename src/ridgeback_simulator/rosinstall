@@ -1,0 +1,9 @@
+- git: {local-name: ridgeback, uri: 'https://github.com/ridgeback/ridgeback', version: indigo-devel}
+- git: {local-name: ridgeback_desktop, uri: 'https://github.com/ridgeback/ridgeback_desktop',
+    version: indigo-devel}
+- git: {local-name: ridgeback_simulator, uri: 'https://github.com/ridgeback/ridgeback_simulator',
+    version: indigo-devel}
+- git: {local-name: robot_localization, uri: 'https://github.com/cra-ros-pkg/robot_localization',
+    version: master}
+- git: {local-name: ros_controllers, uri: 'https://github.com/ridgeback/ros_controllers',
+    version: diff-drive-multiwheel}

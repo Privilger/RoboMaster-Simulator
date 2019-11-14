@@ -1,0 +1,2 @@
+- git: {local-name: ridgeback_robot, uri: 'https://github.com/ridgeback/ridgeback_robot', version: indigo-devel}
+- git: {local-name: ridgeback, uri: 'https://github.com/ridgeback/ridgeback', version: indigo-devel}

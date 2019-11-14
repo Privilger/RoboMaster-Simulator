@@ -1,0 +1,78 @@
+<!--
+Launch driver components of Ridgeback's supported accessories.
+
+Be careful that the defaults in this file are kept aligned with those
+in the URDF. See ridgeback_description/urdf/accessories.urdf.xacro.
+-->
+<launch>
+  <!-- Primary Hokuyo UST-10LX LIDAR, base is front-facing but support for addtional rear. -->
+  <group if="$(optenv RIDGEBACK_FRONT_HOKUYO_LASER 0)">
+    <node pkg="urg_node" name="urg_front" type="urg_node">
+      <param name="ip_address" value="$(optenv RIDGEBACK_FRONT_LASER_HOST 192.168.131.20)" />
+      <param name="frame_id" value="front_laser" />
+      <param name="angle_min" value="-2.35619" />
+      <param name="angle_max" value="2.35619" />
+      <remap from="scan" to="front/scan" />
+    </node>
+  </group>
+
+  <group if="$(optenv RIDGEBACK_REAR_HOKUYO_LASER 0)">
+    <node pkg="urg_node" name="urg_rear" type="urg_node">
+      <param name="ip_address" value="$(optenv RIDGEBACK_REAR_LASER_HOST 192.168.131.21)" />
+      <param name="frame_id" value="rear_laser" />
+      <param name="angle_min" value="-2.35619" />
+      <param name="angle_max" value="2.35619" />
+      <remap from="scan" to="rear/scan" />
+    </node>
+  </group>
+
+  <!-- Optional Sick LMS1xx-series LIDAR, generally is front-facing but support for addtional rear. -->
+  <group if="$(optenv RIDGEBACK_FRONT_SICK_LASER 0)">
+    <node pkg="lms1xx" name="lms1xx_front" type="LMS1xx_node">
+      <param name="host" value="$(optenv RIDGEBACK_FRONT_LASER_HOST 192.168.131.20)" />
+      <param name="frame_id" value="front_laser" />
+      <remap from="scan" to="front/scan" />
+    </node>
+  </group>
+
+  <group if="$(optenv RIDGEBACK_REAR_SICK_LASER 0)">
+    <node pkg="lms1xx" name="lms1xx_rear" type="LMS1xx_node">
+      <param name="host" value="$(optenv RIDGEBACK_REAR_LASER_HOST 192.168.131.21)" />
+      <param name="frame_id" value="rear_laser" />
+      <remap from="scan" to="rear/scan" />
+    </node>
+  </group>
+
+
+  <!-- Optional Sick S300-series LIDAR, generally is front-facing but support for addtional rear. -->
+  <group if="$(optenv RIDGEBACK_FRONT_S300_LASER 0)" ns="s300_front" >
+    <param name="port" value="$(optenv RIDGEBACK_FRONT_S300_PORT /dev/clearpath/s300_front)" />
+    <param name="frame_id" value="front_laser" />
+    <node pkg="cob_sick_s300" name="s300_front" type="cob_sick_s300">
+      <remap from="scan" to="/front/scan" />
+      <remap from="scan_standby" to="/front/scan_standby" />
+    </node>
+
+  </group>
+
+  <group if="$(optenv RIDGEBACK_REAR_S300_LASER 0)" ns="s300_rear" >
+    <param name="port" value="$(optenv RIDGEBACK_REAR_S300_PORT /dev/clearpath/s300_rear)" />
+    <param name="frame_id" value="rear_laser" />
+    <node pkg="cob_sick_s300" name="s300_rear" type="cob_sick_s300">
+      <remap from="scan" to="/rear/scan" />
+      <remap from="scan_standby" to="/rear/scan_standby" />
+    </node>
+  </group>
+
+  <group if="$(optenv RIDGEBACK_MICROSTRAIN_IMU 0)">
+    <node pkg="microstrain_3dmgx2_imu" type="imu_node" name="microstrain_imu">
+      <param name="time_offset" value="-0.040" />
+      <param name="port" value="$(optenv RIDGEBACK_MICROSTRAIN_IMU_PORT /dev/microstrain)" />
+      <param name="frame_id" value="$(optenv RIDGEBACK_MICROSTRAIN_IMU_LINK upgraded)_imu_link" />
+      <param name="autocalibrate" value="true" />
+      <param name="angular_velocity_stdev" value="0.00017" />
+      <param name="max_drift_rate" value="0.001" />
+      <remap from="imu" to="$(optenv RIDGEBACK_MICROSTRAIN_IMU_TOPIC upgraded)_imu" />
+    </node>
+  </group>
+</launch>

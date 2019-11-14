@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- This file is a placeholder which is included by default from
+       ridgeback.urdf.xacro. If a robot is being customized and requires
+       additional URDF, set the RIDGEBACK_URDF_EXTRAS environment variable
+       to the full path of the file you would like included. -->
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
+
+
+  <xacro:macro name="sick_lms1xx_mount" params="prefix topic location">
+
+    <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" update_rate="20"  min_angle="-${M_PI}" max_angle="${M_PI}" />
+
+    <joint name="${prefix}_laser_joint" type="fixed">
+      <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
+      <origin xyz="${location * 0.3999} 0 0.32" rpy="0 0 0" />
+      <parent link="chassis_link" />
+      <child link="${prefix}_laser" />
+    </joint>
+
+  </xacro:macro>
+
+  <xacro:sick_lms1xx_mount prefix="center"
+                             topic="scan"
+                             location="0" />
+</robot>
+
+

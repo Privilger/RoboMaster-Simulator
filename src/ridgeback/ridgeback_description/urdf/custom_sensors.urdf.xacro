@@ -12,11 +12,11 @@
 
   <xacro:macro name="sick_lms1xx_mount" params="prefix topic location">
 
-    <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" update_rate="20"  min_angle="-${M_PI}" max_angle="${M_PI}" />
+    <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" update_rate="50"  min_angle="-${M_PI}" max_angle="${M_PI}" />
 
     <joint name="${prefix}_laser_joint" type="fixed">
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
-      <origin xyz="${location * 0.3999} 0 0.32" rpy="0 0 0" />
+      <origin xyz="${location * 0.3999} 0 0.3" rpy="0 0 0" />
       <parent link="chassis_link" />
       <child link="${prefix}_laser" />
     </joint>

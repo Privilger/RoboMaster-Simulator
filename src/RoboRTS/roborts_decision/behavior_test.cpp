@@ -10,7 +10,7 @@
 #include "example_behavior/goal_behavior.h"
 
 void Command();
-char command = '0';
+char command = '6';
 
 int main(int argc, char **argv) {
   ros::init(argc, argv, "behavior_test_node");
@@ -26,7 +26,7 @@ int main(int argc, char **argv) {
   roborts_decision::PatrolBehavior       patrol_behavior(chassis_executor, blackboard, full_path);
   roborts_decision::GoalBehavior       goal_behavior(chassis_executor, blackboard);
 
-  auto command_thread= std::thread(Command);
+  // auto command_thread= std::thread(Command);
   ros::Rate rate(10);
   while(ros::ok()){
     ros::spinOnce();
@@ -56,9 +56,6 @@ int main(int argc, char **argv) {
         goal_behavior.Run();
         break;
       case 27:
-        if (command_thread.joinable()){
-          command_thread.join();
-        }
         return 0;
       default:
         break;

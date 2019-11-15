@@ -9,7 +9,7 @@ para_costmap_interface {
   transform_tolerance: 1.0
   distance_threshold: 1.0
   map_width: 5.0
-  map_height: 3.0
+  map_height: 5.0
   map_resolution: 0.04
   map_origin_x: 0.0
   map_origin_y: 0.0
@@ -22,19 +22,18 @@ para_costmap_interface {
 }
 footprint {
   point {
-    x: -0.3
-    y: -0.225
+    x: -0.48
+    y: -0.4
   }
   point {
-    x: -0.3
-    y: 0.225
+    x: -0.48
+    y: 0.4
   }
   point {
-    x: 0.3
-    y: 0.225
+    x: 0.48
+    y: 0.4
   }
   point {
-    x: 0.3
-    y: -0.225
+    x: 0.48
+    y: -0.4
   }
-}

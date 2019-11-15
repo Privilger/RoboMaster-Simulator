@@ -2,7 +2,7 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find ridgeback_gazebo)/worlds/ridgeback_race.world" />
+  <arg name="world_name" default="$(find rm_simulator)/worlds/indoor_room.world"/>
 
   <!-- Configuration of Ridgeback which you would like to simulate.
        See ridgeback_description for details. -->

@@ -22,9 +22,9 @@ trajectory_opt {
 
 kinematics_opt {
     max_vel_x: 2.5
-    max_vel_x_backwards: 0.2
+    max_vel_x_backwards: 1
     max_vel_y: 2.5
-    max_vel_theta: 2.5
+    max_vel_theta: 2
     acc_lim_x: 2.6
     acc_lim_y: 2.6
     acc_lim_theta: 2.6
@@ -41,9 +41,9 @@ tolerance_opt {
 
 obstacles_opt {
     min_obstacle_dist: 0.32 #0.8
-    inflation_dist: 0
+    inflation_dist: 0.0
     include_costmap_obstacles: True
-    costmap_obstacles_behind_robot_dist: 0.1
+    costmap_obstacles_behind_robot_dist: 0.18
     obstacle_poses_affected: 30
     legacy_obstacle_association: False
     obstacle_association_cutoff_factor: 5.0
@@ -53,20 +53,20 @@ obstacles_opt {
 robot_type {
     type: POINT
     robot_vertices {
-        x: 0.3
-        y: 0.225
+        x: 0.53
+        y: 0.45
     }
     robot_vertices {
-        x: -0.3
-        y: 0.225
+        x: -0.53
+        y: 0.45
     }
     robot_vertices {
-        x: -0.3
-        y: -0.225
+        x: -0.53
+        y: -0.45
     }
     robot_vertices {
-        x: 0.3
-        y: -0.225
+        x: 0.53
+        y: -0.45
     }
 }
 

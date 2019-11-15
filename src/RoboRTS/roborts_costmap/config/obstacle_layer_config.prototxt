@@ -4,9 +4,9 @@ min_obstacle_height: 0.0
 max_obstacle_height: 2.0
 obstacle_range: 5
 raytrace_range: 5
-transform_tolerance: 0.3
+transform_tolerance: 0.1
 topic_string: "scan"
-sensor_frame: "base_laser_link"
+sensor_frame: "center_laser"
 inf_is_valid: false
 clearing: true
 footprint_clearing_enabled: false

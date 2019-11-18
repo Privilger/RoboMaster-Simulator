@@ -39,11 +39,25 @@
       </visual>
     </link>
 
-    <joint name="${prefix}_camera_pivot_joint" type="fixed">
+    <joint name="${prefix}_camera_pivot_joint" type="revolute">
       <origin xyz="0.102 0 0.008" rpy="0 ${tilt} 0" />
       <parent link="${prefix}_camera_mount" />
       <child link="${prefix}_camera_beam" />
+      <limit upper="1.57" lower="-1.57" velocity="0.3" effort="10"/>
+       <axis xyz="0 0 1" />
     </joint>
+
+
+    <transmission name="turret_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_camera_pivot_joint">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="turret_motor">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 
     <gazebo reference="${prefix}_camera_beam">
       <material>Gazebo/DarkGrey</material>

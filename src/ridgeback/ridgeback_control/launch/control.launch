@@ -6,7 +6,7 @@
   </group>
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="ridgeback_joint_publisher ridgeback_velocity_controller" />
+        args="ridgeback_joint_publisher ridgeback_velocity_controller turret_position_controller" />
 
   <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
 

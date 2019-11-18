@@ -40,6 +40,7 @@
       <parent link="$(optenv JACKAL_FLEA_MOUNT front)_cover_link" />
       <child link="$(optenv JACKAL_FLEA_MOUNT front)_camera_mount" />
     </joint>
+    
 
     <pointgrey_flea3 frame="$(optenv JACKAL_FLEA3_MOUNT front)_camera" name="$(optenv JACKAL_FLEA_NAME front)"
       camera_x="0.0754" camera_y="0.029" camera_z="0.035"

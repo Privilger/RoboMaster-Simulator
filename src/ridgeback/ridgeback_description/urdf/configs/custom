@@ -1,4 +1,4 @@
 # The base Ridgeback configuration has only the
 # front laser.
 
-RIDGEBACK_URDF_EXTRAS=1
+JACKAL_FLEA3=1

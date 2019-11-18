@@ -8,7 +8,8 @@
 
   <!-- Configuration of Jackal which you would like to simulate.
        See jackal_description for details. -->
-  <arg name="config" default="empty" />
+  <!-- <arg name="config" default="empty" /> -->
+  <arg name="config" default="custom" />
 
   <!-- Launch Gazebo with the specified world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">

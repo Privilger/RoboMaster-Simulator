@@ -11,6 +11,7 @@ This project is aimed to build a simulator for ICRA RoboMaster AI Challenge. Thr
 This repository contains:
 
 1. Multi-agent navigation based on [multi-jackle](https://github.com/NicksSimulationsROS/multi_jackal) ROS package.
+2. [Omni-directional chassis](https://github.com/ridgeback/ridgeback_simulator) combine with RoboRTS.
 
 
 ## TODO
@@ -19,7 +20,7 @@ This repository contains:
 3. Speed up the gazebo simulation. 
 4. Add bunos and supply function.
 5. Add stage simulator.
-6. Replace differential chassis with omni-directional chassis.
+6. Add referee system, maybe based on BlackBoard game design.
 
 ## Install
 
@@ -30,11 +31,16 @@ $ ./install_flycapture.sh
 ```
 
 ## Usage
-Launch two robots navigation in a map.
+### Launch two robots navigation in a map.
 ```sh
 $ roslaunch rm_simulator autonomy_exist_map.launch
 ```
 It will open 2 rviz, each rviz can send a goal to one robot.
+
+### Launch one omni robot navigation in a map.
+```sh
+$ roslaunch rm_simulator ridgeback_exist_map.launch
+```
 
 
 ## Maintainers

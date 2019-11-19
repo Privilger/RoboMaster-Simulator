@@ -4,6 +4,11 @@
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
     </plugin>
+    <plugin name="gazebo_ros_joint_pose_trajectory" filename="libgazebo_ros_joint_pose_trajectory.so">
+      <robotNamespace>/</robotNamespace>
+      <!-- <topicName>set_trajectory_demo</topicName> -->
+      <updateRate>100</updateRate>
+    </plugin>
 
     <plugin name="ridgeback_ros_force_based_move" filename="libridgeback_ros_force_based_move.so">
       <robotNamespace>/</robotNamespace>

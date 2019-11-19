@@ -11,6 +11,8 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   tf2
   roborts_msgs
+  trajectory_msgs
+  std_msgs
 )
 
 catkin_package(
@@ -28,4 +30,11 @@ target_link_libraries(acc2vel_node
   ${catkin_LIBRARIES}
 )
 add_dependencies(acc2vel_node
+  ${catkin_EXPORTED_TARGETS})
+
+add_executable(turret_controller src/turret_controller.cpp)
+target_link_libraries(turret_controller
+  ${catkin_LIBRARIES}
+)
+add_dependencies(turret_controller
   ${catkin_EXPORTED_TARGETS})

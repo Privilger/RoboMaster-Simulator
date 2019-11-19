@@ -50,6 +50,7 @@
       <parent link="$(optenv JACKAL_FLEA3_MOUNT front)_camera_beam" />
       <child link="$(optenv JACKAL_FLEA3_MOUNT front)_camera" />
     </joint>
+
   </xacro:if>
 </robot>
 

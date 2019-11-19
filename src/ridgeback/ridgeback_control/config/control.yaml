@@ -3,8 +3,12 @@ ridgeback_joint_publisher:
   publish_rate: 50
 
 turret_position_controller:
-  type: "position_controllers/JointPositionController"
-  joint: front_camera_pivot_joint
+  type: "position_controllers/JointTrajectoryController"
+  joints:
+    - front_camera_pivot_joint
+  # type: "position_controllers/JointPositionController"
+  # joint: front_camera_pivot_joint
+  
 
 ridgeback_velocity_controller:
   type: "mecanum_drive_controller/MecanumDriveController"

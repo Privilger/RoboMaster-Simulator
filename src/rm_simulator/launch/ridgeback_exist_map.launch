@@ -47,12 +47,14 @@
       i: 0.1
       d: 0
     front_camera_pivot_joint:
-      p: 10
-      i: 0
+      p: 5
+      i: 0.08
       d: 0
   </rosparam>
 
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" args="_use_gui:=true"/> 
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" args="_use_gui:=true"/>  -->
+
+  <node name="turret_controller" pkg="rm_simulator" type="turret_controller"/> 
 
   <!-- Spawn Ridgeback -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"

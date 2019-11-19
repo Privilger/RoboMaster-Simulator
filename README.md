@@ -10,12 +10,14 @@ This project is aimed to build a simulator for ICRA RoboMaster AI Challenge. Thr
 
 This repository contains:
 
+
+1. Latest 2020 arena map.
 1. Multi-agent navigation based on [multi-jackle](https://github.com/NicksSimulationsROS/multi_jackal) ROS package.
 2. [Omni-directional chassis](https://github.com/ridgeback/ridgeback_simulator) combine with RoboRTS.
+2. turret(simplified as a rotatable camera) on the robot model.
 
 
 ## TODO
-1. Add the 2020 Competition's map.
 2. Connect it with OpenAi gym framework. It can be done by ref the [gym-gazebo2](https://github.com/AcutronicRobotics/gym-gazebo2) repository.
 3. Speed up the gazebo simulation. 
 4. Add bunos and supply function.

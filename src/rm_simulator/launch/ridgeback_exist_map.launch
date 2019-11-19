@@ -4,7 +4,7 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find rm_simulator)/worlds/indoor_room.world"/>
+  <arg name="world_name" default="$(find rm_simulator)/worlds/map2020.world"/>
 
   <!-- Configuration of Jackal which you would like to simulate.
        See jackal_description for details. -->
@@ -58,7 +58,7 @@
 
   <!-- Spawn Ridgeback -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-urdf -model ridgeback -param robot_description -x 0 -y 0 -z 0.1" />
+        args="-urdf -model ridgeback -param robot_description -x 1 -y 1 -z 0.1" />
 
   <!--Load parameters for localization node  -->
   <rosparam command="load" file="$(find roborts_localization)/config/localization.yaml" />
@@ -81,7 +81,7 @@
 
   <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node"/> 
 
-  <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/indoor_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/map2020.yaml"/>
 
 <!-- View in RVIZ. -->
 <group if="$(arg rviz)">

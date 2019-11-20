@@ -43,6 +43,7 @@
       <origin xyz="0.102 0 0.008" rpy="0 ${tilt} 0" />
       <parent link="${prefix}_camera_mount" />
       <child link="${prefix}_camera_beam" />
+      <!-- this velocity variable determines whether the joint rotates fast or slow -->
       <limit upper="1.57" lower="-1.57" velocity="10" effort="2"/>
        <axis xyz="0 0 1" />
     </joint>

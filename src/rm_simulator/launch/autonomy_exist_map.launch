@@ -23,4 +23,40 @@
   </include>
 
 
+  <!-- Spawn the robot 0 -->
+  <include file="$(find multi_jackal_base)/launch/jackal_base.launch">
+    <arg name="ns"            value="$(arg ns0)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="config_id"     value="$(arg config_id)"/>
+    <arg name="use_move_base" value="true"/>
+    <arg name="use_global_tf" value="false"/>
+  </include>
+
+  <include file="$(find rm_simulator)/launch/include/amcl.launch">
+    <arg name="ns"            value="$(arg ns0)"/>
+  </include>
+
+  <!-- Spawn the robot 1 -->
+  <include file="$(find multi_jackal_base)/launch/jackal_base.launch">
+    <arg name="ns"            value="$(arg ns1)"/>
+    <arg name="config"        value="$(arg config)"/>
+    <arg name="config_id"     value="$(arg config_id)"/>
+    <arg name="use_move_base" value="true"/>
+    <arg name="use_global_tf" value="false"/>
+    <arg name="x"             value="2"/>
+  </include>
+
+  <include file="$(find rm_simulator)/launch/include/amcl.launch">
+    <arg name="ns"            value="$(arg ns1)"/>
+  </include>
+
+
+<node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/indoor_map.yaml"/>
+
+<!-- View in RVIZ. -->
+<group if="$(arg rviz)">
+  <include file="$(find rm_simulator)/launch/rviz.launch">
+  </include>
+</group>
+
 </launch>

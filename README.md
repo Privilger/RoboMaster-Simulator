@@ -25,6 +25,12 @@ This repository contains:
 6. Add referee system, maybe based on BlackBoard game design.
 
 ## Install
+### Dependencies
+```sh
+$ sudo apt install protobuf-compiler
+$ sudo apt install libprotoc-dev
+$ sudo apt install ros-kinetic-libg2o
+```
 
 The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/rm_ws/blob/master/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.
 

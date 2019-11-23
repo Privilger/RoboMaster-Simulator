@@ -79,7 +79,7 @@
 
   <node name="behavior_test_node" pkg="roborts_decision" type="behavior_test_node" output="screen"/> 
 
-  <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node"/> 
+  <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false"/> 
 
   <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/map2020.yaml"/>
 

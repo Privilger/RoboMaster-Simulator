@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="rviz"      default="true"/>
+
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+  <arg name="world_name" default="$(find rm_simulator)/worlds/map2020.world"/>
+
+  <!-- Configuration of Jackal which you would like to simulate.
+       See jackal_description for details. -->
+  <arg name="config" default="empty" />
+  <!-- <arg name="config" default="custom" /> -->
+
+  <!-- Launch Gazebo with the specified world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="0" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+    <arg name="world_name" value="$(arg world_name)" />
+  </include>
+
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/map2020.yaml"/>
+
+
+
+  <param name="robot_description"
+         command="$(find ridgeback_description)/scripts/env_run
+                  $(find ridgeback_description)/urdf/configs/$(arg config)
+                  $(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro
+                  --inorder " />
+
+  <group ns="robot0">
+    <param name="tf_prefix" value="robot0_tf"/>
+    <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+      <arg name="init_pose" value="-x 1 -y 2 -z 0.1" />
+      <arg name="robot_name" value="Robot0" />
+    </include>
+  </group>
+
+  <!-- <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf"/>
+    <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+      <arg name="init_pose" value="-x 1 -y 3 -z 0.1" />
+      <arg name="robot_name" value="Robot1" />
+    </include>
+  </group> -->
+
+
+  <!-- View in RVIZ. -->
+  <group if="$(arg rviz)">
+    <node name="ridgeback_viz" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >
+      <!-- <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/> -->
+    </node>
+  </group>
+</launch>

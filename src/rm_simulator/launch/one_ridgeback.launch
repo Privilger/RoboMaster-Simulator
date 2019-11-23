@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="robot_name"        default="ridgeback"/>
+  <arg name="init_pose"         default="-x 1 -y 1 -z 0.1"/>
+
+<!-- Spawn Ridgeback -->
+  <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
+        args="$(arg init_pose) -urdf -model $(arg robot_name) -param /robot_description" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen"/>
+
+
+  <include file="$(find ridgeback_control)/launch/control.launch" />
+  <include file="$(find ridgeback_control)/launch/teleop.launch">
+    <arg name="joystick" value="false"/>
+  </include>
+
+  <rosparam param="/gazebo_ros_control/pid_gains">
+    front_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    front_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_left_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    rear_right_wheel:
+      p: 1
+      i: 0.1
+      d: 0
+    front_camera_pivot_joint:
+      p: 5
+      i: 0.08
+      d: 0
+  </rosparam>
+
+  <node name="turret_controller" pkg="rm_simulator" type="turret_controller"/> 
+  
+  <!--Load parameters for localization node  -->
+  <rosparam command="load" file="$(find roborts_localization)/config/localization.yaml" />
+  <rosparam command="load" file="$(find roborts_localization)/amcl/config/amcl.yaml" />
+
+  <!-- Run the localization node -->
+  <node pkg="roborts_localization" type="localization_node" name="localization_node" respawn="false" >
+  </node>
+  <!-- <include file="$(find rm_simulator)/launch/include/amcl_ridgeback.launch" /> -->
+
+  <!-- Run the global planner node -->
+  <node pkg="roborts_planning" type="global_planner_node" name="global_planner_node" respawn="false" />
+
+  <!-- Run the local planner node -->
+  <node pkg="roborts_planning" type="local_planner_node" name="local_planner_node" respawn="false" >
+    <remap from="/odom" to="/odometry/filtered"/>
+  </node>
+
+  <node name="behavior_test_node" pkg="roborts_decision" type="behavior_test_node" output="screen"/> 
+
+  <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false"/> 
+
+</launch>

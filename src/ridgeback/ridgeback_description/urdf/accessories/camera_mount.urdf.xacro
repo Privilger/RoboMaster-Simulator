@@ -48,12 +48,12 @@
        <axis xyz="0 0 1" />
     </joint>
 
-    <transmission name="turret_trans">
+    <transmission name="{prefix}_turret_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="front_camera_pivot_joint">
+      <joint name="{prefix}_front_camera_pivot_joint">
         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
       </joint>
-      <actuator name="turret_motor">
+      <actuator name="{prefix}_turret_motor">
         <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>

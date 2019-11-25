@@ -11,6 +11,9 @@
   <!-- Configuration of Jackal which you would like to simulate.
        See jackal_description for details. -->
   <arg name="config" default="empty" />
+  <arg name="ns0" default="jackal0" />
+  <arg name="ns1" default="jackal1" />
+
   <!-- <arg name="config" default="custom" /> -->
 
   <!-- Launch Gazebo with the specified world -->
@@ -24,35 +27,34 @@
 
    <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/map2020.yaml"/>
 
+<!--  <param name="/robot_description"-->
+<!--         command="$(find ridgeback_description)/scripts/env_run-->
+<!--                  $(find ridgeback_description)/urdf/configs/$(arg config)-->
+<!--                  $(find xacro)/xacro '$(find ridgeback_description)/urdf/ridgeback.urdf.xacro'-->
+<!--                  '&#45;&#45;inorder' " />-->
 
 
-  <param name="robot_description"
-         command="$(find ridgeback_description)/scripts/env_run
-                  $(find ridgeback_description)/urdf/configs/$(arg config)
-                  $(find xacro)/xacro $(find ridgeback_description)/urdf/ridgeback.urdf.xacro
-                  --inorder " />
-
-  <group ns="robot0">
-    <param name="tf_prefix" value="robot0_tf"/>
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
       <arg name="init_pose" value="-x 1 -y 2 -z 0.1" />
-      <arg name="robot_name" value="Robot0" />
+      <arg name="robot_name" value="$(arg ns0)" />
+      <arg name="ns" value="$(arg ns0)" />
     </include>
-  </group>
 
-  <!-- <group ns="robot1">
-    <param name="tf_prefix" value="robot1_tf"/>
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
       <arg name="init_pose" value="-x 1 -y 3 -z 0.1" />
-      <arg name="robot_name" value="Robot1" />
+      <arg name="robot_name" value="$(arg ns1)" />
+      <arg name="ns" value="$(arg ns1)" />
     </include>
-  </group> -->
 
 
   <!-- View in RVIZ. -->
   <group if="$(arg rviz)">
-    <node name="ridgeback_viz" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >
-      <!-- <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/> -->
+    <node name="ridgeback_viz_$(arg ns0)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >
+       <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/>
+    </node>
+
+    <node name="ridgeback_viz_$(arg ns1)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >
+       <remap from="/move_base_simple/goal" to="/$(arg ns1)/move_base_simple/goal"/>
     </node>
   </group>
 </launch>

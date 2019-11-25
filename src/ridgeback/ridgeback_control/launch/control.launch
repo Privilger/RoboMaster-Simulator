@@ -1,15 +1,21 @@
 <launch>
-  <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" />
+
+  <arg name="ns" default="jackal0"/>
+
+  <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml"
+            ns="$(arg ns)"
+  />
 
   <group if="$(optenv RIDGEBACK_CONTROL_EXTRAS 0)" >
     <rosparam command="load" file="$(env RIDGEBACK_CONTROL_EXTRAS_PATH)" />
   </group>
 
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="ridgeback_joint_publisher ridgeback_velocity_controller turret_position_controller" />
+        args="ridgeback_joint_publisher ridgeback_velocity_controller turret_position_controller" ns="$(arg ns)"/>
 
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" ns="$(arg ns)"/>
 
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
-        args="cmd_vel ridgeback_velocity_controller/cmd_vel" />
+        args="cmd_vel ridgeback_velocity_controller/cmd_vel" ns="$(arg ns)"/>
+
 </launch>

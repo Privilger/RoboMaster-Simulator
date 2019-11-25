@@ -1,6 +1,7 @@
 <launch>
   <arg name="joy_dev" default="/dev/input/js0" />
   <arg name="joystick" default="true" />
+  <arg name="ns"       default="jackal0"/>
 
   <group ns="bluetooth_teleop" if="$(arg joystick)">
 
@@ -22,8 +23,8 @@
 
   <arg name="config" default="planar" />
 
-  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server">
-    <remap from="twist_marker_server/cmd_vel" to="/cmd_vel" />
+  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" ns="$(arg ns)">
+    <remap from="$(arg ns)/twist_marker_server/cmd_vel" to="$(arg ns)/cmd_vel" />
     <rosparam command="load" file="$(find interactive_marker_twist_server)/config/$(arg config).yaml" />
   </node>
 

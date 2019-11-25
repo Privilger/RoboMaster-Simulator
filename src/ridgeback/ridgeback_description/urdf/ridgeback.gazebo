@@ -2,16 +2,16 @@
 <robot>
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace>/$(arg namespace)</robotNamespace>
     </plugin>
     <plugin name="gazebo_ros_joint_pose_trajectory" filename="libgazebo_ros_joint_pose_trajectory.so">
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace>/$(arg namespace)</robotNamespace>
       <!-- <topicName>set_trajectory_demo</topicName> -->
       <updateRate>100</updateRate>
     </plugin>
 
     <plugin name="ridgeback_ros_force_based_move" filename="libridgeback_ros_force_based_move.so">
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace>/$(arg namespace)</robotNamespace>
       <commandTopic>cmd_vel</commandTopic>
       <odometryTopic>odom</odometryTopic>
       <odometryFrame>odom</odometryFrame>
@@ -26,7 +26,7 @@
     </plugin>
 
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace>/$(arg namespace)</robotNamespace>
       <updateRate>50.0</updateRate>
       <bodyName>imu_link</bodyName>
       <topicName>imu/data</topicName>
@@ -40,7 +40,7 @@
 
     <plugin name="gazebo_ros_joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
       <jointName>front_rocker</jointName>
-      <robotNamespace>/</robotNamespace>
+      <robotNamespace>/$(arg namespace)</robotNamespace>
       <updateRate>50.0</updateRate>
     </plugin>
   </gazebo>

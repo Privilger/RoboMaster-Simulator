@@ -7,13 +7,17 @@ from gazebo_msgs.srv import SetPhysicsProperties, SetPhysicsPropertiesRequest
 from std_msgs.msg import Float64
 from geometry_msgs.msg import Vector3
 
+from gazebo_msgs.srv import SetModelState
+from gazebo_msgs.msg import ModelState
+
 class GazeboConnection():
     
     def __init__(self, start_init_physics_parameters, reset_world_or_sim):
         
         self.unpause = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
         self.pause = rospy.ServiceProxy('/gazebo/pause_physics', Empty)
-        self.reset_simulation_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty)
+        # self.reset_simulation_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty)
+        self.reset_simulation_proxy = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
         self.reset_world_proxy = rospy.ServiceProxy('/gazebo/reset_world', Empty)
 
         # Setup the Gravity Controle system
@@ -69,9 +73,19 @@ class GazeboConnection():
             rospy.logerr("WRONG Reset Option:"+str(self.reset_world_or_sim))
     
     def resetSimulation(self):
-        rospy.wait_for_service('/gazebo/reset_simulation')
+        rospy.wait_for_service('/gazebo/set_model_state')
         try:
-            self.reset_simulation_proxy()
+            robot_pose = ModelState()
+            robot_pose.model_name = "ridgeback"
+            robot_pose.reference_frame = "/map"
+            robot_pose.pose.position.x = 1
+            robot_pose.pose.position.y = 1
+            robot_pose.pose.position.z = 0.1
+            robot_pose.pose.orientation.x = 0
+            robot_pose.pose.orientation.y = 0
+            robot_pose.pose.orientation.z = 0
+            robot_pose.pose.orientation.w = 1
+            self.reset_simulation_proxy(robot_pose)
         except rospy.ServiceException as e:
             print ("/gazebo/reset_simulation service call failed")
 

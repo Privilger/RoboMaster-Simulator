@@ -22,7 +22,7 @@ def RegisterOpenAI_Ros_Env(task_env, timestep_limit_per_episode=10000):
         register(
             id=task_env,
             entry_point='openai_ros:task_envs.moving_cube.one_disk_walk.MovingCubeOneDiskWalkEnv',
-            timestep_limit=timestep_limit_per_episode,
+            max_episode_steps=timestep_limit_per_episode,
         )
         # We have to import the Class that we registered so that it can be found afterwards in the Make
         from openai_ros.task_envs.moving_cube import one_disk_walk

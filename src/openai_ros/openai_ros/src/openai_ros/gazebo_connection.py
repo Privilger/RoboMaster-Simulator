@@ -80,7 +80,7 @@ class GazeboConnection():
             robot_pose.reference_frame = "/map"
             robot_pose.pose.position.x = 1
             robot_pose.pose.position.y = 1
-            robot_pose.pose.position.z = 0.1
+            robot_pose.pose.position.z = 0
             robot_pose.pose.orientation.x = 0
             robot_pose.pose.orientation.y = 0
             robot_pose.pose.orientation.z = 0

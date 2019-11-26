@@ -59,7 +59,8 @@ class AiChallengeEnv(ai_challenge_2020_env.AiChallengeEnv):
         """
         # TODO: Move robot
         # We tell the OneDiskCube to spin the RollDisk at the selected speed
-        self.move_joints(action)
+        rospy.logerr("turret_position >>" + str(action))
+        self.move_turret(action)
 
     def _get_obs(self):
         """

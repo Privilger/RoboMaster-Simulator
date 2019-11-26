@@ -35,10 +35,14 @@ def main():
     # Parameters are stored in a yaml file inside the config directory
     # They are loaded at runtime by the launch file
     # Alpha = rospy.get_param("/moving_cube/alpha")
-
     # Initialize the environment and get first state of the robot
     observation = env.reset()
     # state = ''.join(map(str, observation))
+
+    env.step(1)
+    time.sleep(2)
+    env.step(-1)
+    time.sleep(2)
 
 if __name__ == '__main__':
     main()

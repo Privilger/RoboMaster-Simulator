@@ -2,7 +2,7 @@
 
 <launch>
   <arg name="robot_name"        default="ridgeback"/>
-  <arg name="init_pose"         default="-x 1 -y 1 -z 0.1"/>
+  <arg name="init_pose"         default="-x 1 -y 1 -z 0"/>
 
 <!-- Spawn Ridgeback -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"

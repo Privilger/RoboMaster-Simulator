@@ -14,7 +14,7 @@ This repository contains:
 1. Latest 2020 arena map.
 1. Multi-agent navigation based on [multi-jackle](https://github.com/NicksSimulationsROS/multi_jackal) ROS package.
 2. [Omni-directional chassis](https://github.com/ridgeback/ridgeback_simulator) combine with RoboRTS.
-2. turret(simplified as a rotatable camera) on the robot model.
+2. Turret(simplified as a rotatable camera) on the robot model.
 
 
 ## TODO

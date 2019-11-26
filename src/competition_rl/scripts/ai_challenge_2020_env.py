@@ -5,6 +5,7 @@ from openai_ros import robot_gazebo_env
 from std_msgs.msg import Float32
 from geometry_msgs.msg import PoseStamped
 from nav_msgs.msg import Odometry
+from sensor_msgs.msg import JointState
 
 class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
     """Superclass for all CubeSingleDisk environments.
@@ -72,21 +73,21 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
     # ----------------------------
 
     def _check_all_sensors_ready(self):
-        # self._check_joint_states_ready()
+        self._check_joint_states_ready()
         self._check_amcl_pose_ready()
         self._check_odom_ready()
         rospy.logdebug("ALL SENSORS READY")
 
-    # def _check_joint_states_ready(self):
-    #     self.joints = None
-    #     while self.joints is None and not rospy.is_shutdown():
-    #         try:
-    #             self.joints = rospy.wait_for_message("/moving_cube/joint_states", JointState, timeout=1.0)
-    #             rospy.logdebug("Current moving_cube/joint_states READY=>" + str(self.joints))
-    #
-    #         except:
-    #             rospy.logerr("Current moving_cube/joint_states not ready yet, retrying for getting joint_states")
-    #     return self.joints
+    def _check_joint_states_ready(self):
+        self.joints = None
+        while self.joints is None and not rospy.is_shutdown():
+            try:
+                self.joints = rospy.wait_for_message("/joint_states", JointState, timeout=1.0)
+                rospy.logdebug("Current /joint_states READY=>" + str(self.joints))
+
+            except:
+                rospy.logerr("Current /joint_states not ready yet, retrying for getting joint_states")
+        return self.joints
 
     def _check_amcl_pose_ready(self):
         self.amcl_pose = None
@@ -144,32 +145,29 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
     def move_turret(self, position):
         turret_position = Float32()
         turret_position.data = position
-        rospy.logdebug("turret_position >>" + str(turret_position))
         self._turret_position_pub.publish(turret_position)
-        # self.wait_until_roll_is_in_vel(turret_position.data)
+        self.wait_until_arrived(position)
 
-    # def wait_until_roll_is_in_vel(self, velocity):
-    #
-    #     rate = rospy.Rate(10)
-    #     start_wait_time = rospy.get_rostime().to_sec()
-    #     end_wait_time = 0.0
-    #     epsilon = 0.1
-    #     v_plus = velocity + epsilon
-    #     v_minus = velocity - epsilon
-    #     while not rospy.is_shutdown():
-    #         joint_data = self._check_joint_states_ready()
-    #         roll_vel = joint_data.velocity[0]
-    #         rospy.logdebug("VEL=" + str(roll_vel) + ", ?RANGE=[" + str(v_minus) + ","+str(v_plus)+"]")
-    #         are_close = (roll_vel <= v_plus) and (roll_vel > v_minus)
-    #         if are_close:
-    #             rospy.logdebug("Reached Velocity!")
-    #             end_wait_time = rospy.get_rostime().to_sec()
-    #             break
-    #         rospy.logdebug("Not there yet, keep waiting...")
-    #         rate.sleep()
-    #     delta_time = end_wait_time- start_wait_time
-    #     rospy.logdebug("[Wait Time=" + str(delta_time)+"]")
-    #     return delta_time
+    def wait_until_arrived(self, position):
+
+        rate = rospy.Rate(10)
+        start_wait_time = rospy.get_rostime().to_sec()
+        end_wait_time = 0.0
+        tolerence = 0.05
+        while not rospy.is_shutdown():
+            joint_data = self._check_joint_states_ready()
+            current_position = joint_data.position[0]
+            rospy.logdebug("POSITION=" + str(current_position) )
+            are_close = abs(current_position-position) < tolerence
+            if are_close:
+                rospy.logdebug("Reached Position!")
+                end_wait_time = rospy.get_rostime().to_sec()
+                break
+            rospy.logdebug("Not there yet, keep waiting...")
+            rate.sleep()
+        delta_time = end_wait_time- start_wait_time
+        rospy.logdebug("[Wait Time=" + str(delta_time)+"]")
+        return delta_time
 
     def get_amcl_pose(self):
         return self.amcl_pose

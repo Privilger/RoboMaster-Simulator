@@ -3,8 +3,8 @@ para_basic {
   is_debug: true
 }
 para_costmap_interface {
-  global_frame: "odom"
-  robot_base_frame: "base_link"
+  global_frame: "jackal0/odom"
+  robot_base_frame: "jackal0/base_link"
   footprint_padding: 0.05
   transform_tolerance: 1.0
   distance_threshold: 1.0

@@ -40,11 +40,11 @@
       <arg name="ns" value="$(arg ns0)" />
     </include>
 
-    <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
-      <arg name="init_pose" value="-x 1 -y 3 -z 0.1" />
-      <arg name="robot_name" value="$(arg ns1)" />
-      <arg name="ns" value="$(arg ns1)" />
-    </include>
+<!--    <include file="$(find rm_simulator)/launch/one_ridgeback.launch">-->
+<!--      <arg name="init_pose" value="-x 1 -y 3 -z 0.1" />-->
+<!--      <arg name="robot_name" value="$(arg ns1)" />-->
+<!--      <arg name="ns" value="$(arg ns1)" />-->
+<!--    </include>-->
 
 
   <!-- View in RVIZ. -->
@@ -53,8 +53,8 @@
        <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/>
     </node>
 
-    <node name="ridgeback_viz_$(arg ns1)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >
-       <remap from="/move_base_simple/goal" to="/$(arg ns1)/move_base_simple/goal"/>
-    </node>
+<!--    <node name="ridgeback_viz_$(arg ns1)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >-->
+<!--       <remap from="/move_base_simple/goal" to="/$(arg ns1)/move_base_simple/goal"/>-->
+<!--    </node>-->
   </group>
 </launch>

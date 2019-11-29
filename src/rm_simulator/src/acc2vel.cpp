@@ -25,8 +25,8 @@ int main(int argc, char **argv)
 
  ros::NodeHandle nh;
 
-  ros::Subscriber acc_sub = nh.subscribe("/cmd_vel_acc", 100, &Callback);
-	cmd_pub = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 100);
+  ros::Subscriber acc_sub = nh.subscribe("cmd_vel_acc", 100, &Callback);
+	cmd_pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 100);
 	ros::spin();
 	return 0;
 }

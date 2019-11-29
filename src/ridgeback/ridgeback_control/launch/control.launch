@@ -6,7 +6,7 @@
             ns="$(arg ns)"
   />
   <param name="$(arg ns)/ridgeback_velocity_controller/base_frame_id"       value="$(arg ns)/base_link"/>
-  <param name="$(arg ns)/ridgeback_velocity_controller/odom_frame_id"   value="$(arg ns)/odom"/>
+  <param name="$(arg ns)/ridgeback_velocity_controller/odom_frame_id"       value="$(arg ns)/odom"/>
 
   <group if="$(optenv RIDGEBACK_CONTROL_EXTRAS 0)" >
     <rosparam command="load" file="$(env RIDGEBACK_CONTROL_EXTRAS_PATH)" />

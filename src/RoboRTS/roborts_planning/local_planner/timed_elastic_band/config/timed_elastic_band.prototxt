@@ -25,8 +25,8 @@ kinematics_opt {
     max_vel_x_backwards: 1
     max_vel_y: 2.5
     max_vel_theta: 2
-    acc_lim_x: 2.6
-    acc_lim_y: 2.6
+    acc_lim_x: 5
+    acc_lim_y: 5
     acc_lim_theta: 2.6
     min_turning_radius: 0
     wheelbase: 0

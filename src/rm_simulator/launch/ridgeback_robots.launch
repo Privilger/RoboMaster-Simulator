@@ -25,7 +25,9 @@
     <arg name="world_name" value="$(arg world_name)" />
   </include>
 
-   <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/map2020.yaml"/>
+   <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/map2020.yaml">
+<!--    <param name="frame_id" value="/map" />-->
+   </node>node>
 
 <!--  <param name="/robot_description"-->
 <!--         command="$(find ridgeback_description)/scripts/env_run-->
@@ -35,9 +37,11 @@
 
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
-      <arg name="init_pose" value="-x 1 -y 2 -z 0.1" />
-      <arg name="robot_name" value="$(arg ns0)" />
-      <arg name="ns" value="$(arg ns0)" />
+      <arg name="init_x"         value="1"/>
+      <arg name="init_y"         value="1"/>
+      <arg name="init_z"         value="0"/>
+      <arg name="robot_name"     value="$(arg ns0)" />
+      <arg name="ns"             value="$(arg ns0)" />
     </include>
 
 <!--    <include file="$(find rm_simulator)/launch/one_ridgeback.launch">-->

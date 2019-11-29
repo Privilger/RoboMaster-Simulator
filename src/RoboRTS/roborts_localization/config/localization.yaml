@@ -1,5 +1,5 @@
-odom_frame        : "jackal0/odom"
-base_frame        : "jackal0/base_link"
+odom_frame        : "odom"
+base_frame        : "base_link"
 global_frame      : "map"
 laser_topic_name     : "scan"
 map_topic_name       : "/map"

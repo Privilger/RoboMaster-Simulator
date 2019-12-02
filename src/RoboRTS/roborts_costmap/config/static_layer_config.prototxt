@@ -5,6 +5,6 @@ use_maximum: true
 unknown_cost_value: -1
 lethal_threshold: 100
 trinary_map: true
-topic_name: "map"
+topic_name: "/map"
 is_raw_rosmessage: true
 is_debug: true

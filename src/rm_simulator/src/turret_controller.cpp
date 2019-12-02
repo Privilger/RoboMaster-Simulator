@@ -9,7 +9,7 @@ public:
     TurretPositionController(ros::NodeHandle& nodehandle) :
     nh_(nodehandle)    
     {        
-        turret_position_pub = nh_.advertise<trajectory_msgs::JointTrajectory>("/turret_position_controller/command", 1, true);
+        turret_position_pub = nh_.advertise<trajectory_msgs::JointTrajectory>("/jackal0/turret_position_controller/command", 1, true);
         turret_position_sub = nh_.subscribe("position", 10, &TurretPositionController::positionCallback, this);
         traj.header.frame_id = "front_camera_mount";
         traj.joint_names.resize(1);

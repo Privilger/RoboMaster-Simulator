@@ -33,7 +33,7 @@
     <arg name="ns" value="$(arg ns)"/>
   </include>
 
-  <rosparam param="/$(arg ns)/gazebo_ros_control/pid_gains">
+  <rosparam ns="namespace" param="/gazebo_ros_control/pid_gains">
     front_left_wheel:
       p: 1
       i: 0.1
@@ -59,8 +59,8 @@
   <node name="turret_controller" pkg="rm_simulator" type="turret_controller" ns="$(arg ns)"/>
   
   <!--Load parameters for localization node  -->
-  <rosparam command="load" file="$(find roborts_localization)/config/localization.yaml" />
-  <rosparam command="load" file="$(find roborts_localization)/amcl/config/amcl.yaml" />
+  <rosparam command="load" file="$(find roborts_localization)/config/localization.yaml" ns="$(arg ns)" />
+  <rosparam command="load" file="$(find roborts_localization)/amcl/config/amcl.yaml" ns="$(arg ns)"/>
 
   <!-- Run the localization node -->
   <node pkg="roborts_localization" type="localization_node" name="localization_node" respawn="false" ns="$(arg ns)">

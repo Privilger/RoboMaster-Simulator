@@ -31,7 +31,7 @@
   <xacro:include filename="accessories/camera_mount.urdf.xacro" />
   <xacro:include filename="$(find pointgrey_camera_description)/urdf/pointgrey_flea3.urdf.xacro" />
 
-  <xacro:if value="$(optenv JACKAL_FLEA3 0)">
+  <xacro:if value="$(optenv JACKAL_FLEA3 1)">
     <camera_mount prefix="$(optenv JACKAL_FLEA_MOUNT front)"
                        tilt="$(optenv JACKAL_FLEA_TILT 0)"/>
     <joint name="$(optenv JACKAL_FLEA3_MOUNT front)_camera_mount_joint" type="fixed">

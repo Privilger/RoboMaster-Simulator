@@ -1,9 +1,12 @@
 <launch>
 
+  <arg name="ns"            default="jackal0"/>
+  <arg name="x"             default="1"/>
+  <arg name="y"             default="1"/>
   <arg name="use_map_topic" default="true"/>
-  <arg name="scan_topic" default="scan" />
+  <arg name="scan_topic"    default="scan" />
 
-  <node pkg="amcl" type="amcl" name="amcl">
+  <node pkg="amcl" type="amcl" name="amcl" ns="$(arg ns)">
     <param name="use_map_topic" value="$(arg use_map_topic)"/>
     <!-- Publish scans from best pose at a max of 10 Hz -->
     <param name="odom_model_type" value="omni-corrected"/>
@@ -35,9 +38,9 @@
     <param name="update_min_d" value="0.1"/>
     <!--Rotational movement required before performing a filter update. -->
     <param name="update_min_a" value="0.314"/>
-    <param name="odom_frame_id" value="odom"/>
-    <param name="base_frame_id" value="base_link"/>
-    <param name="global_frame_id" value="map"/>
+    <param name="odom_frame_id" value="$(arg ns)/odom"/>
+    <param name="base_frame_id" value="$(arg ns)/base_link"/>
+    <param name="global_frame_id" value="/map"/>
     <!-- Number of filter updates required before resampling. -->
     <param name="resample_interval" value="1"/>
     <!-- Increase tolerance because the computer can get quite busy -->
@@ -55,6 +58,7 @@
     <!--  When set to true, AMCL will only use the first map it subscribes to, rather than updating each time a new one is received. -->
     <param name="first_map_only" value="false"/>
     <remap from="scan" to="$(arg scan_topic)"/>
+    <remap from="map" to="/map"/>
   </node>
 
 </launch>

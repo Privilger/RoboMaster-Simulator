@@ -1,0 +1,7 @@
+global_frame: odom
+robot_base_frame: base_link
+rolling_window: true
+
+plugins:
+  - {name: obstacles_laser,           type: "costmap_2d::ObstacleLayer"}
+  - {name: inflation,                 type: "costmap_2d::InflationLayer"}

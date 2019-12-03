@@ -1,0 +1,51 @@
+<launch>
+    <arg name="ns"            default="jackal0"/>
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen" ns="$(arg ns)">
+        <param name="base_global_planner" value="navfn/NavfnROS"/>
+        <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS"/>
+
+        <rosparam file="$(find rm_simulator)/config/base_global_planner.yaml" command="load"/>
+        <rosparam file="$(find rm_simulator)/config/teb_local_planner.yaml" command="load"/>
+        <param name="TebLocalPlannerROS/odom_topic" value="$(arg ns)/"/>
+
+        <!-- observation sources located in costmap_common.yaml -->
+        <rosparam file="$(find rm_simulator)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <param name="global_costmap/robot_base_frame" value="$(arg ns)/base_link"/>
+        <rosparam param="global_costmap/obstacles_layer/laser" subst_value="true">
+            {sensor_frame: $(arg ns)/center_laser,
+            data_type: LaserScan,
+            topic: $(arg ns)/scan,
+            marking: true,
+            clearing: true,
+            min_obstacle_height: -2.0,
+            max_obstacle_height: 2.0,
+            obstacle_range: 2.5,
+            raytrace_range: 3.0}
+        </rosparam>
+        <rosparam file="$(find rm_simulator)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <param name="local_costmap/robot_base_frame" value="$(arg ns)/base_link"/>
+        <rosparam param="local_costmap/obstacles_layer/laser" subst_value="true">
+            {sensor_frame: $(arg ns)/center_laser,
+            data_type: LaserScan,
+            topic: $(arg ns)/scan,
+            marking: true,
+            clearing: true,
+            min_obstacle_height: -2.0,
+            max_obstacle_height: 2.0,
+            obstacle_range: 2.5,
+            raytrace_range: 3.0}
+        </rosparam>
+
+        <!-- local costmap, needs size -->
+        <rosparam file="$(find rm_simulator)/config/local_costmap_params.yaml" command="load" ns="local_costmap" />
+        <param name="local_costmap/global_frame" value="$(arg ns)/odom"/>
+        <param name="local_costmap/robot_base_frame" value="$(arg ns)/base_link"/>
+        <param name="local_costmap/width" value="5.0"/>
+        <param name="local_costmap/height" value="5.0"/>
+
+        <!-- static global costmap, static map provides size -->
+        <rosparam file="$(find rm_simulator)/config/global_costmap_params.yaml" command="load" ns="global_costmap"/>
+        <param name="global_costmap/robot_base_frame" value="$(arg ns)/base_link"/>
+
+    </node>
+</launch>

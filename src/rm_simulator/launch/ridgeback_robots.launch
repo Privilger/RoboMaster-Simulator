@@ -44,11 +44,13 @@
       <arg name="ns"             value="$(arg ns0)" />
     </include>
 
-<!--    <include file="$(find rm_simulator)/launch/one_ridgeback.launch">-->
-<!--      <arg name="init_pose" value="-x 1 -y 3 -z 0.1" />-->
-<!--      <arg name="robot_name" value="$(arg ns1)" />-->
-<!--      <arg name="ns" value="$(arg ns1)" />-->
-<!--    </include>-->
+    <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+      <arg name="init_x"         value="1"/>
+      <arg name="init_y"         value="3"/>
+      <arg name="init_z"         value="0"/>
+      <arg name="robot_name"     value="$(arg ns1)" />
+      <arg name="ns"             value="$(arg ns1)" />
+    </include>
 
 
   <!-- View in RVIZ. -->

@@ -70,26 +70,29 @@
      <arg name="scan_topic"     value="scan" />
    </include>
 
-  <param name="$(arg ns)/cost_map_base_frame"             value="$(arg ns)/base_link"/>
-  <node pkg="roborts_planning" type="global_planner_node" name="global_planner_node" respawn="false" output="screen" ns="$(arg ns)">
-  </node>
+  <include file="$(find rm_simulator)/launch/include/move_base.launch">
+    <arg name="ns"             value="$(arg ns)"/>
+  </include>
 
-  <!-- Run the local planner node -->
-  <node pkg="roborts_planning" type="local_planner_node" name="local_planner_node" respawn="false" output="screen" ns="$(arg ns)">
-    <remap from="$(arg ns)/odom"                                to="odometry/filtered"/>
-    <remap from="/cmd_vel_acc"                                  to="/$(arg ns)/cmd_vel_acc" />
-    <remap from="/local_planner_node_action/feedback"           to="/$(arg ns)/local_planner_node_action/feedback" />
-    <remap from="/local_planner_node_action/result"             to="/$(arg ns)/local_planner_node_action/result" />
-    <remap from="/local_planner_node_action/status"             to="/$(arg ns)/local_planner_node_action/status" />
-    <remap from="/local_planner_node_action/goal"               to="/$(arg ns)/local_planner_node_action/goal" />
-    <remap from="/local_planner_node_action/cancel"             to="/$(arg ns)/local_planner_node_action/cancel" />
-  </node>
+<!--  <node pkg="roborts_planning" type="global_planner_node" name="global_planner_node" respawn="false" output="screen" ns="$(arg ns)">-->
+<!--  </node>-->
 
-  <node name="behavior_test_node" pkg="roborts_decision" type="behavior_test_node" output="screen" ns="$(arg ns)">
-    <remap from="/move_base_simple/goal" to="/$(arg ns)/move_base_simple/goal" />
-  </node>
+<!--  &lt;!&ndash; Run the local planner node &ndash;&gt;-->
+<!--  <node pkg="roborts_planning" type="local_planner_node" name="local_planner_node" respawn="false" output="screen" ns="$(arg ns)">-->
+<!--    <remap from="$(arg ns)/odom"                                to="odometry/filtered"/>-->
+<!--    <remap from="/cmd_vel_acc"                                  to="/$(arg ns)/cmd_vel_acc" />-->
+<!--    <remap from="/local_planner_node_action/feedback"           to="/$(arg ns)/local_planner_node_action/feedback" />-->
+<!--    <remap from="/local_planner_node_action/result"             to="/$(arg ns)/local_planner_node_action/result" />-->
+<!--    <remap from="/local_planner_node_action/status"             to="/$(arg ns)/local_planner_node_action/status" />-->
+<!--    <remap from="/local_planner_node_action/goal"               to="/$(arg ns)/local_planner_node_action/goal" />-->
+<!--    <remap from="/local_planner_node_action/cancel"             to="/$(arg ns)/local_planner_node_action/cancel" />-->
+<!--  </node>-->
 
-  <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false" ns="$(arg ns)"/>
+<!--  <node name="behavior_test_node" pkg="roborts_decision" type="behavior_test_node" output="screen" ns="$(arg ns)">-->
+<!--    <remap from="/move_base_simple/goal" to="/$(arg ns)/move_base_simple/goal" />-->
+<!--  </node>-->
+
+<!--  <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false" ns="$(arg ns)"/>-->
 
 
 <!--  RoboRTS does not support multi robot navigate, deprecated-->

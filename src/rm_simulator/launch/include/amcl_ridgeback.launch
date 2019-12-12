@@ -50,8 +50,8 @@
     <!--Exponential decay rate for the fast average weight filter, used in deciding when to recover by adding random poses. A good value might be 0.1. -->
     <param name="recovery_alpha_fast" value="0.1"/>
     <!-- Initial pose mean -->
-    <param name="initial_pose_x" value="0.0" />
-    <param name="initial_pose_y" value="0.0" />
+    <param name="initial_pose_x" value="$(arg x)" />
+    <param name="initial_pose_y" value="$(arg y)" />
     <param name="initial_pose_a" value="0.0" />
     <!-- When set to true, AMCL will subscribe to the map topic rather than making a service call to receive its map.-->
     <param name="receive_map_topic" value="true"/>

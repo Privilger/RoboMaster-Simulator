@@ -53,9 +53,26 @@ roborts_common::ErrorInfo LocalPlannerNode::Init() {
   selected_algorithm_ = local_algorithms.selected_algorithm();
   frequency_ = local_algorithms.frequency();
   tf_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
+  std::string jackal_ns;
+  ros::param::get("~jackal_ns",jackal_ns);
+  ROS_INFO("!!!!!!!!!!!local jackal_ns:%s",jackal_ns.c_str());
 
-  std::string map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_local_plan.prototxt";
+  std::string map_path= ros::package::getPath("roborts_costmap") + \
+        "/config/costmap_parameter_config_for_local_plan.prototxt";
+  
+  if(jackal_ns.find("jackal0")!= std::string::npos)
+  {
+    ROS_INFO("!!!!!!!!!!!local jackal0 completed!!!!!!!!!!!");
+    map_path = ros::package::getPath("roborts_costmap") + \
+        "/config/costmap_parameter_config_for_local_plan.prototxt";
+  }  
+  else
+  {
+    ROS_INFO("!!!!!!!!!!!local jackal1 completed.!!!!!!!!!!!");
+    map_path = ros::package::getPath("roborts_costmap") + \
+        "/config/costmap_parameter_config_for_local_plan1.prototxt";
+  }  
+
   local_cost_ = std::make_shared<roborts_costmap::CostmapInterface>("local_costmap",
                                                                           *tf_,
                                                                           map_path.c_str());
@@ -253,6 +270,11 @@ void SignalHandler(int signal){
 }
 
 int main(int argc, char **argv) {
+  // ROS_INFO("!!!!!!!!!!!!!execute local_planner_node!!!!!!!!!!!!!");
+  // for(int i=0;i<argc;i++)
+  //   ROS_INFO("argc:%d,argv:%s",i ,argv[i]);
+  // jackal_ns=argv[8];
+  // ROS_INFO("argv:%s",jackal_ns);
 
   signal(SIGINT, SignalHandler);
   signal(SIGTERM,SignalHandler);

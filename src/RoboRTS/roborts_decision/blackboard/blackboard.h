@@ -36,14 +36,28 @@ class Blackboard {
   typedef std::shared_ptr<Blackboard> Ptr;
   typedef roborts_costmap::CostmapInterface CostMap;
   typedef roborts_costmap::Costmap2D CostMap2D;
-  explicit Blackboard(const std::string &proto_file_path):
+  explicit Blackboard(const std::string &proto_file_path,const std::string &jackal_ns):
       enemy_detected_(false),
       armor_detection_actionlib_client_("armor_detection_node_action", true){
 
     tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
 
     std::string map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_decision.prototxt";
+      "/config/costmap_parameter_config_for_decision.prototxt";    
+  
+    if(jackal_ns.find("jackal0")!= std::string::npos)
+    {
+      ROS_INFO("!!!!!!!!!!!decision jackal0 completed!!!!!!!!!!!");
+      map_path = ros::package::getPath("roborts_costmap") + \
+      "/config/costmap_parameter_config_for_decision.prototxt"; 
+    }  
+    else
+    {
+      ROS_INFO("!!!!!!!!!!!decision jackal1 completed.!!!!!!!!!!!");
+      map_path = ros::package::getPath("roborts_costmap") + \
+      "/config/costmap_parameter_config_for_decision1.prototxt"; 
+    }
+
     costmap_ptr_ = std::make_shared<CostMap>("decision_costmap", *tf_ptr_,
                                              map_path);
     charmap_ = costmap_ptr_->GetCostMap()->GetCharMap();

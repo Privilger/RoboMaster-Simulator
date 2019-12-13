@@ -90,8 +90,20 @@ CostmapInterface::CostmapInterface(std::string map_name,
     layered_costmap_->AddPlugin(plugin_static_layer);
     plugin_static_layer->Initialize(layered_costmap_, map_name + "/" + "static_layer", &tf_);
   }
+  std::string jackal_ns;
   if (has_obstacle_layer_) {
-    Layer *plugin_obstacle_layer = new ObstacleLayer;
+    ROS_INFO("!!!!!!!!!!!coatmap_interface config_file:%s",config_file.c_str());
+    if(config_file.find("1")!= std::string::npos)
+    {
+      ROS_INFO("!!!!!!!!!!!coatmap_interface jackal1 completed!!!!!!!!!!!");
+      jackal_ns="jackal1";
+    }
+    else
+    {
+      ROS_INFO("!!!!!!!!!!!coatmap_interface jackal0 completed!!!!!!!!!!!");
+      jackal_ns="jackal0";
+    }
+    Layer *plugin_obstacle_layer = new ObstacleLayer(jackal_ns);
     layered_costmap_->AddPlugin(plugin_obstacle_layer);
     plugin_obstacle_layer->Initialize(layered_costmap_, map_name + "/" + "obstacle_layer", &tf_);
   }

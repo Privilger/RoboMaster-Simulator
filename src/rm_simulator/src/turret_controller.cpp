@@ -9,8 +9,8 @@ public:
     TurretPositionController(ros::NodeHandle& nodehandle) :
     nh_(nodehandle)    
     {        
-        turret_position_pub = nh_.advertise<trajectory_msgs::JointTrajectory>("/turret_position_controller/command", 1, true);
-        turret_position_sub = nh_.subscribe("position", 10, &TurretPositionController::positionCallback, this);
+        turret_position_pub = nh_.advertise<trajectory_msgs::JointTrajectory>("turret_position_controller/command", 1, true);
+        turret_position_sub = nh_.subscribe("turret_position", 10, &TurretPositionController::positionCallback, this);
         traj.header.frame_id = "front_camera_mount";
         traj.joint_names.resize(1);
         traj.points.resize(1);
@@ -37,7 +37,7 @@ private:
 
 int main(int argc, char** argv) {
     ros::init(argc, argv, "turret_position_controller_node");
-    ros::NodeHandle node_handle("~");
+    ros::NodeHandle node_handle;
     // ros::AsyncSpinner spinner(1);
     // spinner.start();
 

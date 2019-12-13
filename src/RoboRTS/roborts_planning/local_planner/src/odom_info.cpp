@@ -16,6 +16,7 @@
  ***************************************************************************/
 
 #include "local_planner/odom_info.h"
+#include <string>
 
 namespace roborts_local_planner {
 OdomInfo::OdomInfo(std::string topic) {
@@ -57,7 +58,9 @@ void OdomInfo::SetTopic(std::string topic)
       return;
     } else {
       ros::NodeHandle nh;
-      sub_ = nh.subscribe<nav_msgs::Odometry>(topic_, 1, boost::bind( &OdomInfo::OdomCB, this, _1 ));
+      nh.param<std::string>("loacl_planner_odom_frame", topic, "odometry/filtered");
+//      ROS_WARN_STREAM("TEB ODOM TOPIC:"<<topic);
+      sub_ = nh.subscribe<nav_msgs::Odometry>(topic, 1, boost::bind( &OdomInfo::OdomCB, this, _1 ));
     }
   }
 }

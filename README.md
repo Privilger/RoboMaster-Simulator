@@ -15,10 +15,10 @@ This repository contains:
 1. Multi-agent navigation based on [multi-jackle](https://github.com/NicksSimulationsROS/multi_jackal) ROS package.
 2. [Omni-directional chassis](https://github.com/ridgeback/ridgeback_simulator) combine with RoboRTS.
 2. Turret(simplified as a rotatable camera) on the robot model.
-
+2. Connect gazebo with OpenAi gym framework by [openai_ros](http://wiki.ros.org/openai_ros) ROS package.
 
 ## TODO
-2. Connect it with OpenAi gym framework. It can be done by ref the [gym-gazebo2](https://github.com/AcutronicRobotics/gym-gazebo2) repository.
+2. ```resetSimulation``` function in openai_ros pkg doesn't look good. It need to be refactored. The function should put in the ```_env_setup``` function in the task env. Ref: openai_examples_projects -> Fetch Robot 
 3. Speed up the gazebo simulation. 
 4. Add bunos and supply function.
 5. Add stage simulator.

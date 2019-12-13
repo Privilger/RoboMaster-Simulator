@@ -1,15 +1,32 @@
 <launch>
-  <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml" />
+
+  <arg name="ns" default="jackal0"/>
+
+  <rosparam command="load" file="$(find ridgeback_control)/config/control.yaml"
+            ns="$(arg ns)"
+  />
+  <param name="$(arg ns)/ridgeback_velocity_controller/base_frame_id"       value="$(arg ns)/base_link"/>
+  <param name="$(arg ns)/ridgeback_velocity_controller/odom_frame_id"       value="$(arg ns)/odom"/>
 
   <group if="$(optenv RIDGEBACK_CONTROL_EXTRAS 0)" >
     <rosparam command="load" file="$(env RIDGEBACK_CONTROL_EXTRAS_PATH)" />
   </group>
 
+<!--  <param name="tf_prefix" value="$(arg ns)" />-->
   <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="ridgeback_joint_publisher ridgeback_velocity_controller turret_position_controller" />
+        args="ridgeback_joint_publisher ridgeback_velocity_controller turret_position_controller" ns="$(arg ns)">
+  </node>
 
-  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" />
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" ns="$(arg ns)">
+    <rosparam command="load" file="$(find ridgeback_control)/config/local_ekf.yaml"/>
+<!--    <param name="map_frame"       value="map"/>-->
+    <param name="odom_frame"      value="$(arg ns)/odom"/>
+    <param name="base_link_frame" value="$(arg ns)/base_link"/>
+    <param name="world_frame"     value="$(arg ns)/odom"/>
+<!--    <remap from="odometry/filtered" to="odometry/local_filtered"/>-->
+  </node>
 
   <node pkg="topic_tools" type="relay" name="cmd_vel_relay"
-        args="cmd_vel ridgeback_velocity_controller/cmd_vel" />
+        args="cmd_vel ridgeback_velocity_controller/cmd_vel" ns="$(arg ns)"/>
+
 </launch>

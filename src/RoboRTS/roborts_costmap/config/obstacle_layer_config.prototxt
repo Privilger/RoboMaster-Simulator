@@ -6,7 +6,7 @@ obstacle_range: 5
 raytrace_range: 5
 transform_tolerance: 0.1
 topic_string: "scan"
-sensor_frame: "center_laser"
+sensor_frame: "/jackal0/center_laser"
 inf_is_valid: false
 clearing: true
 footprint_clearing_enabled: false

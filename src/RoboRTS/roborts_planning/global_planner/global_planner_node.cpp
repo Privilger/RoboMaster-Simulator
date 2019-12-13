@@ -64,10 +64,25 @@ ErrorInfo GlobalPlannerNode::Init() {
 
   // Create tf listener
   tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
-
+  std::string jackal_ns;
+  ros::param::get("~jackal_ns",jackal_ns);
+  ROS_INFO("!!!!!!!!!!!global jackal_ns:%s",jackal_ns.c_str());
   // Create global costmap
   std::string map_path = ros::package::getPath("roborts_costmap") + \
       "/config/costmap_parameter_config_for_global_plan.prototxt";
+  if(jackal_ns.find("jackal0")!= std::string::npos)
+  {
+    ROS_INFO("!!!!!!!!!!!global jackal0 completed.!!!!!!!!!!!");
+    map_path = ros::package::getPath("roborts_costmap") + \
+      "/config/costmap_parameter_config_for_global_plan.prototxt";
+  }  
+  else
+  {
+    ROS_INFO("!!!!!!!!!!!global jackal1 completed.!!!!!!!!!!!");
+    map_path = ros::package::getPath("roborts_costmap") + \
+      "/config/costmap_parameter_config_for_global_plan1.prototxt";
+  }
+
   costmap_ptr_ = std::make_shared<roborts_costmap::CostmapInterface>("global_costmap",
                                                                            *tf_ptr_,
                                                                            map_path.c_str());
@@ -339,6 +354,11 @@ GlobalPlannerNode::~GlobalPlannerNode() {
 } //namespace roborts_global_planner
 
 int main(int argc, char **argv) {
+  // ROS_INFO("!!!!!!!!!!!!!execute global_planner_node!!!!!!!!!!!!!");
+  // for(int i=0;i<argc;i++)
+  //   ROS_INFO("argc:%d,argv:%s",i ,argv[i]);
+  // jackal_ns=argv[1];
+  // ROS_INFO("argv:%s",jackal_ns);
 
   ros::init(argc, argv, "global_planner_node");
   roborts_global_planner::GlobalPlannerNode global_planner;

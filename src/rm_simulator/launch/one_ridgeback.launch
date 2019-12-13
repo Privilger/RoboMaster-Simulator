@@ -75,6 +75,7 @@
 <!--  </include>-->
 
   <node pkg="roborts_planning" type="global_planner_node" name="global_planner_node" respawn="false" output="screen" ns="$(arg ns)">
+    <param name="jackal_ns"         value="$(arg ns)"/>
   </node>
 
   <!-- Run the local planner node -->
@@ -86,10 +87,12 @@
     <remap from="/local_planner_node_action/status"             to="/$(arg ns)/local_planner_node_action/status" />
     <remap from="/local_planner_node_action/goal"               to="/$(arg ns)/local_planner_node_action/goal" />
     <remap from="/local_planner_node_action/cancel"             to="/$(arg ns)/local_planner_node_action/cancel" />
+    <param name="jackal_ns"                                     value="$(arg ns)"/>
   </node>
 
   <node name="behavior_test_node" pkg="roborts_decision" type="behavior_test_node" output="screen" ns="$(arg ns)">
     <remap from="/move_base_simple/goal" to="/$(arg ns)/move_base_simple/goal" />
+    <param name="jackal_ns"         value="$(arg ns)"/>
   </node>
 
   <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false" ns="$(arg ns)"/>

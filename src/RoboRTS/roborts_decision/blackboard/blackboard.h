@@ -42,21 +42,11 @@ class Blackboard {
 
     tf_ptr_ = std::make_shared<tf::TransformListener>(ros::Duration(10));
 
+    int jackal_num=int(jackal_ns.back())-48;
+    ROS_INFO("!!!!!!!!!!!jackal_number:%d",jackal_num);
+
     std::string map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_decision.prototxt";    
-  
-    if(jackal_ns.find("jackal0")!= std::string::npos)
-    {
-      ROS_INFO("!!!!!!!!!!!decision jackal0 completed!!!!!!!!!!!");
-      map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_decision.prototxt"; 
-    }  
-    else
-    {
-      ROS_INFO("!!!!!!!!!!!decision jackal1 completed.!!!!!!!!!!!");
-      map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_decision1.prototxt"; 
-    }
+      "/config/costmap_parameter_config_for_decision"+std::to_string(jackal_num)+".prototxt";    
 
     costmap_ptr_ = std::make_shared<CostMap>("decision_costmap", *tf_ptr_,
                                              map_path);

@@ -57,21 +57,11 @@ roborts_common::ErrorInfo LocalPlannerNode::Init() {
   ros::param::get("~jackal_ns",jackal_ns);
   ROS_INFO("!!!!!!!!!!!local jackal_ns:%s",jackal_ns.c_str());
 
+  int jackal_num=int(jackal_ns.back())-48;
+  ROS_INFO("!!!!!!!!!!!jackal_number:%d",jackal_num);
+
   std::string map_path= ros::package::getPath("roborts_costmap") + \
-        "/config/costmap_parameter_config_for_local_plan.prototxt";
-  
-  if(jackal_ns.find("jackal0")!= std::string::npos)
-  {
-    ROS_INFO("!!!!!!!!!!!local jackal0 completed!!!!!!!!!!!");
-    map_path = ros::package::getPath("roborts_costmap") + \
-        "/config/costmap_parameter_config_for_local_plan.prototxt";
-  }  
-  else
-  {
-    ROS_INFO("!!!!!!!!!!!local jackal1 completed.!!!!!!!!!!!");
-    map_path = ros::package::getPath("roborts_costmap") + \
-        "/config/costmap_parameter_config_for_local_plan1.prototxt";
-  }  
+        "/config/costmap_parameter_config_for_local_plan"+std::to_string(jackal_num)+".prototxt";
 
   local_cost_ = std::make_shared<roborts_costmap::CostmapInterface>("local_costmap",
                                                                           *tf_,

@@ -67,22 +67,14 @@ ErrorInfo GlobalPlannerNode::Init() {
   std::string jackal_ns;
   ros::param::get("~jackal_ns",jackal_ns);
   ROS_INFO("!!!!!!!!!!!global jackal_ns:%s",jackal_ns.c_str());
+
+  int jackal_num=int(jackal_ns.back())-48;
+  ROS_INFO("!!!!!!!!!!!jackal_number:%d",jackal_num);
+  
   // Create global costmap
   std::string map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_global_plan.prototxt";
-  if(jackal_ns.find("jackal0")!= std::string::npos)
-  {
-    ROS_INFO("!!!!!!!!!!!global jackal0 completed.!!!!!!!!!!!");
-    map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_global_plan.prototxt";
-  }  
-  else
-  {
-    ROS_INFO("!!!!!!!!!!!global jackal1 completed.!!!!!!!!!!!");
-    map_path = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_global_plan1.prototxt";
-  }
-
+      "/config/costmap_parameter_config_for_global_plan"+std::to_string(jackal_num)+".prototxt";
+      
   costmap_ptr_ = std::make_shared<roborts_costmap::CostmapInterface>("global_costmap",
                                                                            *tf_ptr_,
                                                                            map_path.c_str());

@@ -13,6 +13,8 @@
   <arg name="config" default="empty" />
   <arg name="ns0" default="jackal0" />
   <arg name="ns1" default="jackal1" />
+  <arg name="ns2" default="jackal2" />
+  <arg name="ns3" default="jackal3" />
 
   <!-- <arg name="config" default="custom" /> -->
 
@@ -37,26 +39,42 @@
 
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+      <arg name="init_a"         value="0"/>
       <arg name="init_x"         value="1"/>
       <arg name="init_y"         value="1"/>
-      <arg name="init_z"         value="0"/>
       <arg name="robot_name"     value="$(arg ns0)" />
       <arg name="ns"             value="$(arg ns0)" />
     </include>
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+      <arg name="init_a"         value="0"/>
       <arg name="init_x"         value="1"/>
-      <arg name="init_y"         value="3"/>
-      <arg name="init_z"         value="0"/>
+      <arg name="init_y"         value="8.3"/>
       <arg name="robot_name"     value="$(arg ns1)" />
       <arg name="ns"             value="$(arg ns1)" />
     </include>
+
+  <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+    <arg name="init_a"         value="3.14"/>
+    <arg name="init_x"         value="13.5"/>
+    <arg name="init_y"         value="8.3"/>
+    <arg name="robot_name"     value="$(arg ns2)" />
+    <arg name="ns"             value="$(arg ns2)" />
+  </include>
+
+  <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+    <arg name="init_a"         value="3.14"/>
+    <arg name="init_x"         value="13.5"/>
+    <arg name="init_y"         value="1"/>
+    <arg name="robot_name"     value="$(arg ns3)" />
+    <arg name="ns"             value="$(arg ns3)" />
+  </include>
 
 
   <!-- View in RVIZ. -->
   <group if="$(arg rviz)">
     <node name="ridgeback_viz_$(arg ns0)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >
-       <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/>
+<!--       <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/>-->
     </node>
 
 <!--    <node name="ridgeback_viz_$(arg ns1)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >-->

@@ -4,7 +4,7 @@
   <arg name="robot_name"        default="ridgeback"/>
   <arg name="init_x"            default="1"/>
   <arg name="init_y"            default="2"/>
-  <arg name="init_z"            default="0"/>
+  <arg name="init_a"            default="0"/>
   <arg name="ns"                default="jackal0"/>
   <arg name="config"            default="empty" />
 
@@ -17,7 +17,7 @@
 
   <!-- Spawn Ridgeback -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" ns="$(arg ns)"
-        args="-x $(arg init_x) -y $(arg init_y) -z $(arg init_z)
+        args="-x $(arg init_x) -y $(arg init_y) -z 0 -Y $(arg init_a)
         -urdf -model $(arg ns) -param /$(arg ns)/robot_description" />
 
   <!-- Publish the robot joints. -->
@@ -104,7 +104,7 @@
     <rosparam command="load" file="$(find roborts_localization)/config/localization.yaml" ns="$(arg ns)"/>
     <param name="$(arg ns)/odom_frame"           value="/$(arg ns)/odom"/>
     <param name="$(arg ns)/base_frame"           value="/$(arg ns)/base_link"/>
-<!--    <param name="/$(arg ns)/initial_pose_a"      value="0"/>-->
+    <param name="/$(arg ns)/initial_pose_a"      value="$(arg init_a)"/>
     <param name="/$(arg ns)/initial_pose_x"      value="$(arg init_x)"/>
     <param name="/$(arg ns)/initial_pose_y"      value="$(arg init_y)"/>
 

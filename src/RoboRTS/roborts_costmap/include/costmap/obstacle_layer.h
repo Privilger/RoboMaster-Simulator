@@ -73,8 +73,9 @@ namespace roborts_costmap {
 
 class ObstacleLayer : public CostmapLayer {
  public:
-  ObstacleLayer() {
+  ObstacleLayer(const int jackal_ns_) {
     costmap_ = nullptr;
+    jackal_ns=jackal_ns_;
   }
 
   virtual ~ObstacleLayer() {}
@@ -114,6 +115,8 @@ class ObstacleLayer : public CostmapLayer {
 
   std::vector<Observation> static_clearing_observations_, static_marking_observations_;
   std::chrono::system_clock::time_point reset_time_;
+  int jackal_ns;
+
 };
 
 } //namespace roborts_costmap

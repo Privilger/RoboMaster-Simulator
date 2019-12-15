@@ -4,7 +4,7 @@
   <arg name="robot_name"        default="ridgeback"/>
   <arg name="init_x"            default="1"/>
   <arg name="init_y"            default="2"/>
-  <arg name="init_z"            default="0"/>
+  <arg name="init_a"            default="0"/>
   <arg name="ns"                default="jackal0"/>
   <arg name="config"            default="empty" />
 
@@ -16,7 +16,7 @@
 
   <!-- Spawn Ridgeback -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" ns="$(arg ns)"
-        args="-x $(arg init_x) -y $(arg init_y) -z $(arg init_z)
+        args="-x $(arg init_x) -y $(arg init_y) -z 0 -Y $(arg init_a)
         -urdf -model $(arg ns) -param /$(arg ns)/robot_description" />
 
   <!-- Publish the robot joints. -->
@@ -74,6 +74,7 @@
 <!--  </include>-->
 
   <node pkg="roborts_planning" type="global_planner_node" name="global_planner_node" respawn="false" output="screen" ns="$(arg ns)">
+    <param name="jackal_ns"         value="$(arg ns)"/>
   </node>
 
   <!-- Run the local planner node -->
@@ -85,10 +86,12 @@
     <remap from="/local_planner_node_action/status"             to="/$(arg ns)/local_planner_node_action/status" />
     <remap from="/local_planner_node_action/goal"               to="/$(arg ns)/local_planner_node_action/goal" />
     <remap from="/local_planner_node_action/cancel"             to="/$(arg ns)/local_planner_node_action/cancel" />
+    <param name="jackal_ns"                                     value="$(arg ns)"/>
   </node>
 
   <node name="behavior_test_node" pkg="roborts_decision" type="behavior_test_node" output="screen" ns="$(arg ns)">
     <remap from="/move_base_simple/goal" to="/$(arg ns)/move_base_simple/goal" />
+    <param name="jackal_ns"         value="$(arg ns)"/>
   </node>
 
   <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false" ns="$(arg ns)"/>
@@ -100,7 +103,7 @@
     <rosparam command="load" file="$(find roborts_localization)/config/localization.yaml" ns="$(arg ns)"/>
     <param name="$(arg ns)/odom_frame"           value="/$(arg ns)/odom"/>
     <param name="$(arg ns)/base_frame"           value="/$(arg ns)/base_link"/>
-<!--    <param name="/$(arg ns)/initial_pose_a"      value="0"/>-->
+    <param name="/$(arg ns)/initial_pose_a"      value="$(arg init_a)"/>
     <param name="/$(arg ns)/initial_pose_x"      value="$(arg init_x)"/>
     <param name="/$(arg ns)/initial_pose_y"      value="$(arg init_y)"/>
 

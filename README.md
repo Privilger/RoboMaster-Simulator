@@ -42,6 +42,11 @@ The robot gazebo model contains pointgrey cameras. So it is required to install 
 ```sh
 $ ./install_flycapture.sh
 ```
+### Modify lidar model
+```sh
+$ roscd lms1xx/urdf
+```
+Change the \<box> tag from \<box size="0.105 0.1 0.1" /> to \<box size="0.805 0.7 0.1" /> 
 
 ## Usage
 ### Launch two robots navigation in a map.

@@ -59,7 +59,8 @@ void ObstacleLayer::OnInitialize() {
   ParaObstacleLayer para_obstacle;
 
   std::string obstacle_map = ros::package::getPath("roborts_costmap") + \
-      "/config/obstacle_layer_config.prototxt";
+      "/config/obstacle_layer_config"+std::to_string(jackal_ns)+".prototxt";
+
   roborts_common::ReadProtoFromTextFile(obstacle_map.c_str(), &para_obstacle);
   double observation_keep_time = 0.1, expected_update_rate = 10.0, min_obstacle_height = 0.2, \
  max_obstacle_height = 0.6, obstacle_range = 2.5, raytrace_range = 3.0, transform_tolerance = 0.2;

@@ -12,18 +12,29 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   roborts_msgs
   trajectory_msgs
-  std_msgs
+  std_msgs message_generation
+)
+
+add_message_files(
+        FILES
+        RobotPose.msg
+        CellStatus.msg
+        ReferSystemInfo.msg
+)
+
+generate_messages(
+        DEPENDENCIES
+        std_msgs
 )
 
 catkin_package(
+        CATKIN_DEPENDS message_runtime
 )
-
 
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+        # include
+        ${catkin_INCLUDE_DIRS}
 )
-
 
 add_executable(acc2vel_node src/acc2vel.cpp)
 target_link_libraries(acc2vel_node
@@ -38,3 +49,10 @@ target_link_libraries(turret_controller
 )
 add_dependencies(turret_controller
   ${catkin_EXPORTED_TARGETS})
+
+add_executable(simulate_refer_system src/refer_system.cpp)
+target_link_libraries(simulate_refer_system
+        ${catkin_LIBRARIES}
+        )
+add_dependencies(simulate_refer_system
+        ${catkin_EXPORTED_TARGETS})

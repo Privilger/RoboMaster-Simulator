@@ -58,8 +58,10 @@ $ sudo apt --fix-broken install
 ### Modify lidar model
 ```sh
 $ roscd lms1xx/urdf
+
+$ sudo vim sick_lms1xx.urdf.xacro
 ```
-Change the \<box> tag from \<box size="0.105 0.1 0.1" /> to \<box size="0.805 0.7 0.1" /> 
+Delete \<visual> tag (from line 42 to line 48).
 
 ## Usage
 ### Launch two robots navigation in a map.

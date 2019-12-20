@@ -14,7 +14,7 @@
 
     <xacro:sick_lms1xx frame="${prefix}_laser" topic="${topic}" update_rate="50"
                        min_angle="-${M_PI}" max_angle="${M_PI}"
-                       min_range="0.73" robot_namespace="$(arg namespace)" />
+                       min_range="0.78" robot_namespace="$(arg namespace)" />
 
     <joint name="${prefix}_laser_joint" type="fixed">
       <!-- This offset is from the base of the bracket to the LIDAR's focal point. -->
@@ -37,7 +37,7 @@
     <camera_mount prefix="$(optenv JACKAL_FLEA_MOUNT front)"
                        tilt="$(optenv JACKAL_FLEA_TILT 0)"/>
     <joint name="$(optenv JACKAL_FLEA3_MOUNT front)_camera_mount_joint" type="fixed">
-      <origin xyz="$(optenv JACKAL_FLEA3_OFFSET 0.1 0 0.32)"
+      <origin xyz="$(optenv JACKAL_FLEA3_OFFSET -0.13 -0.01 0.22)"
               rpy="$(optenv JACKAL_FLEA3_RPY 0 0 0)" />
       <parent link="$(optenv JACKAL_FLEA_MOUNT front)_cover_link" />
       <child link="$(optenv JACKAL_FLEA_MOUNT front)_camera_mount" />
@@ -46,9 +46,9 @@
 
     <pointgrey_flea3 frame="$(optenv JACKAL_FLEA3_MOUNT front)_camera" name="$(optenv JACKAL_FLEA_NAME front)"
       camera_x="0.0754" camera_y="0.029" camera_z="0.035"
-      camera_mass="0.085" hfov="1.0471975512" fps="60" width="640" height="512"/>
+      camera_mass="0.98307" hfov="1.0471975512" fps="60" width="640" height="512"/>
     <joint name="$(optenv JACKAL_FLEA3_MOUNT front)_camera_bracket_joint" type="fixed">
-      <origin xyz="0.020 0 0.0245" rpy="0 0 0" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="$(optenv JACKAL_FLEA3_MOUNT front)_camera_beam" />
       <child link="$(optenv JACKAL_FLEA3_MOUNT front)_camera" />
     </joint>

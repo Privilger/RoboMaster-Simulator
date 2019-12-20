@@ -53,9 +53,9 @@
       i: 0.1
       d: 0
     front_camera_pivot_joint:
-      p: 5
-      i: 0.08
-      d: 0
+      p: 100
+      i: 10.0
+      d: 10.0
   </rosparam>
 
   <node name="turret_controller" pkg="rm_simulator" type="turret_controller" ns="$(arg ns)">

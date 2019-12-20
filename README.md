@@ -18,18 +18,30 @@ This repository contains:
 2. Connect gazebo with OpenAi gym framework by [openai_ros](http://wiki.ros.org/openai_ros) ROS package.
 
 ## TODO
-2. ```resetSimulation``` function in openai_ros pkg doesn't look good. It need to be refactored. The function should put in the ```_env_setup``` function in the task env. Ref: openai_examples_projects -> Fetch Robot 
-3. Speed up the gazebo simulation. 
-4. Add bunos and supply function.
-5. Add stage simulator.
-6. Add referee system, maybe based on BlackBoard game design.
+1. ```resetSimulation``` function in openai_ros pkg doesn't look good. It need to be refactored. The function should put in the ```_env_setup``` function in the task env. Ref: openai_examples_projects -> Fetch Robot 
+2. Speed up the gazebo simulation. 
+3. Add bunos and supply function.
+4. Add stage simulator.
+5. Add referee system, maybe based on BlackBoard game design.
 
 ## Install
 ### Dependencies
+First, install the ROS and the kinetic version is recommended (http://wiki.ros.org/kinetic/Installation).
+
 ```sh
 $ sudo apt install protobuf-compiler
 $ sudo apt install libprotoc-dev
 $ sudo apt install ros-kinetic-libg2o
+$ sudo apt install ros-kinetic-serial
+$ sudo apt install ros-kinetic-robot-localization
+$ sudo apt install ros-kinetic-robot-rosserial
+$ sudo apt install libgflags-dev
+$ sudo apt install python-gflags libgoogle-glog0v5 libgoogle-glog-dev
+$ sudo apt install ros-kinetic-move-base
+$ sudo apt install ros-kinetic-interactive-marker-twist-server
+$ sudo apt install ros-kinetic-hector-gazebo-plugins
+$ sudo apt install ros-kinetic-lms1xx
+$ sudo apt install ros-kinetic-puma-motor*
 ```
 
 The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/rm_ws/blob/master/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.
@@ -37,6 +49,11 @@ The robot gazebo model contains pointgrey cameras. So it is required to install 
 ```sh
 $ ./install_flycapture.sh
 ```
+If there is some dependency problem, you may use
+```sh
+$ sudo apt --fix-broken install
+```
+
 ### Modify lidar model
 ```sh
 $ roscd lms1xx/urdf

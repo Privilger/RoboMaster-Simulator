@@ -53,20 +53,20 @@ obstacles_opt {
 robot_type {
     type: POINT
     robot_vertices {
-        x: 0.53
-        y: 0.45
+        x: 0.40
+        y: 0.35
     }
     robot_vertices {
-        x: -0.53
-        y: 0.45
+        x: -0.40
+        y: 0.35
     }
     robot_vertices {
-        x: -0.53
-        y: -0.45
+        x: -0.40
+        y: -0.35
     }
     robot_vertices {
-        x: 0.53
-        y: -0.45
+        x: 0.40
+        y: -0.35
     }
 }
 

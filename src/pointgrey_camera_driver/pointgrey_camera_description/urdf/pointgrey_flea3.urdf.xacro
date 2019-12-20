@@ -3,6 +3,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="pointgrey_flea3">
   <!-- camera_{x,y,z,mass} are they physical properties of the camera since
        flea3's can have different physical footprints.  -->
+
   <xacro:macro name="pointgrey_flea3"
     params="frame:=camera name:=camera camera_x:=0.0754 camera_y:=0.029 camera_z:=0.035 camera_mass:=0.085
              hfov:=1.0471975512 fps:=120 width:=1272 height:=1016 format:=R8G8B8 near:=0.5 far:=300">
@@ -10,21 +11,23 @@
     <link name="${frame}">
       <inertial>
         <mass value="${camera_mass}" />
-        <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+      <inertia
+          ixx="0.0072228"
+          ixy="1.8624E-07"
+          ixz="5.1373E-07"
+          iyy="0.0035103"
+          iyz="-0.0016193"
+          izz="0.00443" />
       </inertial>
       <visual>
-        <origin xyz="0 0 0" rpy="0 0 0" />
+        <origin xyz="0 0 0.1" rpy="0 0 0" />
         <geometry>
-          <box size="${camera_x} ${camera_y} ${camera_z}"/>
+          <mesh filename="package://ridgeback_description/meshes/gun_new.STL"/>
         </geometry>
-        <material name="dark_grey" />
+        <material name="Black">
+          <color rgba="0.15 0.15 0.15 1.0"/>
+        </material>
       </visual>
-      <collision>
-        <origin xyz="0 0 0" rpy="0 0 0" />
-        <geometry>
-          <box size="${camera_x} ${camera_y} ${camera_z}" />
-        </geometry>
-      </collision>
     </link>
 
     <link name="${frame}_optical" />
@@ -37,7 +40,7 @@
 
     <!-- Gazebo -->
     <gazebo reference="${frame}_optical">
-      <material>Gazebo/Grey</material>
+      <material>Gazebo/Black</material>
       <sensor type="camera" name="${name}">
         <update_rate>${fps}</update_rate>
         <camera name="${name}">
@@ -75,5 +78,9 @@
         </plugin>
       </sensor>
     </gazebo>
+
+  <gazebo reference="${frame}">
+      <material>Gazebo/DarkGrey</material>
+  </gazebo>
   </xacro:macro>
 </robot>

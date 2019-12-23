@@ -32,17 +32,18 @@ First, install the ROS and the kinetic version is recommended (http://wiki.ros.o
 $ sudo apt install protobuf-compiler
 $ sudo apt install libprotoc-dev
 $ sudo apt install ros-kinetic-libg2o
-$ sudo apt install ros-kinetic-serial
+$ sudo apt install ros-kinetic-controller-manager
+$ sudo apt install ros-kinetic-puma-motor-*
+$ sudo apt install ros-kinetic-realtime-tools 
+$ sudo apt install ros-kinetic-rosserial-server
 $ sudo apt install ros-kinetic-robot-localization
-$ sudo apt install ros-kinetic-robot-rosserial
-$ sudo apt install libgflags-dev
-$ sudo apt install python-gflags libgoogle-glog0v5 libgoogle-glog-dev
+$ sudo apt install libgoogle-glog0v5 libgoogle-glog-dev
 $ sudo apt install ros-kinetic-move-base
 $ sudo apt install ros-kinetic-interactive-marker-twist-server
-$ sudo apt install ros-kinetic-hector-gazebo-plugins
+$ sudo apt install ros-kinetic-gazebo-ros-control
+$ sudo apt install ros-kinetic-hector-gazebo-plugins 
+$ sudo apt install ros-kinetic-joint-state-controller 
 $ sudo apt install ros-kinetic-lms1xx
-$ sudo apt install ros-kinetic-puma-motor*
-$ sudo apt install ros-kinetic-joint-trajectory-controller
 ```
 
 The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/rm_ws/blob/master/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.
@@ -64,16 +65,11 @@ $ sudo vim sick_lms1xx.urdf.xacro
 Delete \<visual> tag (from line 42 to line 48).
 
 ## Usage
-### Launch two robots navigation in a map.
+### Launch four robots navigation in a map.
 ```sh
-$ roslaunch rm_simulator autonomy_exist_map.launch
+$ roslaunch rm_simulator ridgeback_robots.launch
 ```
-It will open 2 rviz, each rviz can send a goal to one robot.
 
-### Launch one omni robot navigation in a map.
-```sh
-$ roslaunch rm_simulator ridgeback_exist_map.launch
-```
 
 
 ## Maintainers

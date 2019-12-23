@@ -1,0 +1,10 @@
+<launch>
+
+  <arg name="node_namespace" default="orange"/>
+  <param name="use_sim_time" value="true"/>  
+
+  <node name="obstacle_filter_node" pkg="obstacle_filter" type="obstacle_filter_node" output="screen">
+<param name="color" value="$(arg node_namespace)" />
+</node>
+
+</launch>

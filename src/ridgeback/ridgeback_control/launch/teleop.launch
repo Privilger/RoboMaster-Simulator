@@ -23,9 +23,9 @@
 
   <arg name="config" default="planar" />
 
-  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" ns="$(arg ns)">
-    <remap from="$(arg ns)/twist_marker_server/cmd_vel" to="$(arg ns)/cmd_vel" />
-    <rosparam command="load" file="$(find interactive_marker_twist_server)/config/$(arg config).yaml" />
-  </node>
+<!--  <node pkg="interactive_marker_twist_server" type="marker_server" name="twist_marker_server" ns="$(arg ns)">-->
+<!--    <remap from="$(arg ns)/twist_marker_server/cmd_vel" to="$(arg ns)/cmd_vel" />-->
+<!--    <rosparam command="load" file="$(find interactive_marker_twist_server)/config/$(arg config).yaml" />-->
+<!--  </node>-->
 
 </launch>

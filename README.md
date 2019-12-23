@@ -44,6 +44,7 @@ $ sudo apt install ros-kinetic-gazebo-ros-control
 $ sudo apt install ros-kinetic-hector-gazebo-plugins 
 $ sudo apt install ros-kinetic-joint-state-controller 
 $ sudo apt install ros-kinetic-lms1xx
+$ sudo apt install libarmadillo-dev
 ```
 
 The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/rm_ws/blob/master/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.

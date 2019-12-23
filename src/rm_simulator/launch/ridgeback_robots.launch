@@ -6,7 +6,7 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find rm_simulator)/worlds/map2020.world"/>
+  <arg name="world_name" default="$(find rm_simulator)/worlds/2020map_originsize.world"/>
 
   <!-- Configuration of Jackal which you would like to simulate.
        See jackal_description for details. -->
@@ -40,32 +40,32 @@
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
       <arg name="init_a"         value="0"/>
-      <arg name="init_x"         value="1"/>
-      <arg name="init_y"         value="1"/>
+      <arg name="init_x"         value="0.6"/>
+      <arg name="init_y"         value="0.5"/>
       <arg name="robot_name"     value="$(arg ns0)" />
       <arg name="ns"             value="$(arg ns0)" />
     </include>
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
       <arg name="init_a"         value="0"/>
-      <arg name="init_x"         value="1"/>
-      <arg name="init_y"         value="8.3"/>
+      <arg name="init_x"         value="0.6"/>
+      <arg name="init_y"         value="4.6"/>
       <arg name="robot_name"     value="$(arg ns1)" />
       <arg name="ns"             value="$(arg ns1)" />
     </include>
 
   <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
     <arg name="init_a"         value="3.14"/>
-    <arg name="init_x"         value="13.5"/>
-    <arg name="init_y"         value="8.3"/>
+    <arg name="init_x"         value="7.6"/>
+    <arg name="init_y"         value="4.6"/>
     <arg name="robot_name"     value="$(arg ns2)" />
     <arg name="ns"             value="$(arg ns2)" />
   </include>
 
   <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
     <arg name="init_a"         value="3.14"/>
-    <arg name="init_x"         value="13.5"/>
-    <arg name="init_y"         value="1"/>
+    <arg name="init_x"         value="7.6"/>
+    <arg name="init_y"         value="0.5"/>
     <arg name="robot_name"     value="$(arg ns3)" />
     <arg name="ns"             value="$(arg ns3)" />
   </include>

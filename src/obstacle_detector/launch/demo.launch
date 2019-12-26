@@ -91,9 +91,9 @@
     <param name="frame_id"         value="map"/>
   </node>
 
- <node name="$(arg node_namespace)_rviz_2" pkg="rviz" type="rviz" output="screen" args="-d $(find obstacle_detector)/resources/obstacle_detector.rviz">
-   <remap from="scan"  to="$(arg node_namespace)/scan"/>
- </node>>
+<!-- <node name="$(arg node_namespace)_rviz_2" pkg="rviz" type="rviz" output="screen" args="-d $(find obstacle_detector)/resources/obstacle_detector.rviz">-->
+<!--   <remap from="scan"  to="$(arg node_namespace)/scan"/>-->
+<!-- </node>>-->
 
 
 </launch>

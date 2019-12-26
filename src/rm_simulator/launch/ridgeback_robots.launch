@@ -54,21 +54,21 @@
       <arg name="ns"             value="$(arg ns1)" />
     </include>
 
-<!--  <include file="$(find rm_simulator)/launch/one_ridgeback.launch">-->
-<!--    <arg name="init_a"         value="3.14"/>-->
-<!--    <arg name="init_x"         value="7.6"/>-->
-<!--    <arg name="init_y"         value="4.6"/>-->
-<!--    <arg name="robot_name"     value="$(arg ns2)" />-->
-<!--    <arg name="ns"             value="$(arg ns2)" />-->
-<!--  </include>-->
+  <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+    <arg name="init_a"         value="3.14"/>
+    <arg name="init_x"         value="7.6"/>
+    <arg name="init_y"         value="4.6"/>
+    <arg name="robot_name"     value="$(arg ns2)" />
+    <arg name="ns"             value="$(arg ns2)" />
+  </include>
 
-<!--  <include file="$(find rm_simulator)/launch/one_ridgeback.launch">-->
-<!--    <arg name="init_a"         value="3.14"/>-->
-<!--    <arg name="init_x"         value="7.6"/>-->
-<!--    <arg name="init_y"         value="0.5"/>-->
-<!--    <arg name="robot_name"     value="$(arg ns3)" />-->
-<!--    <arg name="ns"             value="$(arg ns3)" />-->
-<!--  </include>-->
+  <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
+    <arg name="init_a"         value="3.14"/>
+    <arg name="init_x"         value="7.6"/>
+    <arg name="init_y"         value="0.5"/>
+    <arg name="robot_name"     value="$(arg ns3)" />
+    <arg name="ns"             value="$(arg ns3)" />
+  </include>
 
 
   <!-- View in RVIZ. -->

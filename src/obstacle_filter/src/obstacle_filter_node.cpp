@@ -36,9 +36,11 @@ int main(int argc, char **argv)
 std::string my_color;
 nh.param<std::string>("color", my_color, "green");
 std::cout<<my_color<<std::endl;
-
-  ros::Subscriber sub = nh.subscribe("/jackal0/raw_obstacles", 1000, &cmdVelCallback);
-  ros::Publisher  obstacle_filter_pub = nh.advertise<obstacle_detector::Obstacles>("/obstacle_filtered", 1000);
+    std::string jackal_ns;
+    ros::param::get("~jackal_ns",jackal_ns);
+    ROS_INFO("!!!!!!!!!!!obstacle_filter jackal_ns:%s",jackal_ns.c_str());
+  ros::Subscriber sub = nh.subscribe("/"+jackal_ns+"/raw_obstacles", 1000, &cmdVelCallback);
+  ros::Publisher  obstacle_filter_pub = nh.advertise<obstacle_detector::Obstacles>("/"+jackal_ns+"/obstacle_filtered", 1000);
 
   ros::Rate loop_rate(40);
 

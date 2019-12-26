@@ -7,4 +7,6 @@
   <include file="$(find obstacle_detector)/launch/demo.launch">
     <arg name="node_namespace" value="$(arg ns0)"/>
   </include>
+  <node name="obstacle_filter_node" pkg="obstacle_filter" type="obstacle_filter_node" output="screen">
+  </node>
 </launch>

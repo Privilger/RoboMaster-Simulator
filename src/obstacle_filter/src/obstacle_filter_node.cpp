@@ -37,7 +37,7 @@ std::string my_color;
 nh.param<std::string>("color", my_color, "green");
 std::cout<<my_color<<std::endl;
 
-  ros::Subscriber sub = nh.subscribe("/obstacles", 1000, &cmdVelCallback);
+  ros::Subscriber sub = nh.subscribe("/jackal0/raw_obstacles", 1000, &cmdVelCallback);
   ros::Publisher  obstacle_filter_pub = nh.advertise<obstacle_detector::Obstacles>("/obstacle_filtered", 1000);
 
   ros::Rate loop_rate(40);

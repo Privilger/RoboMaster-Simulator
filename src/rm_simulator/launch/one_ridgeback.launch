@@ -115,4 +115,7 @@
       <remap from="static_map"          to="/static_map"/>
     </node>
 
+  <include file="$(find rm_simulator)/launch/lidar_detection.launch">
+    <arg name="ns0"         value="$(arg ns)"/>
+  </include>
 </launch>

@@ -1,5 +1,7 @@
 # ICRA RoboMaster AI Challenge Simulator
-
+[![Build Status](https://travis-ci.com/Privilger/rmai_ws.svg?token=1NvSjpoBdozy9gnxsTP8&branch=master)](https://travis-ci.com/Privilger/rmai_ws)
+![platform](https://img.shields.io/badge/platform-ubuntu-lightgrey.svg)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 > RM simulator 
 

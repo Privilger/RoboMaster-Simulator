@@ -47,9 +47,6 @@ cache:
 language: generic
 matrix:
   include:
-  - name: "Trusty indigo"
-    dist: trusty
-    env: ROS_DISTRO=indigo
   - name: "Xenial kinetic"
     dist: xenial
     env: ROS_DISTRO=kinetic
@@ -75,7 +72,7 @@ before_install:
   - sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
   - sudo apt-get update -qq
   - sudo apt-get install dpkg
-  - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool ros-$ROS_DISTRO-ros-base
+  - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool ros-$ROS_DISTRO-desktop-full
   - source /opt/ros/$ROS_DISTRO/setup.bash
   # Prepare rosdep to install dependencies.
   - sudo rosdep init
@@ -83,29 +80,46 @@ before_install:
 
 # Create a catkin workspace with the package under integration.
 install:
-  - mkdir -p ~/catkin_ws/src
-  - cd ~/catkin_ws/src
-  - catkin_init_workspace
-  # Create the devel/setup.bash (run catkin_make with an empty workspace) and
-  # source it to set the path variables.
-  - cd ~/catkin_ws
-  - catkin_make
-  - source devel/setup.bash
-  # Add the package under integration to the workspace using a symlink.
-  - cd ~/catkin_ws/src
-  - ln -s $CI_SOURCE_PATH .
+  - ls
+#  - cd $CI_SOURCE_PATH
+#  - catkin_make
+#  - source devel/setup.bash
 
 # Install all dependencies, using wstool first and rosdep second.
 # wstool looks for a ROSINSTALL_FILE defined in the environment variables.
 before_script:
+  - sudo apt-get install -y libraw1394-11 libgtkmm-2.4-dev libglademm-2.4-dev libgtkglextmm-x11-1.2-dev
   # source dependencies: install using wstool.
-  - cd ~/catkin_ws/src
+  - cd $CI_SOURCE_PATH
+  - tar zxvf flycapture2-2.11.3.121-amd64-pkg.tgz
+  - cd flycapture2-2.11.3.121-amd64
+  - echo "y\n" | sudo ./install_flycapture_only_simulation.sh
   - wstool init
   - if [[ -f $ROSINSTALL_FILE ]] ; then wstool merge $ROSINSTALL_FILE ; fi
   - wstool up
   # package depdencies: install using rosdep.
-  - cd ~/catkin_ws
-  - rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
+  - cd $CI_SOURCE_PATH
+#  - rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
+  - sudo apt-get install -y ros-$ROS_DISTRO-libg2o
+  - sudo apt-get install -y ros-$ROS_DISTRO-controller-manager
+  - sudo apt-get install -y ros-$ROS_DISTRO-puma-motor-*
+  - sudo apt-get install -y ros-$ROS_DISTRO-realtime-tools
+  - sudo apt-get install -y ros-$ROS_DISTRO-rosserial-server
+  - sudo apt-get install -y ros-$ROS_DISTRO-robot-localization
+  - sudo apt-get install -y ros-$ROS_DISTRO-move-base
+  - sudo apt-get install -y ros-$ROS_DISTRO-interactive-marker-twist-server
+  - sudo apt-get install -y ros-$ROS_DISTRO-gazebo-ros-control
+  - sudo apt-get install -y ros-$ROS_DISTRO-hector-gazebo-plugins
+  - sudo apt-get install -y ros-$ROS_DISTRO-joint-state-controller
+  - sudo apt-get install -y ros-$ROS_DISTRO-lms1xx
+  - sudo apt-get install -y ros-$ROS_DISTRO-roslint
+  - sudo apt-get install -y ros-$ROS_DISTRO-cv-bridge
+  - sudo apt-get install -y ros-$ROS_DISTRO-image-transport
+  - sudo apt-get install -y ros-$ROS_DISTRO-diff-drive-controller
+  - sudo apt-get install -y ros-$ROS_DISTRO-camera-info-manager
+  - sudo apt-get install -y ros-$ROS_DISTRO-robot-state-publisher
+  - sudo apt-get install -y libarmadillo-dev libgoogle-glog0v5 libgoogle-glog-dev protobuf-compiler libprotoc-dev
+
 
 # Compile and test (mark the build as failed if any step fails). If the
 # CATKIN_OPTIONS file exists, use it as an argument to catkin_make, for example
@@ -117,8 +131,8 @@ before_script:
 # non-zero when a test fails (which notifies Travis the build failed).
 script:
   - source /opt/ros/$ROS_DISTRO/setup.bash
-  - cd ~/catkin_ws
+  - cd $CI_SOURCE_PATH
   - catkin_make $( [ -f $CATKIN_OPTIONS ] && cat $CATKIN_OPTIONS )
   # Run the tests, ensuring the path is set correctly.
-  - source devel/setup.bash
-  - catkin_make run_tests && catkin_test_results
+#  - source devel/setup.bash
+#  - catkin_make run_tests && catkin_test_results

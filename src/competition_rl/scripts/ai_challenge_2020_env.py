@@ -11,15 +11,17 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
     """Superclass for all CubeSingleDisk environments.
     """
 
-    def __init__(self):
+    def __init__(self, robot_ns):
         """Initializes a new CubeSingleDisk environment.
         """
         # Variables that we give through the constructor.
         # self.init_roll_vel = init_roll_vel
 
-        self.controllers_list = ['ridgeback_joint_publisher','ridgeback_velocity_controller', 'turret_position_controller']
+        self.controllers_list = []
 
-        self.robot_name_space = ""
+        self.robot_name_space = robot_ns
+        # self.robot_name_space = rospy.get_param("~robot_name_space")
+        # rospy.logerr(self.robot_name_space)
 
         reset_controls_bool = False
 
@@ -42,12 +44,12 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         self._check_all_sensors_ready()
 
         # We Start all the ROS related Subscribers and publishers
-        rospy.Subscriber("/amcl_pose", PoseStamped, self._pose_callback)
-        rospy.Subscriber("/odometry/filtered", Odometry, self._odom_callback)
+        rospy.Subscriber('/'+self.robot_name_space+'/amcl_pose', PoseStamped, self._pose_callback)
+        rospy.Subscriber('/'+self.robot_name_space+'/odometry/filtered', Odometry, self._odom_callback)
 
-        self._turret_position_pub = rospy.Publisher('/turret_controller/position',
+        self._turret_position_pub = rospy.Publisher('/'+self.robot_name_space+'/turret_position',
                                         Float32, queue_size=1)
-        self._goal_pub = rospy.Publisher('/move_base_simple/goal',
+        self._goal_pub = rospy.Publisher('/'+self.robot_name_space+'/move_base_simple/goal',
                                         PoseStamped, queue_size=1)
 
         self._check_publishers_connection()
@@ -82,18 +84,19 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         self.joints = None
         while self.joints is None and not rospy.is_shutdown():
             try:
-                self.joints = rospy.wait_for_message("/joint_states", JointState, timeout=1.0)
-                rospy.logdebug("Current /joint_states READY=>" + str(self.joints))
+                # print("Current " + '/'+self.robot_name_space+'/joint_states')
+                self.joints = rospy.wait_for_message('/'+self.robot_name_space+'/joint_states', JointState, timeout=1.0)
+                rospy.logdebug("Current " + '/'+self.robot_name_space+'/joint_states'+ " READY=>" + str(self.joints))
 
             except:
-                rospy.logerr("Current /joint_states not ready yet, retrying for getting joint_states")
+                rospy.logerr("Current " + '/'+self.robot_name_space+'/joint_states'+ " not ready yet, retrying for getting joint_states")
         return self.joints
 
     def _check_amcl_pose_ready(self):
         self.amcl_pose = None
         while self.amcl_pose is None and not rospy.is_shutdown():
             try:
-                self.amcl_pose = rospy.wait_for_message("/amcl_pose", PoseStamped, timeout=1.0)
+                self.amcl_pose = rospy.wait_for_message('/'+self.robot_name_space+'/amcl_pose', PoseStamped, timeout=1.0)
                 rospy.logdebug("Current /amcl_pose READY=>" + str(self.amcl_pose))
 
             except:
@@ -105,7 +108,7 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         self.odom = None
         while self.odom is None and not rospy.is_shutdown():
             try:
-                self.odom = rospy.wait_for_message("/odometry/filtered", Odometry, timeout=1.0)
+                self.odom = rospy.wait_for_message('/'+self.robot_name_space+'/odometry/filtered', Odometry, timeout=1.0)
                 rospy.logdebug("Current /odometry/filtered READY=>" + str(self.odom))
 
             except:
@@ -149,7 +152,6 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         self.wait_until_arrived(position)
 
     def wait_until_arrived(self, position):
-
         rate = rospy.Rate(10)
         start_wait_time = rospy.get_rostime().to_sec()
         end_wait_time = 0.0

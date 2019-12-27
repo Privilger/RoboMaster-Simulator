@@ -12,6 +12,7 @@ import rospy
 import rospkg
 
 import challengeTaskEnv
+import multiAgentChallengeTaskEnv
 
 # from openai_ros.openai_ros_common import StartOpenAI_ROS_Environment
 
@@ -20,8 +21,8 @@ from gym import envs
 def main():
     rospy.init_node('aichallenge_gym_node', anonymous=True, log_level=rospy.WARN)
 
-    env = gym.make('AiChallengeEnv-v0')
-
+    # env = gym.make('AiChallengeEnv-v0', robot_ns="jackal0")
+    env = gym.make('AiChallengeEnv-v1')
     # Set the logging system
     rospack = rospkg.RosPack()
     pkg_path = rospack.get_path('competition_rl')
@@ -41,8 +42,10 @@ def main():
 
     env.step(1)
     time.sleep(2)
-    env.step(-1)
-    time.sleep(2)
+    # env.step(-1)
+    # time.sleep(2)
+
+    # observation = env.reset()
 
 if __name__ == '__main__':
     main()

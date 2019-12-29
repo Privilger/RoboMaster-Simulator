@@ -26,6 +26,7 @@
   <material name="white"><color rgba="0.9 0.9 0.9 1.0" /></material>
   <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+  <material name="blue"><color rgba="0 0 0.8 1" /></material>
 
   <xacro:macro name="wheel" params="prefix side *joint_pose">
     <link name="${prefix}_${side}_wheel_link">
@@ -120,7 +121,7 @@
     <visual>
             <origin xyz=" 0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://ridgeback_description/meshes/body_version2.STL" />
+        <mesh filename="package://ridgeback_description/meshes/body_without_light.STL" />
       </geometry>
 
       <material name="black" />
@@ -153,8 +154,26 @@
   </joint>
 
   <link name="left_side_cover_link">
+    <xacro:if value="$(optenv ENEMY_LIGHT_COLOR 0)">
+      <visual>
+        <origin xyz=" 0.02 0 -0.18" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ridgeback_description/meshes/armor_light.STL" />
+        </geometry>
+          <material name="blue" />
+      </visual>
+    </xacro:if>
   </link>
   <link name="right_side_cover_link">
+    <xacro:if value="$(optenv OUR_LIGHT_COLOR 0)">
+      <visual>
+        <origin xyz=" 0.02 0 -0.3" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ridgeback_description/meshes/armor_light.STL" />
+        </geometry>
+        <material name="red" />
+      </visual>
+    </xacro:if>
   </link>
 
   <joint name="front_cover_link_joint" type="fixed">

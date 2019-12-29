@@ -56,8 +56,8 @@
   <!-- Individual link colouring still needed in Gazebo 2.x -->
   <gazebo reference="chassis_link"><material>Gazebo/DarkGrey</material></gazebo>
   <gazebo reference="top_link"><material>Gazebo/DarkGrey</material></gazebo>
-  <gazebo reference="left_side_cover_link"><material>Gazebo/Yellow</material></gazebo>
-  <gazebo reference="right_side_cover_link"><material>Gazebo/Yellow</material></gazebo>
+  <gazebo reference="left_side_cover_link"><material>Gazebo/Blue</material></gazebo>
+  <gazebo reference="right_side_cover_link"><material>Gazebo/Red</material></gazebo>
   <gazebo reference="front_cover_link"><material>Gazebo/DarkGrey</material></gazebo>
   <gazebo reference="rear_cover_link"><material>Gazebo/DarkGrey</material></gazebo>
   <gazebo reference="front_lights_link"><material>Gazebo/White</material></gazebo>

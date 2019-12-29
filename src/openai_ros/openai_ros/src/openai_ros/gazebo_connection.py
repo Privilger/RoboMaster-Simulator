@@ -6,18 +6,23 @@ from gazebo_msgs.msg import ODEPhysics
 from gazebo_msgs.srv import SetPhysicsProperties, SetPhysicsPropertiesRequest
 from std_msgs.msg import Float64
 from geometry_msgs.msg import Vector3
+from geometry_msgs.msg import Quaternion
+from geometry_msgs.msg import PoseWithCovarianceStamped
 
 from gazebo_msgs.srv import SetModelState
 from gazebo_msgs.msg import ModelState
+from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
 class GazeboConnection():
     
-    def __init__(self, start_init_physics_parameters, reset_world_or_sim):
+    def __init__(self, robot_ns, start_init_physics_parameters, reset_world_or_sim):
         
         self.unpause = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
         self.pause = rospy.ServiceProxy('/gazebo/pause_physics', Empty)
         # self.reset_simulation_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty)
-        self.reset_simulation_proxy = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
+        self.reset_gazebo_simulation_proxy = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
+        self.reset_rviz_simulation_proxy   = rospy.Publisher('/'+robot_ns+'/initialpose',
+                                                             PoseWithCovarianceStamped, queue_size=1)
         self.reset_world_proxy = rospy.ServiceProxy('/gazebo/reset_world', Empty)
 
         # Setup the Gravity Controle system
@@ -29,7 +34,7 @@ class GazeboConnection():
         self.set_physics = rospy.ServiceProxy(service_name, SetPhysicsProperties)
         self.start_init_physics_parameters = start_init_physics_parameters
         self.reset_world_or_sim = reset_world_or_sim
-        self.init_values()
+        self.init_values(robot_ns)
         # We always pause the simulation, important for legged robots learning
         self.pauseSim()
 
@@ -54,7 +59,7 @@ class GazeboConnection():
         rospy.logdebug("UNPAUSING FiNISH")
         
     
-    def resetSim(self):
+    def resetSim(self, robot_ns):
         """
         This was implemented because some simulations, when reseted the simulation
         the systems that work with TF break, and because sometime we wont be able to change them
@@ -63,7 +68,7 @@ class GazeboConnection():
         """
         if self.reset_world_or_sim == "SIMULATION":
             rospy.logerr("SIMULATION RESET")
-            self.resetSimulation()
+            self.resetSimulation(robot_ns)
         elif self.reset_world_or_sim == "WORLD":
             rospy.logerr("WORLD RESET")
             self.resetWorld()
@@ -72,22 +77,36 @@ class GazeboConnection():
         else:
             rospy.logerr("WRONG Reset Option:"+str(self.reset_world_or_sim))
     
-    def resetSimulation(self):
-        rospy.wait_for_service('/gazebo/set_model_state')
-        try:
-            robot_pose = ModelState()
-            robot_pose.model_name = "ridgeback"
-            robot_pose.reference_frame = "/map"
-            robot_pose.pose.position.x = 1
-            robot_pose.pose.position.y = 1
-            robot_pose.pose.position.z = 0
-            robot_pose.pose.orientation.x = 0
-            robot_pose.pose.orientation.y = 0
-            robot_pose.pose.orientation.z = 0
-            robot_pose.pose.orientation.w = 1
-            self.reset_simulation_proxy(robot_pose)
-        except rospy.ServiceException as e:
-            print ("/gazebo/reset_simulation service call failed")
+    def resetSimulation(self, robot_ns):
+        # print('gazebo reset: ', robot_ns)
+        if robot_ns=='null':
+            pass
+        else:
+            rospy.wait_for_service('/gazebo/set_model_state')
+            try:
+                robot_pose = ModelState()
+                robot_pose.model_name = robot_ns
+                robot_pose.reference_frame = "/map"
+                robot_pose.pose.position.x = rospy.get_param("~"+robot_ns+"/x")
+                robot_pose.pose.position.y = rospy.get_param("~"+robot_ns+"/y")
+                robot_pose.pose.position.z = 0
+                quat = quaternion_from_euler (0, 0, rospy.get_param("~"+robot_ns+"/yaw"))
+                robot_pose.pose.orientation.x = quat[0]
+                robot_pose.pose.orientation.y = quat[1]
+                robot_pose.pose.orientation.z = quat[2]
+                robot_pose.pose.orientation.w = quat[3]
+                self.reset_gazebo_simulation_proxy(robot_pose)
+            except rospy.ServiceException as e:
+                print ("/gazebo/reset_simulation service call failed")
+            init_msg = PoseWithCovarianceStamped()
+            init_msg.header.frame_id = 'map'
+            init_msg.pose.pose.position.x = rospy.get_param("~"+robot_ns+"/x")
+            init_msg.pose.pose.position.y = rospy.get_param("~"+robot_ns+"/y")
+            init_msg.pose.pose.orientation.x = quat[0]
+            init_msg.pose.pose.orientation.y = quat[1]
+            init_msg.pose.pose.orientation.z = quat[2]
+            init_msg.pose.pose.orientation.w = quat[3]
+            self.reset_rviz_simulation_proxy.publish(init_msg)
 
     def resetWorld(self):
         rospy.wait_for_service('/gazebo/reset_world')
@@ -96,9 +115,9 @@ class GazeboConnection():
         except rospy.ServiceException as e:
             print ("/gazebo/reset_world service call failed")
 
-    def init_values(self):
+    def init_values(self, robot_ns):
 
-        self.resetSim()
+        self.resetSim(robot_ns)
 
         if self.start_init_physics_parameters:
             rospy.logdebug("Initialising Simulation Physics Parameters")

@@ -1,0 +1,6 @@
+# The empty Ridgeback configuration has no accessories at all,
+# thus nothing is in here.  This is default on the actual robot,
+# whereas the simulation defaults to base.
+
+OUR_LIGHT_COLOR=1
+ENEMY_LIGHT_COLOR=0

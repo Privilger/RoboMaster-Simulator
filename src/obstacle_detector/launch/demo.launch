@@ -12,6 +12,7 @@
     <param name="num_worker_threads" value="20"/>
     <remap from="scan"  to="$(arg node_namespace)/scan"/>
     <remap from="raw_obstacles"  to="$(arg node_namespace)/raw_obstacles"/>
+    <remap from="obstacles"  to="$(arg node_namespace)/obstacles"/>
   </node>
 
   <!-- <node name="scans_merger" pkg="nodelet" type="nodelet" args="load obstacle_detector/ScansMerger nodelet_manager">

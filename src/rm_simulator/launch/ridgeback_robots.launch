@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="rviz"      default="true"/>
-
-  <arg name="use_sim_time" default="true" />
-  <arg name="gui" default="true" />
-  <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find rm_simulator)/worlds/2020map_originsize.world"/>
+  <arg name="rviz"                      default="true"/>
+  <arg name="enable_lidar_detection"    default="false" />
+  <arg name="use_sim_time"              default="true" />
+  <arg name="gui"                       default="true" />
+  <arg name="headless"                  default="false" />
+  <arg name="world_name"                default="$(find rm_simulator)/worlds/2020map_originsize.world"/>
 
   <!-- Configuration of Jackal which you would like to simulate.
        See jackal_description for details. -->
-  <arg name="config" default="empty" />
-  <arg name="ns0" default="jackal0" />
-  <arg name="ns1" default="jackal1" />
-  <arg name="ns2" default="jackal2" />
-  <arg name="ns3" default="jackal3" />
+  <arg name="config"  default="empty" />
+  <arg name="ns0"     default="jackal0" />
+  <arg name="ns1"     default="jackal1" />
+  <arg name="ns2"     default="jackal2" />
+  <arg name="ns3"     default="jackal3" />
 
   <!-- <arg name="config" default="custom" /> -->
 
@@ -28,71 +28,56 @@
   </include>
 
    <node name="map_server" pkg="map_server" type="map_server" args="$(find rm_simulator)/maps/map2020.yaml">
-<!--    <param name="frame_id" value="/map" />-->
    </node>node>
 
-<!--  <param name="/robot_description"-->
-<!--         command="$(find ridgeback_description)/scripts/env_run-->
-<!--                  $(find ridgeback_description)/urdf/configs/$(arg config)-->
-<!--                  $(find xacro)/xacro '$(find ridgeback_description)/urdf/ridgeback.urdf.xacro'-->
-<!--                  '&#45;&#45;inorder' " />-->
-
-
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
-      <arg name="init_a"         value="0"/>
-      <arg name="init_x"         value="0.6"/>
-      <arg name="init_y"         value="0.6"/>
-      <arg name="robot_name"     value="$(arg ns0)" />
-      <arg name="ns"             value="$(arg ns0)" />
-      <arg name="config"             value="our_side" />
+      <arg name="init_a"                  value="0"/>
+      <arg name="init_x"                  value="0.6"/>
+      <arg name="init_y"                  value="0.6"/>
+      <arg name="robot_name"              value="$(arg ns0)" />
+      <arg name="ns"                      value="$(arg ns0)" />
+      <arg name="config"                  value="our_side" />
+      <arg name="enable_lidar_detection"  value="$(arg enable_lidar_detection)" />
     </include>
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
-      <arg name="init_a"         value="0"/>
-      <arg name="init_x"         value="0.6"/>
-      <arg name="init_y"         value="4.7"/>
-      <arg name="robot_name"     value="$(arg ns1)" />
-      <arg name="ns"             value="$(arg ns1)" />
-      <arg name="config"             value="our_side" />
+      <arg name="init_a"                  value="0"/>
+      <arg name="init_x"                  value="0.6"/>
+      <arg name="init_y"                  value="4.7"/>
+      <arg name="robot_name"              value="$(arg ns1)" />
+      <arg name="ns"                      value="$(arg ns1)" />
+      <arg name="config"                  value="our_side" />
+      <arg name="enable_lidar_detection"  value="$(arg enable_lidar_detection)" />
     </include>
 
   <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
-    <arg name="init_a"         value="3.14"/>
-    <arg name="init_x"         value="7.6"/>
-    <arg name="init_y"         value="4.6"/>
-    <arg name="robot_name"     value="$(arg ns2)" />
-    <arg name="ns"             value="$(arg ns2)" />
-    <arg name="config"             value="enemy_side" />
+    <arg name="init_a"                    value="3.14"/>
+    <arg name="init_x"                    value="7.6"/>
+    <arg name="init_y"                    value="4.6"/>
+    <arg name="robot_name"                value="$(arg ns2)" />
+    <arg name="ns"                        value="$(arg ns2)" />
+    <arg name="config"                    value="enemy_side" />
+    <arg name="enable_lidar_detection"    value="$(arg enable_lidar_detection)" />
   </include>
 
 
   <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
-    <arg name="init_a"         value="3.14"/>
-    <arg name="init_x"         value="7.6"/>
-    <arg name="init_y"         value="0.5"/>
-    <arg name="robot_name"     value="$(arg ns3)" />
-    <arg name="ns"             value="$(arg ns3)" />
-    <arg name="config"             value="enemy_side" />
+    <arg name="init_a"                    value="3.14"/>
+    <arg name="init_x"                    value="7.6"/>
+    <arg name="init_y"                    value="0.6"/>
+    <arg name="robot_name"                value="$(arg ns3)" />
+    <arg name="ns"                        value="$(arg ns3)" />
+    <arg name="config"                    value="enemy_side" />
+    <arg name="enable_lidar_detection"    value="$(arg enable_lidar_detection)" />
   </include>
-
-<!--  <include file="$(find rm_simulator)/launch/one_ridgeback.launch">-->
-<!--    <arg name="init_a"         value="3.14"/>-->
-<!--    <arg name="init_x"         value="7.6"/>-->
-<!--    <arg name="init_y"         value="0.6"/>-->
-<!--    <arg name="robot_name"     value="$(arg ns3)" />-->
-<!--    <arg name="ns"             value="$(arg ns3)" />-->
-<!--  </include>-->
-
-
 
   <!-- View in RVIZ. -->
   <group if="$(arg rviz)">
     <node name="ridgeback_viz_$(arg ns0)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >
-<!--       <remap from="/move_base_simple/goal" to="/$(arg ns0)/move_base_simple/goal"/>-->
+      <remap from="/$(arg ns0)/goal" to="/$(arg ns0)/move_base_simple/goal"/>
+      <remap from="/$(arg ns1)/goal" to="/$(arg ns1)/move_base_simple/goal"/>
+      <remap from="/$(arg ns2)/goal" to="/$(arg ns2)/move_base_simple/goal"/>
+      <remap from="/$(arg ns3)/goal" to="/$(arg ns3)/move_base_simple/goal"/>
     </node>
-
-<!--    <node name="ridgeback_viz_$(arg ns1)" pkg="rviz" type="rviz" args="-d $(find rm_simulator)/rviz/ridgeback_viz.rviz" >-->
-<!--       <remap from="/move_base_simple/goal" to="/$(arg ns1)/move_base_simple/goal"/>-->
-<!--    </node>-->
   </group>
 </launch>

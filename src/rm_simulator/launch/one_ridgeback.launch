@@ -1,12 +1,13 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="robot_name"        default="ridgeback"/>
-  <arg name="init_x"            default="1"/>
-  <arg name="init_y"            default="2"/>
-  <arg name="init_a"            default="0"/>
-  <arg name="ns"                default="jackal0"/>
-  <arg name="config"            default="empty" />
+  <arg name="robot_name"                default="ridgeback"/>
+  <arg name="init_x"                    default="1"/>
+  <arg name="init_y"                    default="2"/>
+  <arg name="init_a"                    default="0"/>
+  <arg name="ns"                        default="jackal0"/>
+  <arg name="config"                    default="empty" />
+  <arg name="enable_lidar_detection"    default="true" />
 
   <param name="/$(arg ns)/robot_description"
          command="$(find ridgeback_description)/scripts/env_run
@@ -115,7 +116,9 @@
       <remap from="static_map"          to="/static_map"/>
     </node>
 
-  <include file="$(find rm_simulator)/launch/lidar_detection.launch">
-    <arg name="ns0"         value="$(arg ns)"/>
-  </include>
+  <group if="$(arg enable_lidar_detection)">
+    <include file="$(find rm_simulator)/launch/lidar_detection.launch">
+      <arg name="ns0"         value="$(arg ns)"/>
+    </include>
+  </group>
 </launch>

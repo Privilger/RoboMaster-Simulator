@@ -1,5 +1,6 @@
 # ICRA RoboMaster AI Challenge Simulator
 [![Build Status](https://travis-ci.com/Privilger/rmai_ws.svg?token=1NvSjpoBdozy9gnxsTP8&branch=master)](https://travis-ci.com/Privilger/rmai_ws)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d4d16aa3a0664eecbd98516837f9d3f6)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Privilger/rmai_ws&amp;utm_campaign=Badge_Grade)
 ![platform](https://img.shields.io/badge/platform-ubuntu-lightgrey.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 

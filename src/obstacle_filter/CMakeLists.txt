@@ -40,6 +40,7 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(${PROJECT_NAME}_node 
 src/obstacle_filter_node.cpp
+src/robot_pose.cpp
 )
 
 target_link_libraries(${PROJECT_NAME}_node

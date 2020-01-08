@@ -9,7 +9,7 @@ topic_string: "scan"
 sensor_frame: "/jackal2/center_laser"
 inf_is_valid: false
 clearing: true
-footprint_clearing_enabled: false
+footprint_clearing_enabled: true
 marking: true
 is_debug: true
 

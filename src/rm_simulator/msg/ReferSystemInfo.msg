@@ -1,6 +1,13 @@
 std_msgs/Header header
-uint8[4]        robotHealth
-uint8[4]        remain_bullet
+uint64[4]       robotHealth
+uint64[4]       remain_bullet
+uint8[4]        robotShoot
+float64[4]      robotShootDebuffTime
+uint8[4]        robotMove
+float64[4]      robotMoveDebuffTime
 CellStatus[6]   cellState
+uint64[6]       cellStateNumber
+float64[6]      cellX
+float64[6]      cellY
 RobotPose[4]    robotPose
 float64         gameTime

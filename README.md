@@ -53,7 +53,7 @@ $ sudo apt install libarmadillo-dev
 The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/rm_ws/blob/master/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.
 
 ```sh
-$ ./install_flycapture.sh
+$ echo "y\n" | sudo ./install_flycapture_only_simulation.sh
 ```
 If there is some dependency problem, you may use
 ```sh
@@ -73,8 +73,10 @@ Delete \<visual> tag (from line 42 to line 48).
 ```sh
 $ roslaunch rm_simulator ridgeback_robots.launch
 ```
-
-
+### Start new game by call this service.
+```sh
+rosservice call /start_game "start: true"
+```
 
 ## Maintainers
 

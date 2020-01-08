@@ -95,7 +95,7 @@
     <param name="jackal_ns"         value="$(arg ns)"/>
   </node>
 
-  <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false" ns="$(arg ns)"/>
+<!--   <node name="acc2vel_node" pkg="rm_simulator" type="acc2vel_node" respawn="false" ns="$(arg ns)"/> -->
 
 
 <!--  RoboRTS does not support multi robot navigate, deprecated-->

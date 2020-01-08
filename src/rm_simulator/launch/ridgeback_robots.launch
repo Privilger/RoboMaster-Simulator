@@ -2,9 +2,9 @@
 
 <launch>
   <arg name="rviz"                      default="true"/>
-  <arg name="enable_lidar_detection"    default="false" />
+  <arg name="enable_lidar_detection"    default="true" />
   <arg name="use_sim_time"              default="true" />
-  <arg name="gui"                       default="true" />
+  <arg name="gui"                       default="false" />
   <arg name="headless"                  default="false" />
   <arg name="world_name"                default="$(find rm_simulator)/worlds/2020map_originsize.world"/>
 
@@ -70,6 +70,8 @@
     <arg name="config"                    value="enemy_side" />
     <arg name="enable_lidar_detection"    value="$(arg enable_lidar_detection)" />
   </include>
+
+  <node name="simulate_refer_system" pkg="rm_simulator" type="simulate_refer_system" respawn="false"/>
 
   <!-- View in RVIZ. -->
   <group if="$(arg rviz)">

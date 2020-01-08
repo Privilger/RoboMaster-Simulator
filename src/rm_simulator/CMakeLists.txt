@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   tf2
   roborts_msgs
+  obstacle_detector
   trajectory_msgs
   std_msgs message_generation
 )
@@ -20,6 +21,12 @@ add_message_files(
         RobotPose.msg
         CellStatus.msg
         ReferSystemInfo.msg
+)
+
+# Generate services in the 'srv' folder
+add_service_files(
+        FILES
+        GameState.srv
 )
 
 generate_messages(
@@ -55,4 +62,11 @@ target_link_libraries(simulate_refer_system
         ${catkin_LIBRARIES}
         )
 add_dependencies(simulate_refer_system
+        ${catkin_EXPORTED_TARGETS})
+
+add_executable(test_node src/test.cpp)
+target_link_libraries(test_node
+        ${catkin_LIBRARIES}
+        )
+add_dependencies(test_node
         ${catkin_EXPORTED_TARGETS})

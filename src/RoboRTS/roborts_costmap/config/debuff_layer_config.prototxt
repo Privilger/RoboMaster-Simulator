@@ -1,0 +1,10 @@
+first_map_only: false
+subscribe_to_updates: false
+track_unknown_space: true
+use_maximum: true
+unknown_cost_value: -1
+lethal_threshold: 100
+trinary_map: true
+topic_name: "debuff"
+is_raw_rosmessage: true
+debuff_inflation: 0.1

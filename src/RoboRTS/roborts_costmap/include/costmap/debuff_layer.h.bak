@@ -1,0 +1,53 @@
+/*
+ * 通过 map_update来更新
+ */
+
+#ifndef ROBORTS_COSTMAP_DEBUFF_LAYER_H
+#define ROBORTS_COSTMAP_DEBUFF_LAYER_H
+
+#include <nav_msgs/OccupancyGrid.h>
+#include <map_msgs/OccupancyGridUpdate.h>
+#include "io/io.h"
+#include "map_common.h"
+#include "costmap_layer.h"
+
+namespace roborts_costmap {
+
+class DebuffLayer : public CostmapLayer {
+
+ public:
+  DebuffLayer() {}
+  virtual ~DebuffLayer() {}
+  virtual void OnInitialize();
+  virtual void Activate();
+  virtual void Deactivate();
+  virtual void Reset();
+  virtual void UpdateCosts(Costmap2D& master_grid, int min_i, int min_j, int max_i, int max_j);
+  virtual void UpdateBounds(double robot_x, double robot_y, double robot_yaw, double* min_x, double* min_y,
+                            double* max_x, double* max_y);
+  virtual void MatchSize();
+
+ private:
+  void InComingMap(const nav_msgs::OccupancyGridConstPtr& new_map);
+  void InComingUpdate(const map_msgs::OccupancyGridUpdateConstPtr& update);
+  unsigned char InterpretValue(unsigned char value);
+  std::string global_frame_;
+  std::string map_frame_;
+  std::string map_topic_;
+  bool subscribe_to_updates_;
+  bool map_received_;
+  bool has_updated_data_;
+  unsigned int debuff_layer_x_, debuff_layer_y_, width_, height_;
+  unsigned char lethal_threshold_, unknown_cost_value_;
+  bool track_unknown_space_;
+  bool use_maximum_;
+  bool first_map_only_;
+  bool trinary_costmap_;
+  ros::Subscriber map_sub_, map_update_sub_;
+
+  double mark_x_, mark_y_;
+};
+
+
+} // namespace roborts_costmap
+#endif

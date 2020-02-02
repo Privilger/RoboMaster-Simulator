@@ -22,6 +22,7 @@ message ParaCostmapInterface {
     required bool   has_static_layer = 14;
     required string inflation_file_path = 15;
     required double map_update_frequency = 16;
+    required bool   has_debuff_layer = 17;
 }
 message Point {
     required double x = 1;

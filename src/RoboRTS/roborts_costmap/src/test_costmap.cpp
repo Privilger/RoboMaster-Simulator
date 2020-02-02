@@ -69,7 +69,7 @@ int main(int argc, char** argv) {
   tf::TransformListener tf(ros::Duration(10));
 
   std::string local_map = ros::package::getPath("roborts_costmap") + \
-      "/config/costmap_parameter_config_for_local_plan.prototxt";
+      "/config/costmap_parameter_config_for_local_plan0.prototxt";
   roborts_costmap::CostmapInterface costmap_interface("map",
                                                       tf,
                                                       local_map.c_str());

@@ -4,7 +4,7 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find rm_simulator)/worlds/map2020.world"/>
+  <arg name="world_name" default="$(find rm_simulator)/worlds/2020Tag.world"/>
 
   <!-- Configuration of Jackal which you would like to simulate.
        See jackal_description for details. -->

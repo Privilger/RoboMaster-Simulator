@@ -85,11 +85,15 @@ CostmapInterface::CostmapInterface(std::string map_name,
     tf_error.clear();
   }
   if (has_static_layer_) {
-    Layer *plugin_static_layer;
-    plugin_static_layer = new StaticLayer;
+    Layer *plugin_static_layer = new StaticLayer;
     layered_costmap_->AddPlugin(plugin_static_layer);
     plugin_static_layer->Initialize(layered_costmap_, map_name + "/" + "static_layer", &tf_);
   }
+    if (has_debuff_layer_) {
+        Layer *plugin_debuff_layer = new DebuffLayer;
+        layered_costmap_->AddPlugin(plugin_debuff_layer);
+        plugin_debuff_layer->Initialize(layered_costmap_, map_name + "/" + "debuff_layer", &tf_);
+    }
   int jackal_ns;
   if (has_obstacle_layer_) {
     jackal_ns=int(config_file.at(config_file.find(".")-1))-48;
@@ -153,6 +157,7 @@ void CostmapInterface::LoadParameter() {
   is_track_unknown_ = ParaCollectionConfig.para_costmap_interface().is_tracking_unknown();
   has_obstacle_layer_ = ParaCollectionConfig.para_costmap_interface().has_obstacle_layer();
   has_static_layer_ = ParaCollectionConfig.para_costmap_interface().has_static_layer();
+  has_debuff_layer_ = ParaCollectionConfig.para_costmap_interface().has_debuff_layer();
   map_width_ = ParaCollectionConfig.para_costmap_interface().map_width();
   map_height_ = ParaCollectionConfig.para_costmap_interface().map_height();
   map_origin_x_ = ParaCollectionConfig.para_costmap_interface().map_origin_x();

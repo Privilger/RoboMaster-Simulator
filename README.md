@@ -46,6 +46,7 @@ $ sudo apt install ros-kinetic-interactive-marker-twist-server
 $ sudo apt install ros-kinetic-gazebo-ros-control
 $ sudo apt install ros-kinetic-hector-gazebo-plugins 
 $ sudo apt install ros-kinetic-joint-state-controller 
+$ sudo apt install ros-kinetic-joint-trajectory-controller
 $ sudo apt install ros-kinetic-lms1xx
 $ sudo apt install libarmadillo-dev
 ```
@@ -76,6 +77,30 @@ $ roslaunch rm_simulator ridgeback_robots.launch
 ### Start new game by call this service.
 ```sh
 rosservice call /start_game "start: true"
+```
+
+### Rotate the turret.
+jackal0 is the robot ID, the unit of an angle is radian.
+Eg.
+```sh
+$ rostopic pub /jackal0/turret_position std_msgs/Float32 "data: 1.0"
+```
+
+### Launch one robot navigation in a map.
+```sh
+$ roslaunch rm_simulator one_rm_robot.launch
+```
+
+### Open world
+```sh
+$ roslaunch rm_simulator arena.launch
+```
+
+### Activate the debuff layer
+jackal0 is the robot ID. data's valid input is index from 1 to 6, the index 0 is not used.
+Eg.
+```
+rostopic pub /jackal0/debuff std_msgs/String "data: '0 1 1 0 1 1 1'"
 ```
 
 ## Maintainers

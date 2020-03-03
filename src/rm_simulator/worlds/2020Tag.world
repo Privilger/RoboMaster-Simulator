@@ -1,0 +1,1880 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='2020map_originsize'>
+      <pose frame=''>4.125 -2.625 0 0 -0 0</pose>
+      <link name='Wall_0'>
+        <collision name='Wall_0_Collision'>
+          <geometry>
+            <box>
+              <size>5.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_0_Visual'>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>5.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>-4.125 0 0 0 0 -1.5708</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_1'>
+        <collision name='Wall_1_Collision'>
+          <geometry>
+            <box>
+              <size>8.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_1_Visual'>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>8.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>0 -2.625 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_11'>
+        <collision name='Wall_11_Collision'>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_11_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>-2.425 -2.05 0 0 -0 1.5708</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_13'>
+        <collision name='Wall_13_Collision'>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_13_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>-0.05 1.425 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_15'>
+        <collision name='Wall_15_Collision'>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_15_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>-0.05 -1.425 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_17'>
+        <collision name='Wall_17_Collision'>
+          <geometry>
+            <box>
+              <size>0.8 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_17_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.8 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>-2.15 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_19'>
+        <collision name='Wall_19_Collision'>
+          <geometry>
+            <box>
+              <size>0.8 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_19_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.8 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>2.15 0 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_2'>
+        <collision name='Wall_2_Collision'>
+          <geometry>
+            <box>
+              <size>5.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_2_Visual'>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>5.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>4.125 0 0 0 -0 1.5708</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_21'>
+        <collision name='Wall_21_Collision'>
+          <geometry>
+            <box>
+              <size>0.303364 0.3 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_21_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.303364 0.3 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>0.001 0.001 0 0 -0 0.785398</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_3'>
+        <collision name='Wall_3_Collision'>
+          <geometry>
+            <box>
+              <size>8.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_3_Visual'>
+          <pose frame=''>0 0 0.23 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>8.4 0.15 0.46</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>0 2.625 0 0 -0 3.14159</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_5'>
+        <collision name='Wall_5_Collision'>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_5_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>-3.55 1.425 0 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_7'>
+        <collision name='Wall_7_Collision'>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_7_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>2.425 2.05 0 0 0 -1.5708</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <link name='Wall_9'>
+        <collision name='Wall_9_Collision'>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='Wall_9_Visual'>
+          <pose frame=''>0 0 0.2 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>1 0.25 0.4</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+            <ambient>1 1 1 1</ambient>
+          </material>
+        </visual>
+        <pose frame=''>3.55 -1.425 0 0 -0 3.14159</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>1</static>
+    </model>
+    <state world_name='default'>
+      <sim_time>5775 859000000</sim_time>
+      <real_time>751 814868419</real_time>
+      <wall_time>1583146073 734006949</wall_time>
+      <iterations>735892</iterations>
+      <model name='2020map_originsize'>
+        <pose frame=''>4.125 2.61211 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='Wall_0'>
+          <pose frame=''>0 2.61211 0 0 0 -1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_1'>
+          <pose frame=''>4.125 -0.01289 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_11'>
+          <pose frame=''>1.7 0.56211 0 0 -0 1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_13'>
+          <pose frame=''>4.075 4.03711 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_15'>
+          <pose frame=''>4.075 1.18711 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_17'>
+          <pose frame=''>1.975 2.61211 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_19'>
+          <pose frame=''>6.275 2.61211 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_2'>
+          <pose frame=''>8.25 2.61211 0 0 -0 1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_21'>
+          <pose frame=''>4.126 2.61311 0 0 -0 0.785398</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_3'>
+          <pose frame=''>4.125 5.23711 0 0 -0 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_5'>
+          <pose frame=''>0.575 4.03711 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_7'>
+          <pose frame=''>6.55 4.66211 0 0 0 -1.5708</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+        <link name='Wall_9'>
+          <pose frame=''>7.675 1.18711 0 0 -0 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_01'>
+        <pose frame=''>1.9669 2.48405 0.199999 -0.920098 1.57 0.654897</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>1.9669 2.48405 0.199999 -0.920098 1.57 0.654897</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_02'>
+        <pose frame=''>1.57585 2.6131 0.2 3.14159 -1.57079 3.14159</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>1.57585 2.6131 0.2 3.14159 -1.57079 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_03'>
+        <pose frame=''>1.96854 2.73454 0.2 0.046956 1.56575 -1.49148</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>1.96854 2.73454 0.2 0.046956 1.56575 -1.49148</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_04'>
+        <pose frame=''>2.37278 2.61199 0.2 -1.33444 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>2.37278 2.61199 0.2 -1.33444 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_05'>
+        <pose frame=''>4.05833 1.05621 0.2 -0.920098 1.57 0.654897</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.05833 1.05621 0.2 -0.920098 1.57 0.654897</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_06'>
+        <pose frame=''>3.57507 1.18674 0.2 3.14159 -1.57079 3.14159</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>3.57507 1.18674 0.2 3.14159 -1.57079 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_07'>
+        <pose frame=''>4.06361 1.30993 0.2000 0.046951 1.56575 -1.49148</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.06361 1.30993 0.2000 0.046951 1.56575 -1.49148</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_08'>
+        <pose frame=''>4.57562 1.18958 0.2000 -1.33444 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.57562 1.18958 0.2000 -1.33444 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_09'>
+        <pose frame=''>4.06314 3.90381 0.2 -0.920098 1.57 0.654897</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.06314 3.90381 0.2 -0.920098 1.57 0.654897</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_10'>
+        <pose frame=''>3.57775 4.05623 0.2 3.14159 -1.57079 3.14159</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>3.57775 4.05623 0.2 3.14159 -1.57079 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_11'>
+        <pose frame=''>4.06765 4.16792 0.2000 0.046951 1.56575 -1.49148</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.06765 4.16792 0.2000 0.046951 1.56575 -1.49148</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_12'>
+        <pose frame=''>4.58162 4.04042 0.2 -1.33444 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.58162 4.04042 0.2 -1.33444 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_13'>
+        <pose frame=''>6.26757 2.47881 0.2 -0.920098 1.57 0.654897</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>6.26757 2.47881 0.2 -0.920098 1.57 0.654897</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_14'>
+        <pose frame=''>5.8698 2.61112 0.2 3.14159 -1.57079 3.14159</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>5.8698 2.61112 0.2 3.14159 -1.57079 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_15'>
+        <pose frame=''>6.26978 2.74051 0.2 0.046953 1.56575 -1.49148</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>6.26978 2.74051 0.2 0.046953 1.56575 -1.49148</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_16'>
+        <pose frame=''>6.68002 2.61891 0.2 -1.33444 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>6.68002 2.61891 0.2 -1.33444 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_17'>
+        <pose frame=''>0.585956 3.91378 0.2 -0.920098 1.57 0.654897</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>0.585956 3.91378 0.2 -0.920098 1.57 0.654897</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_18'>
+        <pose frame=''>1.08207 4.0368 0.2 3.14159 -1.57079 3.14159</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>1.08207 4.0368 0.2 3.14159 -1.57079 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_19'>
+        <pose frame=''>0.577932 4.16484 0.2 0.046883 1.56575 -1.49155</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>0.577932 4.16484 0.2 0.046883 1.56575 -1.49155</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_20'>
+        <pose frame=''>6.68648 4.65294 0.2 -1.33444 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>6.68648 4.65294 0.2 -1.33444 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_21'>
+        <pose frame=''>6.55294 4.16275 0.200003 -0.920098 1.57 0.654897</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>6.55294 4.16275 0.200003 -0.920098 1.57 0.654897</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_22'>
+        <pose frame=''>6.41289 4.64833 0.199993 3.14159 -1.57079 3.14159</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>6.41289 4.64833 0.199993 3.14159 -1.57079 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_23'>
+        <pose frame=''>7.6878 1.31718 0.2 0.046881 1.56575 -1.49155</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>7.6878 1.31718 0.2 0.046881 1.56575 -1.49155</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_24'>
+        <pose frame=''>7.17202 1.18411 0.2 -1.33444 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>7.17202 1.18411 0.2 -1.33444 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_25'>
+        <pose frame=''>7.67141 1.05707 0.2 -0.920098 1.57 0.654897</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>7.67141 1.05707 0.2 -0.920098 1.57 0.654897</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_26'>
+        <pose frame=''>1.55291 0.562479 0.2 3.14159 -1.57079 3.14159</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>1.55291 0.562479 0.2 3.14159 -1.57079 3.14159</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_27'>
+        <pose frame=''>1.7176 1.06342 0.2 3.10843 1.55787 1.53181</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>1.7176 1.06342 0.2 3.10843 1.55787 1.53181</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_28'>
+        <pose frame=''>1.85306 0.734975 0.2 -1.33444 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>1.85306 0.734975 0.2 -1.33444 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_29'>
+        <pose frame=''>4.00862 2.50784 0.2 -0.12329 1.57 0.654893</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.00862 2.50784 0.2 -0.12329 1.57 0.654893</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_30'>
+        <pose frame=''>4.01975 2.72208 0.20000 2.25415 -1.57079 -3.13734</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.01975 2.72208 0.20000 2.25415 -1.57079 -3.13734</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_31'>
+        <pose frame=''>4.24645 2.7232 0.2 0.845258 1.56575 -1.49154</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.24645 2.7232 0.2 0.845258 1.56575 -1.49154</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='visualtag_32'>
+        <pose frame=''>4.24187 2.50059 0.2 -0.4224 1.56615 1.80715</pose>
+        <scale>1 1 1</scale>
+        <link name='main'>
+          <pose frame=''>4.24187 2.50059 0.2 -0.4224 1.56615 1.80715</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose frame=''>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>-1.96067 0.504763 1.68687 0 -0 0</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <audio>
+      <device>default</device>
+    </audio>
+    <wind/>
+    <model name='visualtag_01'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_01/materials/scripts</uri>
+              <uri>model://visualtag_01/materials/textures</uri>
+              <name>visualtag_01</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>1.26236 1.57332 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_02'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_02/materials/scripts</uri>
+              <uri>model://visualtag_02/materials/textures</uri>
+              <name>visualtag_02</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>0.685844 3.00336 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_03'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_03/materials/scripts</uri>
+              <uri>model://visualtag_03/materials/textures</uri>
+              <name>visualtag_03</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>0.696466 1.58166 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_04'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_04/materials/scripts</uri>
+              <uri>model://visualtag_04/materials/textures</uri>
+              <name>visualtag_04</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>-0.95923 3.05434 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_05'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_05/materials/scripts</uri>
+              <uri>model://visualtag_05/materials/textures</uri>
+              <name>visualtag_05</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>-0.993058 1.65678 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_06'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_06/materials/scripts</uri>
+              <uri>model://visualtag_06/materials/textures</uri>
+              <name>visualtag_06</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>2.54379 1.5202 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_07'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_07/materials/scripts</uri>
+              <uri>model://visualtag_07/materials/textures</uri>
+              <name>visualtag_07</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>2.99377 2.82028 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_08'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_08/materials/scripts</uri>
+              <uri>model://visualtag_08/materials/textures</uri>
+              <name>visualtag_08</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>4.06204 1.41111 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_09'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_09/materials/scripts</uri>
+              <uri>model://visualtag_09/materials/textures</uri>
+              <name>visualtag_09</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>4.54278 2.71872 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_10'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_10/materials/scripts</uri>
+              <uri>model://visualtag_10/materials/textures</uri>
+              <name>visualtag_10</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>-0.563858 0.320979 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_11'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_11/materials/scripts</uri>
+              <uri>model://visualtag_11/materials/textures</uri>
+              <name>visualtag_11</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>0.909671 0.357781 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_12'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_12/materials/scripts</uri>
+              <uri>model://visualtag_12/materials/textures</uri>
+              <name>visualtag_12</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>2.62657 0.319768 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_13'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_13/materials/scripts</uri>
+              <uri>model://visualtag_13/materials/textures</uri>
+              <name>visualtag_13</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>4.07846 0.258559 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_14'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_14/materials/scripts</uri>
+              <uri>model://visualtag_14/materials/textures</uri>
+              <name>visualtag_14</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>5.33042 1.28677 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_15'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_15/materials/scripts</uri>
+              <uri>model://visualtag_15/materials/textures</uri>
+              <name>visualtag_15</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>5.24985 0.168805 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_16'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_16/materials/scripts</uri>
+              <uri>model://visualtag_16/materials/textures</uri>
+              <name>visualtag_16</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>-1.12657 4.4584 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_17'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_17/materials/scripts</uri>
+              <uri>model://visualtag_17/materials/textures</uri>
+              <name>visualtag_17</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>0.675495 4.21596 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_18'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_18/materials/scripts</uri>
+              <uri>model://visualtag_18/materials/textures</uri>
+              <name>visualtag_18</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>2.07669 4.23046 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_19'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_19/materials/scripts</uri>
+              <uri>model://visualtag_19/materials/textures</uri>
+              <name>visualtag_19</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>3.52199 4.21897 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_20'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_20/materials/scripts</uri>
+              <uri>model://visualtag_20/materials/textures</uri>
+              <name>visualtag_20</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>4.86686 4.16304 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_21'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_21/materials/scripts</uri>
+              <uri>model://visualtag_21/materials/textures</uri>
+              <name>visualtag_21</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>6.32603 4.16944 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_22'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_22/materials/scripts</uri>
+              <uri>model://visualtag_22/materials/textures</uri>
+              <name>visualtag_22</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>7.47199 4.21528 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_23'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_23/materials/scripts</uri>
+              <uri>model://visualtag_23/materials/textures</uri>
+              <name>visualtag_23</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>7.4214 3.08886 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_24'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_24/materials/scripts</uri>
+              <uri>model://visualtag_24/materials/textures</uri>
+              <name>visualtag_24</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>7.4238 1.92833 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_25'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_25/materials/scripts</uri>
+              <uri>model://visualtag_25/materials/textures</uri>
+              <name>visualtag_25</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>6.38786 1.15758 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_26'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_26/materials/scripts</uri>
+              <uri>model://visualtag_26/materials/textures</uri>
+              <name>visualtag_26</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>6.24928 3.45885 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_27'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_27/materials/scripts</uri>
+              <uri>model://visualtag_27/materials/textures</uri>
+              <name>visualtag_27</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>5.84418 4.54156 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_28'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_28/materials/scripts</uri>
+              <uri>model://visualtag_28/materials/textures</uri>
+              <name>visualtag_28</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>5.32249 3.45033 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_29'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_29/materials/scripts</uri>
+              <uri>model://visualtag_29/materials/textures</uri>
+              <name>visualtag_29</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>3.47466 3.25063 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_30'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_30/materials/scripts</uri>
+              <uri>model://visualtag_30/materials/textures</uri>
+              <name>visualtag_30</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>3.43724 2.15719 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_31'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_31/materials/scripts</uri>
+              <uri>model://visualtag_31/materials/textures</uri>
+              <name>visualtag_31</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>4.54388 1.9262 0 0 -0 0</pose>
+    </model>
+    <model name='visualtag_32'>
+      <link name='main'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <visual name='main_Visual'>
+          <geometry>
+            <box>
+              <size>0.15 0.15 0.01</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://visualtag_32/materials/scripts</uri>
+              <uri>model://visualtag_32/materials/textures</uri>
+              <name>visualtag_32</name>
+            </script>
+            <ambient>1 1 0 1</ambient>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <static>1</static>
+      <pose frame=''>4.48227 3.29463 0 0 -0 0</pose>
+    </model>
+  </world>
+</sdf>

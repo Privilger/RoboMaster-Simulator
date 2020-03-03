@@ -1,0 +1,3 @@
+[submodule "src/rm_simulator/models/robomaster_visualtag_gazebo"]
+	path = src/rm_simulator/models/robomaster_visualtag_gazebo
+	url = ../robomaster_visualtag_gazebo.git

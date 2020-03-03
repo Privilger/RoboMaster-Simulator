@@ -61,6 +61,12 @@ If there is some dependency problem, you may use
 $ sudo apt --fix-broken install
 ```
 
+### Install RoboMaster Visual Tag
+```
+$ git submodule update --init --recursive
+$ cp -R src/rm_simulator/models/robomaster_visualtag_gazebo/models/* ~/.gazebo/models/
+```
+
 ### Modify lidar model
 ```sh
 $ roscd lms1xx/urdf

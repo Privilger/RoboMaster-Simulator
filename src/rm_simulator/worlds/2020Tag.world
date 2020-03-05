@@ -1091,7 +1091,6 @@
               <uri>model://visualtag_01/materials/textures</uri>
               <name>visualtag_01</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1116,7 +1115,6 @@
               <uri>model://visualtag_02/materials/textures</uri>
               <name>visualtag_02</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1141,7 +1139,6 @@
               <uri>model://visualtag_03/materials/textures</uri>
               <name>visualtag_03</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1166,7 +1163,6 @@
               <uri>model://visualtag_04/materials/textures</uri>
               <name>visualtag_04</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1191,7 +1187,6 @@
               <uri>model://visualtag_05/materials/textures</uri>
               <name>visualtag_05</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1216,7 +1211,6 @@
               <uri>model://visualtag_06/materials/textures</uri>
               <name>visualtag_06</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1241,7 +1235,6 @@
               <uri>model://visualtag_07/materials/textures</uri>
               <name>visualtag_07</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1266,7 +1259,6 @@
               <uri>model://visualtag_08/materials/textures</uri>
               <name>visualtag_08</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1291,7 +1283,6 @@
               <uri>model://visualtag_09/materials/textures</uri>
               <name>visualtag_09</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1316,7 +1307,6 @@
               <uri>model://visualtag_10/materials/textures</uri>
               <name>visualtag_10</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1341,7 +1331,6 @@
               <uri>model://visualtag_11/materials/textures</uri>
               <name>visualtag_11</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1366,7 +1355,6 @@
               <uri>model://visualtag_12/materials/textures</uri>
               <name>visualtag_12</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1391,7 +1379,6 @@
               <uri>model://visualtag_13/materials/textures</uri>
               <name>visualtag_13</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1416,7 +1403,6 @@
               <uri>model://visualtag_14/materials/textures</uri>
               <name>visualtag_14</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1441,7 +1427,6 @@
               <uri>model://visualtag_15/materials/textures</uri>
               <name>visualtag_15</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1466,7 +1451,6 @@
               <uri>model://visualtag_16/materials/textures</uri>
               <name>visualtag_16</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1491,7 +1475,6 @@
               <uri>model://visualtag_17/materials/textures</uri>
               <name>visualtag_17</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1516,7 +1499,6 @@
               <uri>model://visualtag_18/materials/textures</uri>
               <name>visualtag_18</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1541,7 +1523,6 @@
               <uri>model://visualtag_19/materials/textures</uri>
               <name>visualtag_19</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1566,7 +1547,6 @@
               <uri>model://visualtag_20/materials/textures</uri>
               <name>visualtag_20</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1591,7 +1571,6 @@
               <uri>model://visualtag_21/materials/textures</uri>
               <name>visualtag_21</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1616,7 +1595,6 @@
               <uri>model://visualtag_22/materials/textures</uri>
               <name>visualtag_22</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1641,7 +1619,6 @@
               <uri>model://visualtag_23/materials/textures</uri>
               <name>visualtag_23</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1666,7 +1643,6 @@
               <uri>model://visualtag_24/materials/textures</uri>
               <name>visualtag_24</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1691,7 +1667,6 @@
               <uri>model://visualtag_25/materials/textures</uri>
               <name>visualtag_25</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1716,7 +1691,6 @@
               <uri>model://visualtag_26/materials/textures</uri>
               <name>visualtag_26</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1741,7 +1715,6 @@
               <uri>model://visualtag_27/materials/textures</uri>
               <name>visualtag_27</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1766,7 +1739,6 @@
               <uri>model://visualtag_28/materials/textures</uri>
               <name>visualtag_28</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1791,7 +1763,6 @@
               <uri>model://visualtag_29/materials/textures</uri>
               <name>visualtag_29</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1816,7 +1787,6 @@
               <uri>model://visualtag_30/materials/textures</uri>
               <name>visualtag_30</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1841,7 +1811,6 @@
               <uri>model://visualtag_31/materials/textures</uri>
               <name>visualtag_31</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>
@@ -1866,7 +1835,6 @@
               <uri>model://visualtag_32/materials/textures</uri>
               <name>visualtag_32</name>
             </script>
-            <ambient>1 1 0 1</ambient>
           </material>
         </visual>
         <self_collide>0</self_collide>

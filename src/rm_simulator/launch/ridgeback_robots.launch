@@ -32,8 +32,8 @@
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
       <arg name="init_a"                  value="0"/>
-      <arg name="init_x"                  value="0.6"/>
-      <arg name="init_y"                  value="0.6"/>
+      <arg name="init_x"                  value="0.7"/>
+      <arg name="init_y"                  value="0.7"/>
       <arg name="robot_name"              value="$(arg ns0)" />
       <arg name="ns"                      value="$(arg ns0)" />
       <arg name="config"                  value="our_side" />
@@ -42,7 +42,7 @@
 
     <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
       <arg name="init_a"                  value="0"/>
-      <arg name="init_x"                  value="0.6"/>
+      <arg name="init_x"                  value="0.7"/>
       <arg name="init_y"                  value="4.7"/>
       <arg name="robot_name"              value="$(arg ns1)" />
       <arg name="ns"                      value="$(arg ns1)" />
@@ -52,7 +52,7 @@
 
   <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
     <arg name="init_a"                    value="3.14"/>
-    <arg name="init_x"                    value="7.6"/>
+    <arg name="init_x"                    value="7.5"/>
     <arg name="init_y"                    value="4.6"/>
     <arg name="robot_name"                value="$(arg ns2)" />
     <arg name="ns"                        value="$(arg ns2)" />
@@ -63,7 +63,7 @@
 
   <include file="$(find rm_simulator)/launch/one_ridgeback.launch">
     <arg name="init_a"                    value="3.14"/>
-    <arg name="init_x"                    value="7.6"/>
+    <arg name="init_x"                    value="7.5"/>
     <arg name="init_y"                    value="0.6"/>
     <arg name="robot_name"                value="$(arg ns3)" />
     <arg name="ns"                        value="$(arg ns3)" />

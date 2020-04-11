@@ -168,6 +168,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        camera_visualtag:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         center_laser:
           Alpha: 1
           Show Axes: false
@@ -270,22 +274,22 @@ Visualization Manager:
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
-      Enabled: false
+      Enabled: true
       Name: Map
       Topic: /jackal0/global_costmap/global_costmap/costmap
       Unreliable: false
       Use Timestamp: false
-      Value: false
+      Value: true
     - Alpha: 0.699999988
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
-      Enabled: false
+      Enabled: true
       Name: Map
       Topic: /jackal0/local_costmap/local_costmap/costmap
       Unreliable: false
       Use Timestamp: false
-      Value: false
+      Value: true
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -347,6 +351,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_visualtag:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -532,6 +540,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        camera_visualtag:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         center_laser:
           Alpha: 1
           Show Axes: false
@@ -691,6 +703,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
         base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_visualtag:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -932,7 +948,18 @@ Visualization Manager:
       Opacity: 0.75
       Segments color: 170; 170; 0
       Segments thickness: 0.0299999993
-      Topic: ""
+      Topic: /jackal0/obstacle_filtered
+      Unreliable: false
+      Value: true
+    - Circles color: 244; 229; 6
+      Class: Obstacles
+      Enabled: true
+      Margin color: 0; 170; 0
+      Name: Obstacles
+      Opacity: 0.75
+      Segments color: 170; 170; 0
+      Segments thickness: 0.0299999993
+      Topic: /jackal1/obstacle_filtered
       Unreliable: false
       Value: true
   Enabled: true
@@ -960,25 +987,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 22.3154373
+      Distance: 11.8655891
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 6.83506346
-        Y: 4.07785654
-        Z: -0.485029906
+        X: 4.16760302
+        Y: 3.16333103
+        Z: -0.37323463
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 1.44479644
+      Pitch: 1.55479634
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 4.68362665
+      Yaw: 4.69862509
     Saved: ~
 Window Geometry:
   Displays:

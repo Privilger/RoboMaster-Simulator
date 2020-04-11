@@ -22,19 +22,20 @@ para_costmap_interface {
 }
 footprint {
   point {
-    x: -0.40
-    y: -0.35
+    x: -0.42
+    y: -0.37
   }
   point {
-    x: -0.40
-    y: 0.35
+    x: -0.42
+    y: 0.37
   }
   point {
-    x: 0.40
-    y: 0.35
+    x: 0.42
+    y: 0.37
   }
   point {
-    x: 0.40
-    y: -0.35
+    x: 0.42
+    y: -0.37
   }
 }
+

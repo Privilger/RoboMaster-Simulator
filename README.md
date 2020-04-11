@@ -14,18 +14,24 @@ This project is aimed to build a simulator for ICRA RoboMaster AI Challenge. Thr
 This repository contains:
 
 
-1. Latest 2020 arena map.
+1. Latest 2020 arena map with [RoboMaster Visual Tag](https://github.com/Privilger/robomaster_visualtag_gazebo).
+2. Robot Model
+    - Full scale 2019 RoboMaster AI robot 
+    - A camera is mounted on the rotatable turret.
+    - [Omni-directional chassis](https://github.com/ridgeback/ridgeback_simulator) combine with [RoboRTS](https://github.com/RoboMaster/RoboRTS).
+2. Compatible with the [RoboRTS](https://github.com/RoboMaster/RoboRTS) package.
 1. Multi-agent navigation based on [multi-jackle](https://github.com/NicksSimulationsROS/multi_jackal) ROS package.
-2. [Omni-directional chassis](https://github.com/ridgeback/ridgeback_simulator) combine with RoboRTS.
-2. Turret(simplified as a rotatable camera) on the robot model.
+5. [Referee system](./src/rm_simulator/README.md)
+    - bunos and supply function.
+    - also handle the shooting function(whether the robot shoot the enemy successfully).
 2. Connect gazebo with OpenAi gym framework by [openai_ros](http://wiki.ros.org/openai_ros) ROS package.
 
 ## TODO
 1. ```resetSimulation``` function in openai_ros pkg doesn't look good. It need to be refactored. The function should put in the ```_env_setup``` function in the task env. Ref: openai_examples_projects -> Fetch Robot 
 2. Speed up the gazebo simulation. 
-3. Add bunos and supply function.
+2. [Run various Gazebo instances](https://answers.gazebosim.org//question/15897/how-to-open-several-gazebos-in-a-linux-operating-system/)
 4. Add stage simulator.
-5. Add referee system, maybe based on BlackBoard game design.
+
 
 ## Install
 ### Dependencies

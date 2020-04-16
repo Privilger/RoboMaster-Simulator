@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="joy" name="joy" type="joy_node">
+    <param name="autorepeat_rate" value="10" />
+  </node>
+
+  <node pkg="puma_motor_driver" name="joy_mecanum" type="joy_mecanum" />
+
+  <node pkg="puma_motor_driver" name="puma_multi_controller_node" type="puma_multi_controller_node">
+    <!-- Choose between a CAN bus or serial connection. One must be specified. -->
+    <param name="canbus_dev" value="can0" />
+    <!-- <param name="serial_port" value="/dev/ttyUSB0" /> -->
+  </node>
+
+</launch>

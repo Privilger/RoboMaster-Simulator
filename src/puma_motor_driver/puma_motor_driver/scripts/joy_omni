@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+import rospy
+import sensor_msgs.msg
+
+rospy.init_node("omni_joy")
+pub = rospy.Publisher('cmd', sensor_msgs.msg.JointState, queue_size=1)
+
+def clip(val):
+    return max(-1, min(1.0, val))
+
+def callback(joy):
+    x_linear = joy.axes[1]
+    y_linear = joy.axes[0]
+    z_angular = joy.axes[2]
+
+    js = sensor_msgs.msg.JointState()
+    js.name = ['left', 'right', 'front', 'rear']
+    js.velocity = map(clip, [
+            x_linear - z_angular,
+            -(x_linear + z_angular),
+            -(y_linear + z_angular),
+            y_linear - z_angular ])
+    pub.publish(js)
+
+rospy.Subscriber('joy', sensor_msgs.msg.Joy, callback)
+rospy.spin()

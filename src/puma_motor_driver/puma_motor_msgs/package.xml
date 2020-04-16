@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>puma_motor_msgs</name>
+  <version>0.2.1</version>
+  <description>Messages specific to Puma.</description>
+
+  <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <exec_depend>message_runtime</exec_depend>
+  <depend>std_msgs</depend>
+</package>

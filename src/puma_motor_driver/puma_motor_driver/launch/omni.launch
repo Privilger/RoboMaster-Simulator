@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="joy" name="joy" type="joy_node">
+    <param name="autorepeat_rate" value="10" />
+  </node>
+
+  <node pkg="puma_motor_driver" name="joy_omni" type="joy_omni" />
+
+  <node pkg="puma_motor_driver" name="puma_multi_controller_node" type="puma_multi_controller_node">
+    <param name="serial_port" value="/dev/ttyUSB0" />
+  </node>
+</launch>

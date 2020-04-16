@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>puma_motor_driver</name>
+  <version>0.2.1</version>
+  <description>A ROS driver for Puma single-channel motor control board.</description>
+
+  <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>diagnostic_updater</depend>
+  <depend>puma_motor_msgs</depend>
+  <depend>roscpp</depend>
+  <depend>sensor_msgs</depend>
+  <depend>serial</depend>
+
+  <exec_depend>can-utils</exec_depend>
+  <exec_depend>joy</exec_depend>
+
+  <test_depend>roslaunch</test_depend>
+  <test_depend>roslint</test_depend>
+</package>

@@ -2,7 +2,13 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find rm_simulator)/worlds/indoor_room.world"/>
+  <arg name="world_name" default="$(find ridgeback_gazebo)/worlds/ridgeback_race.world" />
+
+  <!-- Robot Spawn Pose -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="0.1"/>
+  <arg name="yaw" default="0"/>
 
   <!-- Configuration of Ridgeback which you would like to simulate.
        See ridgeback_description for details. -->
@@ -48,7 +54,7 @@
 
   <!-- Spawn Ridgeback -->
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-urdf -model ridgeback -param robot_description -x 0 -y 0 -z 0.1" />
+        args="-urdf -model ridgeback -param robot_description -x $(arg x) -y $(arg y) -z $(arg z) -Y $(arg yaw)" />
   <!--<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
         args="-sdf -model ridgeback -file /Users/mikepurvis/ridgeback_ws/ridgeback.sdf -x 0 -y 0 -z 0.1" /> -->
 </launch>

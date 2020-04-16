@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="2">
   <name>mecanum_gazebo_plugin</name>
-  <version>0.0.3</version>
+  <version>0.1.0</version>
   <description>Plugin which uses directional friction to simulate mecanum wheels.</description>
 
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>

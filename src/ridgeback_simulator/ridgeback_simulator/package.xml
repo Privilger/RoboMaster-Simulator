@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>ridgeback_simulator</name>
-  <version>0.0.3</version>
+  <version>0.1.0</version>
   <description>Packages for simulating Ridgeback.</description>
 
   <maintainer email="mpurvis@clearpathrobotics.com">Mike Purvis</maintainer>

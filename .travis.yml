@@ -47,9 +47,9 @@ cache:
 language: generic
 matrix:
   include:
-  - name: "Xenial kinetic"
-    dist: xenial
-    env: ROS_DISTRO=kinetic
+  - name: "Bionic melodic"
+    dist: bionic
+    env: ROS_DISTRO=melodic
 
 # Configuration variables. All variables are global now, but this can be used to
 # trigger a build matrix for different ROS distributions if desired.
@@ -88,7 +88,7 @@ install:
 # Install all dependencies, using wstool first and rosdep second.
 # wstool looks for a ROSINSTALL_FILE defined in the environment variables.
 before_script:
-  - sudo apt-get install -y libraw1394-11 libgtkmm-2.4-dev libglademm-2.4-dev libgtkglextmm-x11-1.2-dev
+  - sudo apt-get install -y libraw1394-11  libglademm-2.4-dev libgtkglextmm-x11-1.2-dev libatkmm-1.6-dev libcairomm-1.0-dev libglade2-0 libglademm-2.4-dev libglibmm-2.4-dev libgtkmm-2.4-dev libpangomm-1.4-dev libsigc++-2.0-dev
   # source dependencies: install using wstool.
   - cd $CI_SOURCE_PATH
   - tar zxvf flycapture2-2.11.3.121-amd64-pkg.tgz
@@ -102,7 +102,6 @@ before_script:
 #  - rosdep install -y --from-paths src --ignore-src --rosdistro $ROS_DISTRO
   - sudo apt-get install -y ros-$ROS_DISTRO-libg2o
   - sudo apt-get install -y ros-$ROS_DISTRO-controller-manager
-  - sudo apt-get install -y ros-$ROS_DISTRO-puma-motor-*
   - sudo apt-get install -y ros-$ROS_DISTRO-realtime-tools
   - sudo apt-get install -y ros-$ROS_DISTRO-rosserial-server
   - sudo apt-get install -y ros-$ROS_DISTRO-robot-localization
@@ -112,6 +111,7 @@ before_script:
   - sudo apt-get install -y ros-$ROS_DISTRO-hector-gazebo-plugins
   - sudo apt-get install -y ros-$ROS_DISTRO-joint-state-controller
   - sudo apt-get install -y ros-$ROS_DISTRO-lms1xx
+  - sudo apt-get install -y ros-$ROS_DISTRO-serial
   - sudo apt-get install -y ros-$ROS_DISTRO-roslint
   - sudo apt-get install -y ros-$ROS_DISTRO-cv-bridge
   - sudo apt-get install -y ros-$ROS_DISTRO-image-transport

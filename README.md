@@ -35,25 +35,25 @@ This repository contains:
 
 ## Install
 ### Dependencies
-First, install the ROS and the kinetic version is recommended (http://wiki.ros.org/kinetic/Installation).
+First, install the ROS and the melodic version is recommended (http://wiki.ros.org/melodic/Installation).
 
 ```sh
 $ sudo apt install protobuf-compiler
 $ sudo apt install libprotoc-dev
-$ sudo apt install ros-kinetic-libg2o
-$ sudo apt install ros-kinetic-controller-manager
-$ sudo apt install ros-kinetic-puma-motor-*
-$ sudo apt install ros-kinetic-realtime-tools 
-$ sudo apt install ros-kinetic-rosserial-server
-$ sudo apt install ros-kinetic-robot-localization
+$ sudo apt install ros-melodic-libg2o
+$ sudo apt install ros-melodic-controller-manager
+$ sudo apt install ros-melodic-realtime-tools 
+$ sudo apt install ros-melodic-rosserial-server
+$ sudo apt install ros-melodic-serial
+$ sudo apt install ros-melodic-robot-localization
 $ sudo apt install libgoogle-glog0v5 libgoogle-glog-dev
-$ sudo apt install ros-kinetic-move-base
-$ sudo apt install ros-kinetic-interactive-marker-twist-server
-$ sudo apt install ros-kinetic-gazebo-ros-control
-$ sudo apt install ros-kinetic-hector-gazebo-plugins 
-$ sudo apt install ros-kinetic-joint-state-controller 
-$ sudo apt install ros-kinetic-joint-trajectory-controller
-$ sudo apt install ros-kinetic-lms1xx
+$ sudo apt install ros-melodic-move-base
+$ sudo apt install ros-melodic-interactive-marker-twist-server
+$ sudo apt install ros-melodic-gazebo-ros-control
+$ sudo apt install ros-melodic-hector-gazebo-plugins
+$ sudo apt install ros-melodic-joint-state-controller 
+$ sudo apt install ros-melodic-joint-trajectory-controller
+$ sudo apt install ros-melodic-lms1xx
 $ sudo apt install libarmadillo-dev
 ```
 

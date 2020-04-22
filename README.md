@@ -55,6 +55,7 @@ $ sudo apt install ros-melodic-joint-state-controller
 $ sudo apt install ros-melodic-joint-trajectory-controller
 $ sudo apt install ros-melodic-lms1xx
 $ sudo apt install libarmadillo-dev
+$ sudo apt install ros-melodic-map-server
 ```
 
 The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/rm_ws/blob/master/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.
@@ -114,6 +115,20 @@ Eg.
 ```
 rostopic pub /jackal0/debuff std_msgs/String "data: '0 1 1 0 1 1 1'"
 ```
+
+## Config Robot Model
+### Add or remove camera and turret
+if you want to add the camera and turret, modify the `arg` in the launch file:
+
+`<arg name="config" value="our_side" />`
+
+`<arg name="config" value="enemy_side" />`
+
+else:
+
+`<arg name="config" value="our_side_no_camera" />`
+
+`<arg name="config" value="enemy_side_no_camera" />`
 
 ## Maintainers
 

@@ -58,6 +58,7 @@
 
 #include <geometry_msgs/PolygonStamped.h>
 #include <geometry_msgs/PoseStamped.h>
+#include <std_srvs/Empty.h>
 #include "map_common.h"
 #include "footprint.h"
 #include "layer.h"
@@ -230,6 +231,7 @@ class CostmapInterface {
   geometry_msgs::PoseStamped Pose2GlobalFrame(const geometry_msgs::PoseStamped& pose_msg);
   void ClearCostMap();
   void ClearLayer(CostmapLayer* costmap_layer_ptr, double pose_x, double pose_y);
+  bool cleanCostMapCB(std_srvs::Empty::Request& req, std_srvs::Empty::Response& res);
  protected:
   void LoadParameter();
   std::vector<geometry_msgs::Point> footprint_points_;
@@ -255,6 +257,7 @@ class CostmapInterface {
   ros::Timer timer_;
   ros::Time last_publish_;
   tf::Stamped<tf::Pose> old_pose_;
+  ros::ServiceServer  costmap_clean_server;
 };
 
 } //namespace roborts_costmap

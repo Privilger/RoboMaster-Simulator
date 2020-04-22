@@ -135,6 +135,13 @@ CostmapInterface::CostmapInterface(std::string map_name,
                                 map_origin_x_,
                                 map_origin_y_);
   }
+  costmap_clean_server = private_nh.advertiseService("clean_costmap", &CostmapInterface::cleanCostMapCB,this);
+}
+
+
+bool CostmapInterface::cleanCostMapCB(std_srvs::Empty::Request& req, std_srvs::Empty::Response& res){
+    ClearCostMap();
+    return true;
 }
 
 void CostmapInterface::LoadParameter() {

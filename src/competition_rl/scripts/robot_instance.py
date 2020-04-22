@@ -8,6 +8,8 @@ from gazebo_msgs.srv import SetModelState
 from gazebo_msgs.msg import ModelState
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 from geometry_msgs.msg import PoseWithCovarianceStamped, PoseStamped
+from std_srvs.srv import Empty
+import my_utility
 
 # The path is __init__.py of openai_ros, where we import the MovingCubeOneDiskWalkEnv directly
 timestep_limit_per_episode = 1000 # Can be any Value
@@ -28,6 +30,11 @@ class AiRobot(robot_underlying.Robot):
         self.reset_gazebo_simulation_proxy = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
         self.reset_localization_proxy = rospy.Publisher('/' + self.robot_name_space + '/initialpose',
                                                         PoseWithCovarianceStamped, queue_size=10)
+        self.clean_global_costmap_proxy = rospy.ServiceProxy(
+            '/' + self.robot_name_space + '/global_costmap/clean_costmap', Empty)
+        self.clean_local_costmap_proxy = rospy.ServiceProxy(
+            '/' + self.robot_name_space + '/local_costmap/clean_costmap', Empty)
+        # self.clean_decision_costmap_proxy = rospy.ServiceProxy('/'+self.robot_name_space+'/decision_costmap/clean_costmap', Empty)
         # Only variable needed to be set here
         # number_actions = rospy.get_param('/my_robot_namespace/n_actions')
         number_actions = 2
@@ -46,7 +53,7 @@ class AiRobot(robot_underlying.Robot):
         super(AiRobot, self).__init__(self.robot_name_space)
 
 
-    def _set_init_gazebo_pose(self):
+    def _set_init_gazebo_pose(self, x=None, y=None, yaw=None):
         """Sets the Robot in its init pose in Gazebo
         """
         rospy.wait_for_service('/gazebo/set_model_state')
@@ -54,8 +61,8 @@ class AiRobot(robot_underlying.Robot):
             robot_pose = ModelState()
             robot_pose.model_name = self.robot_name_space
             robot_pose.reference_frame = "/map"
-            robot_pose.pose.position.x = self.init_x
-            robot_pose.pose.position.y = self.init_y
+            robot_pose.pose.position.x = self.init_x if x==None else x
+            robot_pose.pose.position.y = self.init_y if y==None else y
             robot_pose.pose.position.z = 0
             robot_pose.pose.orientation.x = self.quat[0]
             robot_pose.pose.orientation.y = self.quat[1]
@@ -67,21 +74,32 @@ class AiRobot(robot_underlying.Robot):
             print ("/gazebo/reset_simulation service call failed")
             return False
 
-    def _set_init_ros(self):
+    def _set_init_ros(self, x=None, y=None, yaw=None):
         # self.move_turret(0)
         init_msg = PoseWithCovarianceStamped()
         init_msg.header.stamp = rospy.Time.now()
         init_msg.header.frame_id = 'map'
-        init_msg.pose.pose.position.x = self.init_x
-        init_msg.pose.pose.position.y = self.init_y
+        init_msg.pose.pose.position.x = self.init_x if x==None else x
+        init_msg.pose.pose.position.y = self.init_y if y==None else y
         init_msg.pose.pose.orientation.x = self.quat[0]
         init_msg.pose.pose.orientation.y = self.quat[1]
         init_msg.pose.pose.orientation.z = self.quat[2]
         init_msg.pose.pose.orientation.w = self.quat[3]
+        rospy.wait_for_service('/' + self.robot_name_space + '/global_costmap/clean_costmap')
         # 迷之reset 第一次reset会有问题， 还需要sleep一下等它反应过来
         self.reset_localization_proxy.publish(init_msg)
         rospy.sleep(0.1)
-        self.reset_localization_proxy.publish(init_msg)
+        # 清理地图
+        try:
+            self.clean_global_costmap_proxy()
+        except rospy.ServiceException as e:
+            print('/' + self.robot_name_space + '/global_costmap/clean_costmap', " service call failed")
+        rospy.wait_for_service('/' + self.robot_name_space + '/local_costmap/clean_costmap')
+        try:
+            self.clean_local_costmap_proxy()
+        except rospy.ServiceException as e:
+            print('/' + self.robot_name_space + '/local_costmap/clean_costmap', " service call failed")
+        # self.clean_decision_costmap_proxy()
         rospy.sleep(0.1)
         return True
 
@@ -104,9 +122,13 @@ class AiRobot(robot_underlying.Robot):
         Move the robot based on the action variable given
         """
         # TODO: Move robot
-        # We tell the OneDiskCube to spin the RollDisk at the selected speed
-        rospy.logerr("turret_position >>" + str(action))
-        # self.move_turret(action)
+        goal = my_utility.getCoord(action)
+        goal_msg = PoseStamped()
+        goal_msg.header.frame_id = '/map'
+        goal_msg.pose.position.x = goal.x
+        goal_msg.pose.position.y = goal.y
+        goal_msg.pose.orientation.w = 1
+        self._goal_pub.publish(goal_msg)
 
     def _get_obs(self):
         """

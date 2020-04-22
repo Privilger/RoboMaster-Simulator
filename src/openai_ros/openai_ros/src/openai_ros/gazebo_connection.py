@@ -19,11 +19,9 @@ class GazeboConnection():
         
         self.unpause = rospy.ServiceProxy('/gazebo/unpause_physics', Empty)
         self.pause = rospy.ServiceProxy('/gazebo/pause_physics', Empty)
-        # self.reset_simulation_proxy = rospy.ServiceProxy('/gazebo/reset_simulation', Empty)
         self.reset_gazebo_simulation_proxy = rospy.ServiceProxy('/gazebo/set_model_state', SetModelState)
         self.reset_rviz_simulation_proxy   = rospy.Publisher('/'+robot_ns+'/initialpose',
                                                              PoseWithCovarianceStamped, queue_size=1)
-        self.reset_world_proxy = rospy.ServiceProxy('/gazebo/reset_world', Empty)
 
         # Setup the Gravity Controle system
         service_name = '/gazebo/set_physics_properties'
@@ -106,6 +104,12 @@ class GazeboConnection():
             init_msg.pose.pose.orientation.y = quat[1]
             init_msg.pose.pose.orientation.z = quat[2]
             init_msg.pose.pose.orientation.w = quat[3]
+            init_msg.pose.covariance = [0.25, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.25, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                        0.0, 0.0, 0.0, 0.0, 0.0, 0.06853892326654787]
             self.reset_rviz_simulation_proxy.publish(init_msg)
 
     def resetWorld(self):

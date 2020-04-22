@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+from tianshou.policy import PPOPolicy
+from tianshou.env import SubprocVectorEnv
+from tianshou.trainer import onpolicy_trainer
+from tianshou.data import Collector, ReplayBuffer
+
 import gym
 import time
 import numpy
@@ -11,7 +16,6 @@ from gym import wrappers
 import rospy
 import rospkg
 
-import challengeTaskEnv
 import multiAgentChallengeTaskEnv
 
 # from openai_ros.openai_ros_common import StartOpenAI_ROS_Environment
@@ -23,6 +27,8 @@ def main():
 
     # env = gym.make('AiChallengeEnv-v0', robot_ns="jackal0")
     env = gym.make('AiChallengeEnv-v1')
+
+    # env = VectorEnv(env)
     # Set the logging system
     rospack = rospkg.RosPack()
     pkg_path = rospack.get_path('competition_rl')
@@ -39,9 +45,11 @@ def main():
     # Initialize the environment and get first state of the robot
     observation = env.reset()
     # state = ''.join(map(str, observation))
-
-    env.step(1)
+    time.sleep(5)
+    observation = env.reset()
     time.sleep(2)
+    # env.step(1)
+    # time.sleep(2)
     # env.step(-1)
     # time.sleep(2)
 

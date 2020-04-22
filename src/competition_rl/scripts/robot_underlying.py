@@ -1,35 +1,19 @@
 #! /usr/bin/env python
 
 import rospy
-from openai_ros import robot_gazebo_env
 from std_msgs.msg import Float32
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped, PoseWithCovarianceStamped
 from nav_msgs.msg import Odometry
 from sensor_msgs.msg import JointState
 
-class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
+class Robot():
     """Superclass for all CubeSingleDisk environments.
     """
 
     def __init__(self, robot_ns):
         """Initializes a new CubeSingleDisk environment.
         """
-        # Variables that we give through the constructor.
-        # self.init_roll_vel = init_roll_vel
-
-        self.controllers_list = []
-
         self.robot_name_space = robot_ns
-        # self.robot_name_space = rospy.get_param("~robot_name_space")
-        # rospy.logerr(self.robot_name_space)
-
-        reset_controls_bool = False
-
-        # We launch the init function of the Parent Class robot_gazebo_env.RobotGazeboEnv
-        super(AiChallengeEnv, self).__init__(controllers_list=self.controllers_list,
-                                                  robot_name_space=self.robot_name_space,
-                                                  reset_controls=reset_controls_bool,
-                                                  start_init_physics_parameters=False)
 
         """
         To check any topic we need to have the simulations running, we need to do two things:
@@ -39,8 +23,6 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         This has to do with the fact that some plugins with tf don't understand the reset of the simulation
         and need to be reset to work properly.
         """
-        self.gazebo.unpauseSim()
-        self.controllers_object.reset_controllers()
         self._check_all_sensors_ready()
 
         # We Start all the ROS related Subscribers and publishers
@@ -53,8 +35,6 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
                                         PoseStamped, queue_size=1)
 
         self._check_publishers_connection()
-
-        self.gazebo.pauseSim()
 
     def _pose_callback(self, data):
         self.amcl_pose = data
@@ -70,10 +50,6 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         self._check_publishers_connection()
         return True
 
-
-    # CubeSingleDiskEnv virtual methods
-    # ----------------------------
-
     def _check_all_sensors_ready(self):
         self._check_joint_states_ready()
         self._check_amcl_pose_ready()
@@ -84,10 +60,8 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         self.joints = None
         while self.joints is None and not rospy.is_shutdown():
             try:
-                # print("Current " + '/'+self.robot_name_space+'/joint_states')
                 self.joints = rospy.wait_for_message('/'+self.robot_name_space+'/joint_states', JointState, timeout=1.0)
                 rospy.logdebug("Current " + '/'+self.robot_name_space+'/joint_states'+ " READY=>" + str(self.joints))
-
             except:
                 rospy.logerr("Current " + '/'+self.robot_name_space+'/joint_states'+ " not ready yet, retrying for getting joint_states")
         return self.joints
@@ -97,11 +71,9 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         while self.amcl_pose is None and not rospy.is_shutdown():
             try:
                 self.amcl_pose = rospy.wait_for_message('/'+self.robot_name_space+'/amcl_pose', PoseStamped, timeout=1.0)
-                rospy.logdebug("Current /amcl_pose READY=>" + str(self.amcl_pose))
-
+                rospy.logdebug("Current " + '/' + self.robot_name_space + '/amcl_pose' + " READY=>" + str(self.amcl_pose))
             except:
-                rospy.logerr("Current /amcl_pose not ready yet, retrying for getting amcl_pose")
-
+                rospy.logdebug("Current " + '/' + self.robot_name_space + '/amcl_pose' + " not ready yet, retrying for getting amcl")
         return self.amcl_pose
 
     def _check_odom_ready(self):
@@ -109,11 +81,9 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         while self.odom is None and not rospy.is_shutdown():
             try:
                 self.odom = rospy.wait_for_message('/'+self.robot_name_space+'/odometry/filtered', Odometry, timeout=1.0)
-                rospy.logdebug("Current /odometry/filtered READY=>" + str(self.odom))
-
+                rospy.logdebug("Current " + '/' + self.robot_name_space + '/odometry/filtered' + " READY=>" + str(self.odom))
             except:
-                rospy.logerr("Current /odometry/filtered not ready yet, retrying for getting odom")
-
+                rospy.logdebug("Current " + '/' + self.robot_name_space + '/odometry/filtered' + " not ready yet, retrying for getting odom")
         return self.odom
 
     def _check_publishers_connection(self):
@@ -121,26 +91,27 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
         Checks that all the publishers are working
         :return:
         """
-        rate = rospy.Rate(10)  # 10hz
-        while self._turret_position_pub.get_num_connections() == 0 and not rospy.is_shutdown():
-            rospy.logdebug("No susbribers to _turret_position_pub yet so we wait and try again")
-            try:
-                rate.sleep()
-            except rospy.ROSInterruptException:
-                # This is to avoid error when world is rested, time when backwards.
-                pass
-        rospy.logdebug("_turret_position_pub Publisher Connected")
-
-        while self._goal_pub.get_num_connections() == 0 and not rospy.is_shutdown():
-            rospy.logdebug("No susbribers to _goal_pub yet so we wait and try again")
-            try:
-                rate.sleep()
-            except rospy.ROSInterruptException:
-                # This is to avoid error when world is rested, time when backwards.
-                pass
-        rospy.logdebug("_goal_pub Publisher Connected")
-
-        rospy.logdebug("All Publishers READY")
+        pass
+        # rate = rospy.Rate(10)  # 10hz
+        # while self._turret_position_pub.get_num_connections() == 0 and not rospy.is_shutdown():
+        #     rospy.logdebug("No susbribers to _turret_position_pub yet so we wait and try again")
+        #     try:
+        #         rate.sleep()
+        #     except rospy.ROSInterruptException:
+        #         # This is to avoid error when world is rested, time when backwards.
+        #         pass
+        # rospy.logdebug("_turret_position_pub Publisher Connected")
+        #
+        # while self._goal_pub.get_num_connections() == 0 and not rospy.is_shutdown():
+        #     rospy.logdebug("No susbribers to _goal_pub yet so we wait and try again")
+        #     try:
+        #         rate.sleep()
+        #     except rospy.ROSInterruptException:
+        #         # This is to avoid error when world is rested, time when backwards.
+        #         pass
+        # rospy.logdebug("_goal_pub Publisher Connected")
+        #
+        # rospy.logdebug("All Publishers READY")
 
 
     # Methods that the TaskEnvironment will need.
@@ -179,8 +150,13 @@ class AiChallengeEnv(robot_gazebo_env.RobotGazeboEnv):
     # because they will be used in RobotGazeboEnv GrandParentClass and defined in the
     # TaskEnvironment.
     # ----------------------------
-    def _set_init_pose(self):
-        """Sets the Robot in its init pose
+    def _set_init_gazebo_pose(self):
+        """Sets the Robot in its init pose in Gazebo
+        """
+        raise NotImplementedError()
+
+    def _set_init_ros(self):
+        """Sets the Robot in its init pose in ROS
         """
         raise NotImplementedError()
 

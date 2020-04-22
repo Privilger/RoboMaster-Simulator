@@ -1,19 +1,18 @@
 import rospy
 import gym
 from gym.utils import seeding
-from .gazebo_connection import GazeboConnection
-from .controllers_connection import ControllersConnection
+from .multi_robot_gazebo_connection import GazeboConnection
 #https://bitbucket.org/theconstructcore/theconstruct_msgs/src/master/msg/RLExperimentInfo.msg
 from openai_ros.msg import RLExperimentInfo
 
 # https://github.com/openai/gym/blob/master/gym/core.py
 class MultiRobotGazeboEnv(gym.Env):
 
-    def __init__(self, robot_name_space, start_init_physics_parameters=True, reset_world_or_sim="SIMULATION"):
+    def __init__(self, start_init_physics_parameters=True):
 
         # To reset Simulations
         rospy.logdebug("START init MultiRobotGazeboEnv")
-        self.gazebo = GazeboConnection(robot_name_space, start_init_physics_parameters,reset_world_or_sim)
+        self.gazebo = GazeboConnection(start_init_physics_parameters)
         self.seed()
 
         # Set up ROS related variables
@@ -41,7 +40,6 @@ class MultiRobotGazeboEnv(gym.Env):
         simulation and get the observations result of performing that action.
         """
         rospy.logdebug("START STEP OpenAIROS")
-
         self.gazebo.unpauseSim()
         self._set_action(action)
         self.gazebo.pauseSim()
@@ -64,14 +62,42 @@ class MultiRobotGazeboEnv(gym.Env):
         rospy.logdebug("END Reseting MultiRobotGazeboEnvironment")
         return obs
 
-    def close(self):
+    def _init_env_variables(self):
+        """Inits variables needed to be initialised each time we reset at the start
+        of an episode.
         """
-        Function executed when closing the environment.
-        Use it for closing GUIS and other systems that need closing.
-        :return:
+        raise NotImplementedError()
+
+    def _reset_sim(self):
+        """Resets a simulation
         """
-        rospy.logdebug("Closing MultiRobotGazeboEnvironment")
-        rospy.signal_shutdown("Closing MultiRobotGazeboEnvironment")
+        rospy.logdebug("RESET SIM START")
+        self.gazebo.pauseSim()
+        self._set_init_gazebo_pose()
+        self.gazebo.unpauseSim()
+        self._check_all_systems_ready()
+        self._set_init_ros()
+        rospy.logdebug("RESET SIM END")
+        return True
+
+    def _set_init_gazebo_pose(self):
+        """Sets the Robot in its init pose in Gazebo
+        """
+        raise NotImplementedError()
+
+    def _check_all_systems_ready(self):
+        """
+        Checks that all the sensors, publishers and other simulation systems are
+        operational.
+        """
+        raise NotImplementedError()
+
+    def _set_init_ros(self):
+        """Sets the Robot in its init pose in ROS
+        """
+        raise NotImplementedError()
+
+
 
     def _update_episode(self):
         """
@@ -89,7 +115,6 @@ class MultiRobotGazeboEnv(gym.Env):
         self.episode_num += 1
         self.cumulated_episode_reward = 0
 
-
     def _publish_reward_topic(self, reward, episode_number=1):
         """
         This function publishes the given reward in the reward topic for
@@ -103,43 +128,20 @@ class MultiRobotGazeboEnv(gym.Env):
         reward_msg.episode_reward = reward
         self.reward_pub.publish(reward_msg)
 
-    # Extension methods
-    # ----------------------------
-
-    def _reset_sim(self):
-        """Resets a simulation
-        """
-        rospy.logdebug("RESET SIM START")
-        self.gazebo.unpauseSim()
-        self._check_all_systems_ready()
-        self._set_init_pose()
-        # self.gazebo.pauseSim()
-
-        rospy.logdebug("RESET SIM END")
-        return True
-
-    def _set_init_pose(self):
-        """Sets the Robot in its init pose
-        """
-        raise NotImplementedError()
-
-    def _check_all_systems_ready(self):
-        """
-        Checks that all the sensors, publishers and other simulation systems are
-        operational.
-        """
-        raise NotImplementedError()
-
     def _get_obs(self):
         """Returns the observation.
         """
         raise NotImplementedError()
 
-    def _init_env_variables(self):
-        """Inits variables needed to be initialised each time we reset at the start
-        of an episode.
+    def close(self):
         """
-        raise NotImplementedError()
+        Function executed when closing the environment.
+        Use it for closing GUIS and other systems that need closing.
+        :return:
+        """
+        rospy.logdebug("Closing MultiRobotGazeboEnvironment")
+        rospy.signal_shutdown("Closing MultiRobotGazeboEnvironment")
+
 
     def _set_action(self, action):
         """Applies the given action to the simulation.

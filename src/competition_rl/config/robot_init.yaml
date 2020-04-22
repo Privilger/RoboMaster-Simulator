@@ -1,19 +1,19 @@
 jackal0:
-  x: 0.6
-  y: 0.6
+  x: 0.7
+  y: 0.7
   yaw: 0
 
 jackal1:
-  x: 0.6
+  x: 0.7
   y: 4.7
   yaw: 0
 
 jackal2:
-  x: 7.6
-  y: 4.7
+  x: 7.5
+  y: 4.6
   yaw: 3.14
 
 jackal3:
-  x: 7.6
+  x: 7.5
   y: 0.6
   yaw: 3.14

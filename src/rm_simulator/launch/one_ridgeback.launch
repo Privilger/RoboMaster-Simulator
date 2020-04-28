@@ -35,7 +35,7 @@
     <arg name="ns" value="$(arg ns)"/>
   </include>
 
-  <rosparam param="/gazebo_ros_control/pid_gains">
+  <rosparam param="/$(arg ns)/gazebo_ros_control/pid_gains">
     front_left_wheel:
       p: 1
       i: 0.1

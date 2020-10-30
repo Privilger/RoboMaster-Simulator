@@ -1,7 +1,6 @@
 # ICRA RoboMaster AI Challenge Simulator
-[![Build Status](https://travis-ci.com/Privilger/rmai_ws.svg?token=1NvSjpoBdozy9gnxsTP8&branch=master)](https://travis-ci.com/Privilger/rmai_ws)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d4d16aa3a0664eecbd98516837f9d3f6)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Privilger/rmai_ws&amp;utm_campaign=Badge_Grade)
-![platform](https://img.shields.io/badge/platform-ubuntu-lightgrey.svg)
+[![Build Status](https://travis-ci.com/Privilger/RoboMaster-Simulator.svg?token=1NvSjpoBdozy9gnxsTP8&branch=melodic-devel)](https://travis-ci.com/github/Privilger/RoboMaster-Simulator)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/10f617bd7cac445f96d0d626e00a22cf)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Privilger/RoboMaster-Simulator&amp;utm_campaign=Badge_Grade)![platform](https://img.shields.io/badge/platform-ubuntu-lightgrey.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 > RM simulator 
@@ -27,8 +26,6 @@ This repository contains:
 2. Connect gazebo with OpenAi gym framework by [openai_ros](http://wiki.ros.org/openai_ros) ROS package.
 
 ## TODO
-1. ```resetSimulation``` function in openai_ros pkg doesn't look good. It need to be refactored. The function should put in the ```_env_setup``` function in the task env. Ref: openai_examples_projects -> Fetch Robot 
-2. Speed up the gazebo simulation. 
 2. [Run various Gazebo instances](https://answers.gazebosim.org//question/15897/how-to-open-several-gazebos-in-a-linux-operating-system/)
 4. Add stage simulator.
 
@@ -83,38 +80,24 @@ $ sudo vim sick_lms1xx.urdf.xacro
 Delete \<visual> tag (from line 42 to line 48).
 
 ## Usage
-### Launch four robots navigation in a map.
+
+### Case1: Launch four robots navigation in a map.
 ```sh
 $ roslaunch rm_simulator ridgeback_robots.launch
 ```
-### Start new game by call this service.
-```sh
-rosservice call /start_game "start: true"
-```
 
-### Rotate the turret.
-jackal0 is the robot ID, the unit of an angle is radian.
-Eg.
-```sh
-$ rostopic pub /jackal0/turret_position std_msgs/Float32 "data: 1.0"
-```
-
-### Launch one robot navigation in a map.
+### Case2: Launch one robot navigation in a map.
 ```sh
 $ roslaunch rm_simulator one_rm_robot.launch
 ```
 
-### Open world
+### Case3: Only launch world
 ```sh
 $ roslaunch rm_simulator arena.launch
 ```
 
-### Activate the debuff layer
-jackal0 is the robot ID. data's valid input is index from 1 to 6, the index 0 is not used.
-Eg.
-```
-rostopic pub /jackal0/debuff std_msgs/String "data: '0 1 1 0 1 1 1'"
-```
+Feel free to take a look at the launch files in `rm_simulator` pkg.
+
 
 ## Config Robot Model
 ### Add or remove camera and turret
@@ -129,6 +112,27 @@ else:
 `<arg name="config" value="our_side_no_camera" />`
 
 `<arg name="config" value="enemy_side_no_camera" />`
+
+## Func
+### Rotate the turret.
+jackal0 is the robot ID, the unit of an angle is radian.
+Eg.
+```sh
+$ rostopic pub /jackal0/turret_position std_msgs/Float32 "data: 1.0"
+```
+
+### Start new game by call this service.(Not use currently)
+```sh
+rosservice call /start_game "start: true"
+```
+
+### Activate the debuff layer(Not use currently)
+jackal0 is the robot ID. data's valid input is index from 1 to 6, the index 0 is not used.
+Eg.
+```
+rostopic pub /jackal0/debuff std_msgs/String "data: '0 1 1 0 1 1 1'"
+```
+
 
 ## Maintainers
 

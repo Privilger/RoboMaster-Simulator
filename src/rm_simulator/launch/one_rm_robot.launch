@@ -2,7 +2,6 @@
 
 <launch>
   <arg name="rviz"                      default="true"/>
-  <arg name="enable_lidar_detection"    default="true" />
   <arg name="use_sim_time"              default="true" />
   <arg name="gui"                       default="true" />
   <arg name="headless"                  default="false" />
@@ -37,7 +36,6 @@
       <arg name="robot_name"              value="$(arg ns0)" />
       <arg name="ns"                      value="$(arg ns0)" />
       <arg name="config"                  value="our_side_no_camera" />
-      <arg name="enable_lidar_detection"  value="$(arg enable_lidar_detection)" />
     </include>
 
   <node name="simulate_refer_system" pkg="rm_simulator" type="simulate_refer_system" respawn="false"/>

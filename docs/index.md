@@ -25,11 +25,15 @@ This repository contains:
     - also handle the shooting function(whether the robot shoot the enemy successfully).
 2. Connect gazebo with OpenAi gym framework by [openai_ros](http://wiki.ros.org/openai_ros) ROS package.
 
+## Preview
+### Screenshot
+![Arena](arena.jpg)
 
-## TODO
-2. [Run various Gazebo instances](https://answers.gazebosim.org//question/15897/how-to-open-several-gazebos-in-a-linux-operating-system/)
-4. Add stage simulator.
+### Videos
+<iframe src="//player.bilibili.com/player.html?aid=91834595&bvid=BV1g7411K7ZY&cid=156809807&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="min-height:600px;width:100%;height:100%;"> 
+</iframe>
 
+<iframe src="https://player.bilibili.com/player.html?aid=327787645&bvid=BV1tA411b7kF&cid=180251953&page=1&high_quality=1&danmaku=0" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="min-height:600px;width:100%;height:100%;"> </iframe>
 
 ## Install
 ### Dependencies
@@ -133,6 +137,10 @@ Eg.
 ```
 rostopic pub /jackal0/debuff std_msgs/String "data: '0 1 1 0 1 1 1'"
 ```
+
+## TODO
+1. [Run various Gazebo instances](https://answers.gazebosim.org//question/15897/how-to-open-several-gazebos-in-a-linux-operating-system/)
+2. Add stage simulator.
 
 
 ## Maintainers

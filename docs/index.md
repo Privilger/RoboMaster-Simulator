@@ -1,9 +1,9 @@
-# ICRA RoboMaster AI Challenge Simulator
+# ICRA RoboMaster AI Challenge Simulator ——ShanghaiTech University
 [![Build Status](https://travis-ci.com/Privilger/RoboMaster-Simulator.svg?token=1NvSjpoBdozy9gnxsTP8&branch=melodic-devel)](https://travis-ci.com/github/Privilger/RoboMaster-Simulator)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/10f617bd7cac445f96d0d626e00a22cf)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Privilger/RoboMaster-Simulator&amp;utm_campaign=Badge_Grade)![platform](https://img.shields.io/badge/platform-ubuntu-lightgrey.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-> RM simulator 
+> RM simulator made by Living Machine Lab, ShanghaiTech University
 
 ## Background
 
@@ -60,7 +60,7 @@ $ sudo apt install libarmadillo-dev
 $ sudo apt install ros-melodic-map-server
 ```
 
-The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/rm_ws/blob/master/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.
+The robot gazebo model contains pointgrey cameras. So it is required to install pointgrey camera driver in your computer. The driver file is named [flycapture2-2.11.3.121-amd64-pkg.tgz](https://github.com/Privilger/RoboMaster-Simulator/blob/melodic-devel/flycapture2-2.11.3.121-amd64-pkg.tgz). Extract this file and run the install script.
 
 ```sh
 $ echo "y\n" | sudo ./install_flycapture_only_simulation.sh
